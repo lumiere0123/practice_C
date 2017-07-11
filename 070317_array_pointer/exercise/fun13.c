@@ -9,7 +9,7 @@ main(){
 	char *p_a = &a;
 
 	printf("the value of x is %d\n", x);
-/* direct access to x   */
+  /* direct access to x   */
 
 	printf("the value of *p_x is %d\n", *p_x);
 /* indirect access to x */
