@@ -1,0 +1,47 @@
+/*  	Programmer:    Arta Kogan
+	Program Name:  fun4.c  (modified fun2.c)
+	Date:          September 2008
+	Purpose:       Demonstrates the use of different types of
+			   variables, simple calculations and use of
+			   if statement.                                        */
+#include <stdio.h>
+
+int main(){
+
+	int num_of_books;
+	float price;
+	float cost;
+	double total = 0;
+
+	num_of_books = 0;
+	price = 0;
+	cost = 0.00;
+
+	printf("\n\n");
+	printf("Please, enter the number of books:");
+	scanf("%d", &num_of_books);
+
+	printf("There are %d books selected\n", num_of_books);
+
+	printf("Please, enter the price for a single book:");
+	scanf("%f", &price);
+
+	printf("Price for a single book: $%.2f\n", price);
+
+	if(num_of_books > 5){
+		printf("You deserve a discount!\n");
+		price = price * 0.95;
+		printf("Price for a single book after discount: $%.2f\n", price);
+	}
+
+	cost = num_of_books * price;
+
+	total = cost * 1.15;
+
+
+	printf("Total before taxes:$%.2f\n", cost);
+	printf("Total after taxes: $%.2lf\n", total);
+
+	return 0;
+}
+

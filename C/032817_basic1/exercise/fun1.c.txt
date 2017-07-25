@@ -1,0 +1,15 @@
+/*  Programmer:         Arta Kogan
+    Program Name:       fun1.c
+    Date:               September 5, 2008
+    Purpose:            Demonstrates how to display text on the screen */
+
+#include <stdio.h>
+
+int main(){
+	printf("Good morning, everyone!\n");
+	printf("Lets start programming in C.\n\n");
+	printf("It is fun when it works!\n");
+	printf("\n");
+
+	return 0;
+}

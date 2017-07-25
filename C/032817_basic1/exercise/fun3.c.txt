@@ -1,0 +1,44 @@
+/*  Programmer:       Arta Kogan
+	Program Name:     fun3.c
+	Date:             September 5, 2008
+	Purpose:          Demonstration the use of different types of
+			  variables and simple calculations.              */
+
+#include <stdio.h>
+
+int main(){
+	int test_1;
+	int test_2;
+	int final;
+	float average_mark = 0;
+	char first_letter;
+
+	test_1 = 0;
+	test_2 = 0;
+	final = 0;
+	first_letter = 'A';
+
+	printf("\n\n");
+
+	printf("Please, enter the first letter of your first name:");
+	scanf("%c", &first_letter);
+
+	printf("Please, enter the grade for your test one:");
+	scanf("%d", &test_1);
+
+	printf("Please, enter the grade for your test two:");
+	scanf("%d", &test_2);
+
+	printf("Please, enter the grade for your final test:");
+	scanf("%d", &final);
+
+	average_mark = ( test_1 + test_2 + final  ) / 3.0;
+
+	printf("\nThe student with the first letter %c \n", first_letter);
+	printf("\nTest one\tTest two\tFinal test\n");
+	printf("-----------------------------------------\n");
+	printf("%d\t\t%d\t\t%d\n", test_1, test_2, final);
+	printf("\nThe average mark: %f \n", average_mark );
+
+	return 0;
+}

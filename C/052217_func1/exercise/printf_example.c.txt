@@ -1,0 +1,17 @@
+#include<stdio.h>
+#define SIZE 80 + 1
+
+main()
+{
+
+  int num1 = 345;
+  double num2 = 987.45765;
+  char ruler[SIZE] ="123456789112345678921234567893123456789";
+
+  printf ("Results:\t\tView Below:\n\n");
+  printf ("%s\n%20.2lf%d\n\n", ruler, num2, num1);
+  printf ("%s\n%20.2lf%15d\n\n", ruler, num2, num1);
+  printf ("%s\n%-20.2lf%-15d\n\n", ruler, num2, num1);
+  printf ("%s\n%-20.2lf%-15.3d\n\n", ruler, num2, num1);
+
+}
