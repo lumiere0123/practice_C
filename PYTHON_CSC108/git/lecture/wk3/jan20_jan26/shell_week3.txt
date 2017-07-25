@@ -1,0 +1,447 @@
+3.3.3 (v3.3.3:c3896275c0f6, Nov 16 2013, 23:39:35) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)]
+Python Type "help", "copyright", "credits" or "license" for more information.
+
+True
+True
+
+False
+False
+
+#remember Python is case-sensitive
+true
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.NameError: name 'true' is not defined
+
+type(True)
+<class 'bool'>
+
+10 > 2
+True
+
+10 >= 10
+True
+
+5 < 2
+False
+
+5 <= 1
+False
+
+#Relational operators (for example >, <=) compare values and produce a bool result
+10.25 < 10.27
+True
+
+2 == 4
+False
+
+#We compare values not types
+2 == 2.0
+True
+
+2 + 3.5
+5.5
+
+#remember = is for assignments
+# == is for equality comparisons
+3 != 5
+True
+
+day = 22
+day
+22
+
+#we can compare variables too
+day > 15
+True
+
+day - 10 < 22
+True
+
+# Wing crashed at this point.. Restarted Wing IDE
+
+day = 22
+
+#id gives the memory address of an object
+id(day)
+4297274176
+
+help(id)
+Help on built-in function id in module builtins:
+
+id(...)
+    id(object) -> integer
+    
+    Return the identity of an object.  This is guaranteed to be unique among
+    simultaneously existing objects.  (Hint: it's the object's memory address.)
+
+None
+
+day + 12 > 22
+True
+
+#variables of type bool
+monday = False
+
+monday
+False
+
+type(monday)
+<class 'bool'>
+
+#Boolean Operators
+#and, or, not
+
+monday
+False
+
+not monday
+True
+
+#not is a unary operator. Takes one operand like negation
+-3
+-3
+
+not not monday
+False
+
+not (not monday)
+False
+
+#not True => False
+#not False => True
+
+cold = True
+
+monday and cold
+False
+
+not monday and cold
+True
+
+3 + 5 * 4
+23
+
+not (monday and cold)
+True
+
+(not monday) and cold
+True
+
+#Precedence: 
+#First is not
+#then and
+#and or is last
+
+monday or cold
+True
+
+monday or (not cold)
+False
+
+#or inclusive
+#Truth table for or
+True or True
+True
+
+True or False
+True
+
+False or True
+True
+
+False or False
+False
+#or => if at least one operand is True the result will be True
+
+#Truth table for and
+True and False
+False
+
+False and True
+False
+
+True and True
+True
+
+False and False
+False
+
+#and => True if both operands are True
+#and => False if at least one of the operands is False
+
+time = 7
+
+late = time > 3
+
+late or time < 3
+True
+
+late
+True
+
+time < 3
+False
+
+True or False
+True
+
+time == 3 and time != 3
+False
+
+monday = False
+
+#Python uses lazy evaluation or short-circuiting
+# Stops executing as soon as it knows the answer
+# (False and expression) always evaluates to False
+
+monday and (10 > 5)
+False
+
+(3 > 10) and True
+False
+
+(10 > 3) and True
+True
+
+False or (10 < 3)
+False
+
+(3 > 1.0) or False
+True
+
+2 / 0
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.ZeroDivisionError: division by zero
+
+#Proof of lazy evaluation.. We don't get the division error!
+#This expression evaluates to True
+# True or expression always evaluate to True
+True or (2 / 0 > 10)
+True
+
+#But if it's False, then we need to evaluate the second operand
+#Get the error
+False or (2 / 0 > 10)
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.ZeroDivisionError: division by zero
+
+#relational operators w/ strings
+'abc' == 'cde'
+False
+
+'abc' == 'abc'
+True
+
+#Strings are compared according to their dictionary order
+#Which word comes first in a dictionary? 
+'apple' < 'cake'
+True
+
+'abc' < 'abd'
+True
+
+'abc' > 'ab'
+True
+
+min(2, 3)
+2
+
+2 < 3
+True
+
+min('art', 'apple')
+'apple'
+
+#Capital letters come before lower-case letters
+'a' < 'A'
+False
+
+'bD' < 'bd'
+True
+
+#If statements
+if 3 > 1:
+   print("3 greater than 1")
+
+3 greater than 1
+
+if 3 < 1:
+   print("3 greater than 1")
+
+if 3 < 1:
+   print("3 less than 1")
+else:
+   print("3 not less than 1")
+
+3 not less than 1
+
+[evaluate if.py]
+earlier_name('Jen', 'Paul')
+'Jen'
+
+earlier_name('Jen', 'Jenny')
+'Jen'
+
+[evaluate if.py]
+earlier_name('Jen', 'Jenny')
+'Jen'
+
+earlier_name('Jen', 'Paul')
+'Jen'
+
+earlier_name('Paullll', 'Paul')
+'Paul'
+
+[evaluate if.py]
+'Colin' < 'Colin'
+False
+
+earlier_name('Paul', 'Paul')
+'Paul'
+
+[evaluate if.py]
+ticket_price(7)
+4.25
+
+ticket_price(67)
+4.75
+
+ticket_price(20)
+7.5
+
+[evaluate if.py]
+
+ticket_price(67)
+None
+
+[evaluate if.py]
+ticket_price(67)
+4.75
+
+[evaluate if.py]
+format_name("Cher", "")
+'Cher'
+
+format_name("Cher", "LASTNAME")
+'LASTNAME, Cher'
+
+help(len)
+Help on built-in function len in module builtins:
+
+len(...)
+    len(object) -> integer
+    
+    Return the number of items of a sequence or mapping.
+
+None
+len("abc")
+3
+
+
+#Worksheet 2 - No need for an if statement
+
+def return_true(bool_value):
+
+    if (bool_value):
+        return True
+    else
+        return False
+
+Traceback (most recent call last):
+  File "<string>", line 5, in <fragment>
+Syntax Error:     else: <string>, line 5, pos 9
+#forgot : after else
+
+def return_true(bool_value):
+
+    if (bool_value):
+        return True
+    else:
+        return False
+
+#Here's a shorter way of writing the previous function
+def return_true(bool_value):
+    return bool_value
+
+return_true(True)
+True
+
+return_true(False)
+False
+
+[evaluate no_if_required.py]
+can_vote(18)
+True
+
+can_vote(10)
+False
+
+[evaluate no_if_required.py]
+can_vote(10)
+False
+
+can_vote(18)
+True
+
+help(abs)
+Help on built-in function abs in module builtins:
+
+abs(...)
+    abs(number) -> number
+    
+    Return the absolute value of the argument.
+
+None
+
+[evaluate boolean_functions.py]
+same_abs(3, -3)
+True
+
+same_abs(3, -3.5)
+False
+
+[evaluate boolean_functions.py]
+same_abs(3, -3.5)
+False
+
+#integer and float
+different_types(3, -3.5)
+True
+
+#string
+different_types("3", "abc")
+False
+
+[evaluate boolean_functions.py]
+is_right_triangle(3, 4, 5)
+True
+
+is_right_triangle(2, 2, 4)
+False
+
+[evaluate debugger_minutes.py]
+Duration was 180 minutes
+180
+
+#How to get help on functions from the assignment
+[evaluate puzzle_functions.py]
+help(get_current_player)
+Help on function get_current_player in module __main__:
+
+get_current_player(player_one_turn)
+    (bool) -> str
+    
+    Return 'Player One' iff player_one_turn is True; otherwise, return
+    'Player Two'.
+    
+    >>> get_current_player(True)
+    'Player One'
+    >>> get_current_player(False)
+    'Player Two'
+
+None
+

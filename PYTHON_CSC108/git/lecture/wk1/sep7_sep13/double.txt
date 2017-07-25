@@ -1,0 +1,26 @@
+# Here is our first example of a program.
+# Remember:
+#    1. First, decide what the function needs to do. Write a few examples.
+#    2. Describe the what function needs (a number, in this case) and what
+#       it will produce (another number)
+#    3. Describe the function in English.
+#    4. Finally, write the code for the function. Use "return" to send a 
+#       value back to the location the function was called.
+
+def double(number):
+	''' (number) -> number
+	Return the number given doubled.
+	>>> double(2)
+	4
+	>>> double(3.6)
+	7.2
+	'''
+	return number * 2
+	
+	
+print("Doubling 4:", double(4))
+x = 3
+print("Doubling x (and x is 3):", double(x))
+print("Doubling 3.6:", double(3.6))
+print("About to call double without an argument")
+double()

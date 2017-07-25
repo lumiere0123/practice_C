@@ -1,0 +1,65 @@
+3.3.3 (v3.3.3:c3896275c0f6, Nov 16 2013, 23:39:35) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)]
+Python Type "help", "copyright", "credits" or "license" for more information.
+
+#Tuples - non mutable so we can use them as dictionary keys
+a = ("so", "as")
+
+a[0]
+'so'
+
+a[1]
+'as'
+
+#empty tuple
+a = ()
+
+#single-element tuple. You need to put the comma!
+a = (1,)
+
+a
+(1,)
+
+type(a)
+<class 'tuple'>
+
+#we read the file and split it into words
+[evaluate test_story.py]
+['The', 'sun', 'did', 'not', 'shine.', 'It', 'was', 'too', 'wet', 'to', 'play.', 'So', 'we', 'sat', 'in', 'the', 'house', 'All', 'that', 'cold,', 'cold,', 'wet', 'day.', 'I', 'sat', 'there', 'with', 'Sally,', 'We', 'sat', 'there', 'we', 'two.', 'And', 'I', 'said,', 'How', 'I', 'wish', 'We', 'had', 'something', 'to', 'do!', 'Too', 'wet', 'to', 'go', 'out', 'And', 'too', 'cold', 'to', 'play', 'ball.', 'So', 'we', 'sat', 'in', 'the', 'house.', 'We', 'did', 'nothing', 'at', 'all.', 'So', 'all', 'we', 'could', 'do', 'was', 'to', 'Sit!', 'Sit!', 'Sit!', 'Sit!', 'And', 'we', 'did', 'not', 'like', 'it.', 'Not', 'one', 'little', 'bit.']
+
+#How do I make a random choice? Use the random module. You need to import it
+import random
+
+help(random.choice)
+Help on method choice in module random:
+
+choice(self, seq) method of random.Random instance
+    Choose a random element from a non-empty sequence.
+
+None
+
+#given a non-empty list, the method choice from module random will return a random element from that list 
+a = ["a", "abce", "def"]
+
+random.choice(a)
+'def'
+
+random.choice(a)
+'abce'
+
+random.choice(a)
+'a'
+
+random.choice(a)
+'a'
+
+random.choice(a)
+'def'
+
+#tuple(iterable) -> tuple initialized from iterable's items
+#iterable can  be a list, a string
+a
+['a', 'abce', 'def']
+
+tuple(a)
+('a', 'abce', 'def')

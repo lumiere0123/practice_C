@@ -1,0 +1,30 @@
+# In class, I introduced the idea of an "algorithm" -- a series of 
+# instructions that produce a desired result. Here is a proposal 
+# for an algorithm that approximates pi. Does it work?
+
+# Calculate the initial approximation
+x = 2 ** (0.5)
+y = 2 ** (0.25)
+pi = 2 + x
+
+print("Pi:", pi)
+
+# Refine the approximation by updating x, y, and pi
+x = (0.5) * (x ** (0.5) + x ** (-0.5))
+new_y = (y * x ** (0.5) + x ** (-0.5)) / (y + 1)
+pi = pi * (x + 1) / (y + 1)
+y = new_y
+
+print("Pi:", pi)
+
+
+# Repeat as many times as you wish to get better estimates of pi
+x = (0.5) * (x ** (0.5) + x ** (-0.5))
+new_y = (y * x ** (0.5) + x ** (-0.5)) / (y + 1)
+pi = pi * (x + 1) / (y + 1)
+y = new_y
+
+print("Pi:", pi)
+
+# But this is frustrating. How many times do you need to copy and
+# paste the code above? Is there a better way?

@@ -1,0 +1,158 @@
+# While and For loops can both be used to iterate through 
+# structures.
+
+>>> index = 0
+>>> s = "abcd"
+>>> while index < len(s):
+...     print(s[index])
+...     index += 1
+... 
+a
+b
+c
+d
+>>> # for each character in s
+... 
+>>> for ch in s:
+...     print(ch)
+... 
+a
+b
+c
+d
+
+# But while they can both be used in most cases, we should try to pick
+# the right tool for the job. for loops are generally used when the goal
+# is to walk through (iterate through) an entire structure. When you hear
+# "for every item in ...", use for. If you hear "iterate until ...", you 
+# should use "while". For example, here is encryption again:
+
+>>> s = "Hello, class"
+>>> enc_s = ''
+>>> for ch in s:
+...     enc_s += chr(ord(ch) + 3)
+... 
+>>> enc_s
+'Khoor/#fodvv'
+
+# Note that in the example above, the for loop assigned characters from 
+# the string to ch. But what if we need the position of each character? 
+
+>>> s = "Hello, class"
+>>> range(len(s))
+range(0, 12)
+>>> for i in range(len(s)):
+...     print(i)
+... 
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+>>> for i in range(len(s)):
+...     print(s[i])
+...
+H
+e
+l
+l
+o
+,
+
+c
+l
+a
+s
+s
+
+>>> s = 'abcdefg'
+>>> count = 0
+>>> while count < len(s):
+...     print('Index {0} is {1}'.format(count, s[count]))
+...     count += 1
+... 
+Index 0 is a
+Index 1 is b
+Index 2 is c
+Index 3 is d
+Index 4 is e
+Index 5 is f
+Index 6 is g
+>>> for count in range(len(s)):
+...     print('Index {0} is {1}'.format(count, s[count]))
+... 
+Index 0 is a
+Index 1 is b
+Index 2 is c
+Index 3 is d
+Index 4 is e
+Index 5 is f
+Index 6 is g
+
+# Does range do more than that?
+
+>>> range(len(s), 2)
+range(7, 2)
+>>> for count in range(7, 2):
+...     print(count)
+... 
+
+# Huh, nothing. If you have two parameters, what do they mean?
+
+>>> for count in range(2, 5):
+...     print(count)
+... 
+2
+3
+4
+>>> for count in range(-100, -90):
+...     print(count)
+... 
+-100
+-99
+-98
+-97
+-96
+-95
+-94
+-93
+-92
+-91
+>>> for count in range(5, -2):
+...     print(count)
+... 
+
+# And the third parameter?
+
+>>> for count in range(5, -2, -1):
+...     print(count)
+... 
+5
+4
+3
+2
+1
+0
+-1
+>>> for count in range(0, 10, 2):
+...     print(count)
+... 
+0
+2
+4
+6
+8
+>>> for count in range(-5, 5, 3):
+...     print(count)
+... 
+-5
+-2
+1
+4

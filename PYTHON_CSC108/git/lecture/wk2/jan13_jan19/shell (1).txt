@@ -1,0 +1,55 @@
+3.3.0 (v3.3.0:bd8afb90ebf2, Sep 29 2012, 02:56:36) 
+[GCC 4.2.1 (Apple Inc. build 5577)]
+Python Type "help", "copyright", "credits" or "license" for more information.
+'abc' * 4
+'abcabcabcabc'
+[evaluate repeater.py]
+repeat_word('Marcia ', 3)
+'Marcia Marcia Marcia '
+[evaluate repeater.py]
+repeat_word('Marcia ', 3)
+'wordwordword'
+[evaluate repeater.py]
+[evaluate cents.py]
+help(number_of_cents)
+Help on function number_of_cents in module __main__:
+
+number_of_cents(change)
+    (float) -> int
+    
+    Return the number of cents remaining once whole numbers have been removed
+    amount.
+    
+    >>> number_of_cents(1.25)
+    25
+    >>> number_of_cents(20.00
+    0
+
+None
+calculate_tax(5.00, 0.1)
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.NameError: name 'calculate_tax' is not defined
+[evaluate tax.py]
+calculate_tax(5.00, 0.1)
+0.5
+[evaluate tax.py]
+Traceback (most recent call last):
+  File "/Users/campbell/courses/108/course-10814s/website/lectures/L0101/w2/wed/tax.py", line 10, in <module>
+SyntaxError: 'return' outside function (<wingdb_compile>, line 10)
+310 / 60
+5.166666666666667
+310 // 60
+5
+310 % 60
+10
+[evaluate ryan.py]
+Your ryan time is: 
+Hours:  2.0
+Minutes:  56.39999999999998
+
+
+310 // 60
+5
+310.0 // 60
+5.0

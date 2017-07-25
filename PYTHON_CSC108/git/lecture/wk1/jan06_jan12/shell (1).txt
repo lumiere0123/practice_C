@@ -1,0 +1,153 @@
+3.3.0 (v3.3.0:bd8afb90ebf2, Sep 29 2012, 02:56:36) 
+[GCC 4.2.1 (Apple Inc. build 5577)]
+Python Type "help", "copyright", "credits" or "license" for more information.
+6 + 8
+14
+5 + 8 * 3
+29
+min(4, 2, 6.5, 8)
+2
+abs(-5)
+5
+abs(-5, 4)
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.TypeError: abs() takes exactly one argument (2 given)
+help(abs)
+Help on built-in function abs in module builtins:
+
+abs(...)
+    abs(number) -> number
+    
+    Return the absolute value of the argument.
+
+None
+help(round)
+Help on built-in function round in module builtins:
+
+round(...)
+    round(number[, ndigits]) -> number
+    
+    Round a number to a given precision in decimal digits (default 0 digits).
+    This returns an int when called with one argument, otherwise the
+    same type as the number. ndigits may be negative.
+
+None
+round(4.5642)
+5
+round(4.5642, 3)
+4.564
+help(ord)
+Help on built-in function ord in module builtins:
+
+ord(...)
+    ord(c) -> integer
+    
+    Return the integer ordinal of a one-character string.
+
+None
+help(oct)
+Help on built-in function oct in module builtins:
+
+oct(...)
+    oct(number) -> string
+    
+    Return the octal representation of an integer.
+
+None
+help(round)
+Help on built-in function round in module builtins:
+
+round(...)
+    round(number[, ndigits]) -> number
+    
+    Round a number to a given precision in decimal digits (default 0 digits).
+    This returns an int when called with one argument, otherwise the
+    same type as the number. ndigits may be negative.
+
+None
+help(pow)
+Help on built-in function pow in module builtins:
+
+pow(...)
+    pow(x, y[, z]) -> number
+    
+    With two arguments, equivalent to x**y.  With three arguments,
+    equivalent to (x**y) % z, but may be more efficient (e.g. for longs).
+
+None
+pow(2, 5)
+32
+2 ** 5
+32
+pow(2, 5, 3)
+2
+
+8 / 3
+2.6666666666666665
+8 // 3
+2
+8 % 3
+2
+
+
+x = 7 
+x + 6
+13
+8 - x + 3 * x
+22
+
+y = 5
+y = 8
+y = x + 1
+y
+8
+x = 10
+y
+8
+y = x + 1
+y
+11
+
+
+a = 5
+a = 3
+a
+3
+id(a)
+2011360
+b = a
+b
+3
+id(b)
+2011360
+
+
+
+k = 5
+j = k * 3
+
+x = 4
+y = 5
+x = 2
+
+
+x = 4
+y = x + 2
+x = y + 1
+x
+7
+
+4 = y
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+SyntaxError: can't assign to literal (<wingdb_compile>, line 1)
+
+
+def f(x):
+    return x ** 2
+
+f(3)
+9
+f(4)
+16

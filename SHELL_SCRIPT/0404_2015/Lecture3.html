@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <title>ULI101</title>
+   <meta charset="utf-8">
+   <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+   <h1>ULI101 - Introduction to Unix/Linux and the Internet</h1>
+   <h2>Lecture 3 - Pathnames; Filename Expansion; Shell Basics</h2>
+   <h3><u>Pathnames</u></h3>
+   <ul>
+      <li>absolute pathnames start with <tt>/</tt>, representing the root, and continue with the directory structure to the destination filename
+         or directory name</li>
+      <li>relative pathnames do not start with <tt>/</tt>, and are relative to your current (or working) directory</li>
+      <li>relative-to-home pathnames are actually absolute, but use <tt>~</tt> to represent the home directory
+         <ul>
+            <li><tt>~</tt> replaced by <tt>$HOME</tt>, eg. <tt>~/pathname</tt> </li>
+            <li><tt>~user</tt> replaced by home directory of user, eg. <tt>~user/pathname</tt></li>
+         </ul></li>
+   </ul>
+   <h3><u>Filename Expansion</u></h3>
+   <ul>
+      <li>also called ambiguous file references, metacharacters, wild card characters, and filename generation characters</li>
+      <li>used to find filenames that match a pattern</li>
+      <li><tt>?</tt> matches any single character, eg. <tt>echo temp?2</tt></li>
+      <li><tt>*</tt> matches any number (including none) of characters, eg. <tt>ls temp*</tt></li>
+      <li>a leading period (hidden file) must be explicitly specified, eg. <tt>echo *</tt> - will not show hidden files</li>
+      <li><tt>[ ]</tt> matches any single character in included list, eg. <tt>ls temp[12]*</tt></li>
+      <li><tt>-</tt> within <tt>[ ]</tt> between two characters represents a range, eg. <tt>ls temp[1-58]</tt> is the same as <tt>ls temp[123458]</tt></li>
+      <li>if <tt>!</tt> is first character within <tt>[ ]</tt>, then any character not in list is matched</li>
+   </ul>
+   <h3><u>Shell Basics</u></h3>
+   <ul>
+      <li>command history
+         <ul>
+            <li><tt>&lt;Up&gt; or &lt;Down&gt; &nbsp;&nbsp;&nbsp;&nbsp; </tt> - move to previous command or next command</li>
+            <li><tt>fc -l &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </tt> - display last 16 commands</li>
+            <li><tt>history &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </tt> - display all commands in buffer</li>
+            <li><tt>!num &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </tt> - re-execute command number "num"</li>
+            <li><tt>!xxx &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </tt> - re-execute last command beginning with string "xxx"</li>
+         </ul></li>
+      <li>some useful BASH keyboard shortcuts:
+         <ul>
+            <li>erase Characters: Backspace or Ctrl-Backspace or Ctrl-h</li>
+            <li>go to the beginning of the line: Ctrl-a</li>
+            <li>go to the end of the line: Ctrl-e</li>
+            <li>delete a word before the cursor: Ctrl-w</li>
+            <li>delete everything before the cursor: Ctrl-u</li>
+            <li>clear screen: Ctrl-l</li>
+            <li>search for a keyword in previous commands: Ctrl+r</li>
+            <li>auto-complete file/directory names: Tab</li>
+         </ul></li>
+   </ul>
+   <h3>Quoting</h3>
+   <ul>
+      <li>one reason for quotes is so that string values can contain spaces and special chars</li>
+      <li>three styles of quoting:
+         <ul>
+            <li>single quotes ' ' (strong quotes - don't allow variable and command substitution)</li>
+            <li>double quotes " " (weak quotes - allow variable and command substitution)</li>
+            <li>backslash \ (quotes the next character only)</li>
+         </ul></li>
+      <li>quoting examples:
+<pre style="color:white; background-color:blue; border-color:black; border-style:solid; width:50em">
+ ==> school=Seneca                     # Assign a variable
+
+ ==> mySchool=my school is $school     # This will cause an error
+bash: school: command not found
+
+ ==> mySchool="My school is $school"   # Weak quotes, allowing substitution
+
+ ==> echo $mySchool
+My school is Seneca
+
+ ==> mySchool='My school is $school'   # Strong quotes, not allowing substitution
+
+ ==> echo $mySchool
+My school is $school
+
+ ==> mySchool=My\ school\ is\ $school  # Equivalent of weak quotes
+
+ ==> echo $mySchool
+My school is Seneca
+
+ ==> mySchool=My\ school\ is\ \$school # Equivalent of strong quotes
+
+ ==> echo $mySchool
+My school is $school
+
+ ==> dirListing=$(ls -l)               # Command substitution
+
+ ==> echo $dirListing                  # Spacing is not preserved
+total 0 -rw------- 1 lczegel users 0 Oct 10 17:54 file1 -rw------- 1 lczegel use
+rs 0 Oct 10 17:54 file2 -rw------- 1 lczegel users 0 Oct 10 17:54 file3
+
+ ==> echo "$dirListing"                # Spacing is preserved
+total 0
+-rw------- 1 lczegel users 0 Oct 10 17:54 file1
+-rw------- 1 lczegel users 0 Oct 10 17:54 file2
+-rw------- 1 lczegel users 0 Oct 10 17:54 file3
+ ==> _
+ </pre></li>
+   </ul></body>
+
+</html>

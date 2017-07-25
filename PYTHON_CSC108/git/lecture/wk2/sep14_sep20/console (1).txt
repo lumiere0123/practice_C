@@ -1,0 +1,215 @@
+# Today, we're looking at a set of common misconceptions related to
+# functions. The first one: the difference between local and global
+# scope.
+
+# This function has a local variable x; it's a parameter of the function.
+>>> def f(x):
+...     return x + 1
+... 
+>>> f(2)
+3
+>>> f(4)
+5
+>>> f(-6)
+-5
+
+# Does defining x outside of the function, in the "global" scope
+# matter?
+>>> x = 3
+>>> f()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: f() missing 1 required positional argument: 'x'
+
+# Nope! 
+
+# Here's a second example. In this case, we're throwing away 
+# the value of our parameter a and replacing it with the value 8.
+>>> def first(a):
+...     a = 8
+...     return a
+... 
+
+# Does assigning 8 to a inside the function affect our global 
+# variable a?
+>>> a = 20
+>>> first(a)
+8
+>>> a
+20
+
+# Nope!
+# What if we assign the return value of our function to a?
+>>> a = 20
+>>> a = first(a)
+>>> a
+8
+
+# Here's a second issue: the difference between print and return.
+# print is a function that displays items on the screen.
+>>> print(3, 4)
+3 4
+>>> print("Hello", "how", "are", "you?")
+Hello how are you?
+
+
+# But what is the difference between printing to the screen and 
+# having the result of an expression automatically displayed by 
+# the console?
+
+# In our first example, we assign the string 'hello' to a. We 
+# don't get any output when we assign the value, but if we look
+# at the value of a, we see our string.
+>>> a = "hello"
+>>> a
+'hello'
+
+# However, if we assign the result of a print to a, we see the
+# output in the assignment statement (as it is part of the 
+# evaluation of the print function), but the value associated with
+# a is "None". That means that print didn't return anything!
+>>> a = print("hello")
+hello
+>>> a
+>>> print(a)
+None
+
+# Let's take a look at print statements inside of functions.
+# The following functions might look the same on the console ...
+>>> def print_not_return(x):
+...     print(x)
+... 
+>>> print_not_return(5)
+5
+>>> def return_not_print(x):
+...     return x
+... 
+>>> return_not_print(5)
+5
+
+# But only the function that returns is useful. Displaying output
+# helps the user, but python needs that result stored in a variable
+# to make use of it!
+>>> x = print_not_return(5)
+5
+>>> x
+>>> x = return_not_print(5)
+>>> x
+5
+
+# There are other ways that this issue arises. Here's an example
+# of a function without a return. It has the same issue as our 
+# function that prints -- the function evaluate to "None".
+>>> def no_return(x):
+...     x + 1
+... 
+>>> no_return(5)
+
+
+# Now, let's look at composing functions -- or nesting them. Here's 
+# an example of a function with two parameters. Note that they are
+# separated by commas.
+>>> def f(a, b):
+...     return a * b
+... 
+>>> f(2, 3)
+6
+
+# If we don't provide arguments for both parameters, we'll get an error.
+>>> f(3)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: f() missing 1 required positional argument: 'b'
+
+# And here's an example of a function with no parameters. (A constant 
+# function.)
+>>> def g():
+...     return 2
+... 
+>>> g()
+2
+
+# Giving a function too many arguments is as bad as giving it too few.
+>>> g(3)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: g() takes 0 positional arguments but 1 was given
+>>> def h():
+...     return 77
+... 
+
+# Now, how is this expression evaluated?
+# Think "inside out". Before we can evaluate f, we need its arguments.
+# The only way to get those arguments is to evaluate g and h first.
+>>> f(g() + 3, h())
+385
+>>> f(h() + 3, g())
+160
+
+# Don't go crazy with nested functions. It's useful to realize that 
+# arguments can be expressions that are evaluated before the function
+# is invoked, but using too many nested functions is a good way to have
+# difficult to read code. You can always define some intermediate or 
+# "temporary" variables to hold your intermediate calculations. The 
+# following statements are equivalent to our function call above.
+>>> arg0 = h() + 3
+>>> arg1 = g()
+>>> f(arg0, arg1)
+160
+
+# Now, let's write a few more functions -- but I'd like to start using
+# strings (str). A string is a sequence of characters -- letters, numbers,
+# and symbols like "!" and "&".
+>>> "cat"
+'cat'
+>>> type("cat")
+<class 'str'>
+
+# The basic arithmetic operators appear to work on strings, and they do
+# reasonable things ...
+>>> "cat" + "dog"
+'catdog'
+>>> "cat" * 5
+'catcatcatcatcat'
+>>> "here" + "kitty" * 5
+'herekittykittykittykittykitty'
+
+# However, not every operator has a str operation associated with it.
+>>> "cat" - "c"
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unsupported operand type(s) for -: 'str' and 'str'
+>>> "cat" / "c"
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unsupported operand type(s) for /: 'str' and 'str'
+
+# strings also have some methods (essentially, functions) associated with them. 
+# They have to be called in a special way, though. Use a "." and the name
+# of the method after the string (or string variable).
+>>> "cat".isalpha()
+True
+>>> "dog".isalpha()
+True
+>>> "cat344".isalpha()
+False
+>>> "cat344".isdigit()
+False
+>>> "344".isdigit()
+True
+
+# For a full list of str methods:
+>>> help(str)
+
+# Finally, you can index into strings. Note that computer scientists are odd 
+# and like to start counting from zero. (Zero-indexing.) 
+# Here's a good explanation why: 
+# https://www.cs.utexas.edu/users/EWD/transcriptions/EWD08xx/EWD831.html
+>>> "cat"[0]
+'c'
+>>> "cat"[1]
+'a'
+>>> "cat"[2]
+'t'
+>>> "andrew"[2] == "d"
+True

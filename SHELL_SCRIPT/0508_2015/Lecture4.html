@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <title>ULI101</title>
+   <meta charset="utf-8">
+   <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+   <h1>ULI101 - Introduction to Unix/Linux and the Internet</h1>
+   <h2>Lecture 4 - Data Representation; Number Systems; Permissions</h2>
+   <h3><u>Data Representation</u></h3>
+   <ul>
+      <li>why study data representation?
+         <ul>
+            <li>most computers today are digital</li>
+            <li>most digital computers are binary </li>
+            <li>thus, most computers understand only binary - combinations of one's and zero's</li>
+            <li>any information stored in a computer, for example in memory or on disk or on CD-ROM, must be binary</li>
+            <li>for many technical aspects of programming, the details of data representation must be understood:
+               <ul>
+                  <li>C programming - sending information over networks correctly</li>
+                  <li>Unix - setting access permissions for files and directories</li>
+                  <li>web page programming - setting colours for backgrounds, text, and links</li>
+                  <li>assembler or machine language programming</li>
+               </ul></li>
+         </ul></li>
+      <li>important numbering systems
+         <ul>
+            <li>base 10 (decimal) is the numbering system used by most people</li>
+            <li>base 2 (binary) is used by most computers internally</li>
+            <li>base 8 (octal) and base 16 (hexadecimal) are used by programmers to more compactly represent binary numbers</li>
+         </ul></li>
+      <li>in this lecture, we will see how numbers such as 237 and -84 are represented in computers</li>
+   </ul>
+   <h3><u>Number Systems</u></h3>
+   <h3>Base 10 - decimal numbering system</h3>
+   <ul>
+      <li> numbering system used by most people</li>
+      <li>in base 10, there are 10 numeric symbols, 0 to 9</li>
+      <li>when we write a number, such as 3572, the digits have different values depending on their position
+         <ul>
+            <li>2 simply represents the number 2, because it is at the right-most end of the number</li>
+            <li>7 represents the number 70</li>
+            <li>5 represents the number 500 </li>
+            <li>3 represents the number 3000</li>
+            <li>formally, because this is base 10, each digit is multiplied by the appropriate power of 10
+<pre>
+  3 x 10<sup>3</sup> = 3 x 1000 = 3000
+  5 x 10<sup>2</sup> = 5 x  100 =  500
+  7 x 10<sup>1</sup> = 7 x   10 =   70
+  2 x 10<sup>0</sup> = 2 x    1 =    2
+</pre></li>
+            <li>adding 3000 + 500 + 70 + 2 gives us 3572</li>
+         </ul></li>
+   </ul>
+   <h3>Base 2 - binary numbering system</h3>
+   <ul>
+      <li>numbering system used by most computers</li>
+      <li>in base 2, there are 2 numeric synbols, 0 and 1</li>
+      <li>these symbols are called "bits", which is a contraction of <b>bi</b>nary <b>d</b>igits</li>
+      <li>similar to the decimal system, in a binary number such as 10100100, the digits have different values depending on their position
+         <ul>
+            <li>this make it easy to convert binary numbers to decimal</li>
+            <li>because this is base 2, each digit is multiplied by the appropriate power of 2:
+<pre>
+  1 x 2<sup>7</sup> = 1 x 128 = 128
+  0 x 2<sup>6</sup> = 0 x  64 =   0
+  1 x 2<sup>5</sup> = 1 x  32 =  32
+  0 x 2<sup>4</sup> = 0 x  16 =   0
+  0 x 2<sup>3</sup> = 0 x   8 =   0
+  1 x 2<sup>2</sup> = 1 x   4 =   4
+  0 x 2<sup>1</sup> = 0 x   2 =   0
+  0 x 2<sup>0</sup> = 0 x   1 =   0
+</pre></li>
+            <li>adding 128 + 0 + 32 + 0 + 0 + 4 + 0 + 0 gives us 164 in decimal</li>
+            <li>thus 164<sub>10</sub> is equivalent to 10100100<sub>2</sub></li>
+         </ul></li>
+      <li>to convert decimal numbers, for example 93, to binary:
+         <ul>
+            <li>there are formal approaches, but the following simpler method works fine for all but very large numbers</li>
+            <li>the least significant (right-most) digit in any numbering system has a positional value of 1</li>
+            <li>moving towards the left, list the binary values by multiplying the value to the immediate right by 2</li>
+            <li>for example, with 8 bits, this list of numbers is <br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;128 &nbsp;&nbsp;&nbsp;64
+               &nbsp;&nbsp;&nbsp;32 &nbsp;&nbsp;&nbsp;16 &nbsp;&nbsp;&nbsp;&nbsp;8 &nbsp;&nbsp;&nbsp;&nbsp;4
+               &nbsp;&nbsp;&nbsp;&nbsp;2 &nbsp;&nbsp;&nbsp;&nbsp;1 </font></li>
+            <li>find the largest binary positional value that is equal to or smaller than 93</li>
+            <li>this would be 64, so we know there is a "1" in the "64 position" <br />
+               <font face="Courier New, Courier, mono">&nbsp;&nbsp;128 &nbsp;&nbsp;&nbsp;64
+               &nbsp;&nbsp;&nbsp;32 &nbsp;&nbsp;&nbsp;16 &nbsp;&nbsp;&nbsp;&nbsp;8 &nbsp;&nbsp;&nbsp;&nbsp;4
+               &nbsp;&nbsp;&nbsp;&nbsp;2 &nbsp;&nbsp;&nbsp;&nbsp;1</font><br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1</font></li>
+            <li>subtract 64 from 93, giving 29</li>
+            <li>find the largest binary positional value that is equal to or smaller than 29</li>
+            <li>this would be 16, so we know there is a "1" in the "16 position"<br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;128 &nbsp;&nbsp;&nbsp;64
+               &nbsp;&nbsp;&nbsp;32 &nbsp;&nbsp;&nbsp;16 &nbsp;&nbsp;&nbsp;&nbsp;8 &nbsp;&nbsp;&nbsp;&nbsp;4
+               &nbsp;&nbsp;&nbsp;&nbsp;2 &nbsp;&nbsp;&nbsp;&nbsp;1</font><br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1</font></li>
+            <li>subtract 16 from 29, giving 13</li>
+            <li>find the largest binary positional value that is equal to or smaller than 13</li>
+            <li>this would be 8, so we know there is a "1" in the "8 position"<br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;128 &nbsp;&nbsp;&nbsp;64
+               &nbsp;&nbsp;&nbsp;32 &nbsp;&nbsp;&nbsp;16 &nbsp;&nbsp;&nbsp;&nbsp;8 &nbsp;&nbsp;&nbsp;&nbsp;4
+               &nbsp;&nbsp;&nbsp;&nbsp;2 &nbsp;&nbsp;&nbsp;&nbsp;1</font><br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 &nbsp;&nbsp;&nbsp;&nbsp;1</font></li>
+            <li>subtract 8 from 13, giving 5</li>
+            <li>find the largest binary positional value that is equal to or smaller than 5</li>
+            <li>this would be 4, so we know there is a "1" in the "4 position"<br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;128 &nbsp;&nbsp;&nbsp;64
+               &nbsp;&nbsp;&nbsp;32 &nbsp;&nbsp;&nbsp;16 &nbsp;&nbsp;&nbsp;&nbsp;8 &nbsp;&nbsp;&nbsp;&nbsp;4
+               &nbsp;&nbsp;&nbsp;&nbsp;2 &nbsp;&nbsp;&nbsp;&nbsp;1</font><br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 &nbsp;&nbsp;&nbsp;&nbsp;1
+               &nbsp;&nbsp;&nbsp;&nbsp;1</font></li>
+            <li>subtract 4 from 5, giving 1</li>
+            <li>it might be obvious by now that there is a "1" in the "1 position", and we have finished this part of the process<br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;128 &nbsp;&nbsp;&nbsp;64
+               &nbsp;&nbsp;&nbsp;32 &nbsp;&nbsp;&nbsp;16 &nbsp;&nbsp;&nbsp;&nbsp;8 &nbsp;&nbsp;&nbsp;&nbsp;4
+               &nbsp;&nbsp;&nbsp;&nbsp;2 &nbsp;&nbsp;&nbsp;&nbsp;1</font><br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 &nbsp;&nbsp;&nbsp;&nbsp;1
+               &nbsp;&nbsp;&nbsp;&nbsp;1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1</font></li>
+            <li>now place a "0" in all the remaining positions<br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;128 &nbsp;&nbsp;&nbsp;64
+               &nbsp;&nbsp;&nbsp;32 &nbsp;&nbsp;&nbsp;16 &nbsp;&nbsp;&nbsp;&nbsp;8 &nbsp;&nbsp;&nbsp;&nbsp;4
+               &nbsp;&nbsp;&nbsp;&nbsp;2 &nbsp;&nbsp;&nbsp;&nbsp;1</font><br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+               &nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 &nbsp;&nbsp;&nbsp;&nbsp;1
+               &nbsp;&nbsp;&nbsp;&nbsp;1 &nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1</font></li>
+            <li>thus 01011101<sub>2</sub> is the 8-bit binary equivalent to 93<sub>10</sub></li>
+         </ul></li>
+   </ul>
+   <h3>Base 8 - octal numbering system</h3>
+   <ul>
+      <li>numbering system often used by programmers to more easily represent binary numbers</li>
+      <li>in base 8, there are 8 numeric synbols, 0 to 7</li>
+      <li>similar to the decimal system, in an octal number such as 264, the digits have different values depending on their position
+         <ul>
+            <li>this make it easy to convert octal numbers to decimal</li>
+            <li>because this is base 8, each digit is multiplied by the appropriate power of 8:
+<pre>
+  2 x 8<sup>2</sup> = 2 x 64 = 128
+  6 x 8<sup>1</sup> = 6 x  8 =  48
+  4 x 8<sup>0</sup> = 4 x  1 =   4
+</pre></li>
+            <li>adding 128 + 48 + 4 gives us 180 in decimal</li>
+            <li>thus 180<sub>10</sub> is equivalent to 264<sub>8</sub></li>
+         </ul></li>
+      <li>the real power of octal is its use in representing binary numbers</li>
+      <li>this is because one octal digit can exactly represent 3 bits:
+<pre>
+  0 0 0  in binary is  0  in octal
+  0 0 1                1
+  0 1 0                2
+  0 1 1                3
+  1 0 0                4
+  1 0 1                5
+  1 1 0                6
+  1 1 1                7
+</pre></li>
+      <li>to convert a binary number, such as 11101010, to octal:
+         <ul>
+            <li>split up the binary number into groups of 3 bits, starting from the right side<br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;&nbsp;&nbsp;1 1 &nbsp;/ &nbsp;1 0 1 &nbsp;/ &nbsp;0 1 0 </font></li>
+            <li>if there are fewer then 3 bits in the left-most grouping, you may ignore this or add leading zeroes<br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;0 1 1 &nbsp;/ &nbsp;1 0 1 &nbsp;/ &nbsp;0 1 0 </font></li>
+            <li>leading zeroes don't change the value of a number, in any numbering system</li>
+            <li>now simply convert each 3-bit grouping to the corresonding octal digit<br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;0 1 1 &nbsp;/ &nbsp;1 0 1 &nbsp;/ &nbsp;0 1 0 </font><br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp; &nbsp;3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               5 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2</font></li>
+            <li>thus 352<sub>8</sub> is equivalent to 11101010<sub>2</sub></li>
+         </ul></li>
+      <li>to convert an octal number, such as 760, to binary:
+         <ul>
+            <li>reverse the above process, by replacing each octal digit with it's 3-bit equivalent<br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp; &nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               6 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0</font> <br>
+               <font face="Courier New, Courier, mono">&nbsp;&nbsp;1 1 1 &nbsp;/ &nbsp;1 1 0 &nbsp;/ &nbsp;0 0 0 </font></li>
+            <li>thus 111110000<sub>2</sub> is equivalent to 760<sub>8</sub></li>
+         </ul></li>
+      <li>example of the use of octal numbers:
+         <ul>
+            <li>to set permission on a file, a command similar to "chmod 751 filename" might be used</li>
+            <li>the digits for the chmod command are octal, we will look at the details next week</li>
+         </ul></li>
+   </ul>
+   <h3>Base 16 - hexadecimal numbering system (hex)</h3>
+   <ul>
+      <li>numbering system often used by programmers to more easily represent binary numbers</li>
+      <li>in base 16, there are 16 numeric synbols, 0 1 2 3 4 5 6 7 8 9 A B C D E F</li>
+      <li>similar to the decimal system, in a hex number such as A1C, the digits have different values depending on their position
+         <ul>
+            <li>this make it easy to convert hex numbers to decimal</li>
+            <li>because this is base 16, each digit is multiplied by the appropriate power of 16:
+<pre>
+  A x 16<sup>2</sup> = 10 x 256 = 2560
+  1 x 16<sup>1</sup> =  1 x 16 =    16
+  C x 16<sup>0</sup> = 12 x  1 =    12
+</pre></li>
+            <li>adding 2560 + 16 + 12 gives us 2588 in decimal</li>
+            <li>thus 2588<sub>10</sub> is equivalent to A1C<sub>16</sub></li>
+         </ul></li>
+      <li>the real power of hexadecimal is its use in representing binary numbers</li>
+      <li>this is because one hexadecimal digit can exactly represent 4 bits:
+<pre>
+  0 0 0 0  in binary is  0  in hexadecimal
+  0 0 0 1                1
+  0 0 1 0                2
+  0 0 1 1                3
+  0 1 0 0                4
+  0 1 0 1                5
+  0 1 1 0                6
+  0 1 1 1                7
+  1 0 0 0                8
+  1 0 0 1                9
+  1 0 1 0  in binary is  A  in hexadecimal and  10  in decimal
+  1 0 1 1                B                      11
+  1 1 0 0                C                      12
+  1 1 0 1                D                      13
+  1 1 1 0                E                      14
+  1 1 1 1                F                      15
+</pre></li>
+      <li>to convert a binary number, such as 111110000, to hexadecimal:
+         <ul>
+            <li>split up the binary number into groups of 4 bits, starting from the right side<br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;1
+               &nbsp;/ &nbsp;1 1 1 1 &nbsp;/ &nbsp;0 0 0 0 </font></li>
+            <li>if there are fewer then 4 bits in the left-most grouping, you may ignore this or add leading zeroes<br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;0 0 0 1 &nbsp;/ &nbsp;1 1 1 1&nbsp; / &nbsp;0 0 0 0</font></li>
+            <li>leading zeroes don't change the value of a number, in any numbering system</li>
+            <li>now simply convert each 4-bit grouping to the corresonding hex digit<br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;0 0 0 1 &nbsp;/ &nbsp;1 1 1 1 &nbsp;/ &nbsp;0 0 0 0</font><br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp; &nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;F&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;0</font></li>
+            <li>thus 1F0<sub>16</sub> is equivalent to 111110000<sub>2</sub></li>
+         </ul></li>
+      <li>to convert a hex number, such as 3C9, to binary:
+         <ul>
+            <li>reverse the above process, by replacing each octal digit with it's 3-bit equivalent<br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp; &nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;9</font><br />
+               <font face="Courier New, Courier, mono">&nbsp;&nbsp;0 0 1 1 &nbsp;/ &nbsp;1 1 0 0 &nbsp;/ &nbsp;1 0 0 1</font></li>
+            <li>thus 1111001001<sub>2</sub> is equivalent to 3C9<sub>16</sub></li>
+         </ul></li>
+      <li>example of the use of hex numbers:
+         <ul>
+            <li>&lt;body bgcolor=&#147;#66ff99&#148;&gt;</li>
+            <li>this html tag sets the colour for background on a web page</li>
+            <li>the digits are hex, in pairs, representing red, blue, and green intensities</li>
+         </ul></li>
+   </ul>
+   <h3>Representing Signed Numbers in Binary</h3>
+   <ul>
+      <li>computers use a technique called "two's complement" to handle signed numbers, that is numbers that can be positive or negative</li>
+      <li>to represent a negative number, such as -93:
+         <ul>
+            <li>find the binary number for the positive number 93 (we did this above)<br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;&nbsp;&nbsp;1 0 1 1 1 0 1</font></li>
+            <li>add at least one leading zero<br />
+               <font face="Courier New, Courier, mono">&nbsp;&nbsp;0 1 0 1 1 1 0 1</font></li>
+            <li>invert all the bits, by turning 1's into 0's and 0's into 1's<br />
+               <font face="Courier New, Courier, mono">&nbsp;&nbsp;1 0 1 0 0 0 1 0</font></li>
+            <li>now add 1 to the result<br />
+               <font face="Courier New, Courier, mono">&nbsp;&nbsp;1 0 1 0 0 0 1 0</font><br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;<u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+
+               1</u></font><br />
+               <font face="Courier New, Courier, mono">&nbsp;&nbsp;1 0 1 0 0 0 1 1</font></li>
+            <li>thus 10100011<sub>2</sub> is the 8-bit signed binary number equivalent to -93<sub>10</sub></li>
+            <li>note that this also the 8-bit unsigned binary number equivalent to 163<sub>10</sub></li>
+            <li>you <b>MUST</b> know the representation being used in order to be able to conver properly</li>
+         </ul></li>
+      <li>to convert a negative binary number to it's positive value, the technigue is identical - invert the bits and add one
+         <ul>
+            <li>to find the number that 10100011 represents as a signed number:<br />
+               <font face="Courier New, Courier, mono">&nbsp;&nbsp;1 0 1 0 0 0 1 1 </font></li>
+            <li>invert all the bits, by turning 1's into 0's and 0's into 1's<br />
+               <font face="Courier New, Courier, mono">&nbsp;&nbsp;0 1 0 1 1 1 0 0 </font></li>
+            <li>now add 1 to the result<br />
+               <font face="Courier New, Courier, mono">&nbsp;&nbsp;0 1 0 1 1 1 0 0 </font><br />
+               <font face="Courier New, Courier, mono"> &nbsp;&nbsp;<u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+
+               1</u></font><br />
+               <font face="Courier New, Courier, mono">&nbsp;&nbsp;0 1 0 1 1 1 0 1 </font></li>
+            <li>thus, we get back to 1011101</li>
+         </ul></li>
+   </ul>
+   <h3><u>Permissions</u></h3>
+   <ul>
+      <li>permissions can only be changed by file owner or superuser (system administrator)</li>
+      <li><tt>chmod</tt> is used to alter access permissions to an <b>existing</b> file or directory</li>
+      <li>the 9 permission bits displayed in an <tt>ls -al</tt> listing are read/write/execute for user(owner)/group/other</li>
+      <li><tt>chmod xxx filename</tt>
+         <ul>
+            <li>xxx is 3 octal digits representing the binary string rwxrwxrwx where the first three characters
+               are read/write/execute permission for the user, the next three for the user's group, and the last three for all others</li>
+            <li>eg. <tt>chmod 640 file1</tt> - would give the user read and write permission,
+               everyone in his group would have read permission, and all others would have no permission</li>
+            <li>this is called the "octal" or "absolute" method of changing permissions</li>
+         </ul></li>
+      <li><tt>chmod u+r filename</tt>
+         <ul>
+            <li><tt>u</tt> represents user, could also be <tt>g</tt> for group, <tt>o</tt> for other, <tt>a</tt> for all</li>
+            <li><tt>+</tt> represents addition of permission, could also be <tt>-</tt> for removal, <tt>=</tt> for set</li>
+            <li><tt>r</tt> represents read permission, could also be <tt>w</tt> for write, <tt>x</tt> for execute</li>
+            <li>eg. <tt>chmod u+x file1</tt> - would give the user execute permission in addition to whatever he had before</li>
+            <li>eg. <tt>chmod g-w file1</tt> - would take away write permission from the user's group if they had it before</li>
+            <li>eg. <tt>chmod o=r file1</tt> - would set all others' permission to read only regardless of what they had before</li>
+            <li>this is called the "symbolic" or "relative" method of changing permissions</li>
+         </ul></li>
+   </ul>
+   <h3>Directory Permissions</h3>
+   <ul>
+      <li><tt>r</tt> permission for a directory allows viewing of file names in the directory, but no access to the files themselves
+         (regardless of the files' permission settings)</li>
+      <li><tt>x</tt> gives passthrough permission for a directory, which allows access to any files in the directory which have appropriate
+         permissions set, but doesn't allow viewing of file names in the directory</li>
+      <li><tt>r</tt> and <tt>x</tt> permissions allow viewing of file names, and access to any files which have appropriate permissions set</li>
+      <li><tt>w</tt> and <tt>x</tt> permissions allow adding or removing of files, but don't allow viewing of file names</li>
+      <li><tt>r</tt> and <tt>w</tt> and <tt>x</tt> permissions allow viewing of file names, access to any files which have appropriate permissions
+         set, and adding and removing of files</li>
+   </ul>
+   <h3>umask</h3>
+   <ul>
+      <li><tt>umask </tt>defines default permissions for newly created files, doesn't change permissions on existing files
+         <ul>
+            <li>default permissions will be 777 minus <tt>umask </tt>for directories, remove any remaining executes for files</li>
+            <li>eg. <tt>umask</tt> - by itself, shows current <tt>umask</tt> setting</li>
+            <li>eg. <tt>umask 077</tt> - new directories will be 700, new files will be 600</li>
+            <li>eg. <tt>umask 023</tt> - new directories will be 754, new files will be 644</li>
+         </ul></li>
+   </ul>
+</body>
+
+</html>

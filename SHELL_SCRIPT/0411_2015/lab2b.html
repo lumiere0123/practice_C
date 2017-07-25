@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>ULI101 - week2_lab3</title>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=ISO-8859-1">
+<!--ISO-8859-1 is Latin 1 or Western Europe-->
+  <meta name="Author" content="Chris Lindstrom">
+</head>
+<body>
+<p align="right"> <a href="http://validator.w3.org/check/referer"> <img
+ border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31"
+ width="88"> </a> </p>
+<h1>ULI101 Unix Linux and the Internet</h1>
+<h3>TITLE: </h3>
+<blockquote><span style="font-weight: bold;">week2_lab3</span> Using UNIX
+Commands - File Management<br>
+</blockquote>
+<h3>OBJECTIVE: </h3>
+<blockquote> As a result of this lab the student should be able manage
+files through a secure shell.<br>
+</blockquote>
+<hr>
+<h3>PART I<br>
+</h3>
+Record your command-line solutions in the space provided<br>
+<h3>DO NOT CHANGE YOUR WORKING DIRECTORY UNLESS YOU ARE TOLD TO DO SO!</h3>
+<br>
+1. Create an ssh session with<span style="font-family: monospace;">
+matrix</span><span style="font-family: monospace;">.senecac.on.ca</span><br>
+<br>
+2. Working from your <font size="+3">home</font> directory (where you logged in) create a
+directory named <span style="font-family: monospace;">lab2b</span><br>
+<br>
+3. Copy the <span style="font-family: monospace;">Acceptable-Use-Policy</span>
+file that resides in your home directory to your <span
+ style="font-family: monospace;">lab2b</span> directory<br>
+<br>
+4. Make <span style="font-family: monospace;">lab2b</span> your
+working directory<br>
+<br>
+5. Without changing working directories, list the contents of your home
+directory. Be sure that hidden files are also listed<br>
+<br>
+6. Change directories to your home direcory using the fewest possible
+keystrokes.<br>
+<br>
+<br>
+7. If you did not create the Labs directory in lab1 last week, creat it
+now. Move your lab2b directory into Labs.<br>
+<br>
+<br>
+8. Make <span style="font-family: monospace;">lab2b</span> your
+working directory<br>
+<br>
+9. Your directory structure should now look like this:<br>
+<br>
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; ~<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; --------<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; Labs<br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; |<br>
+&nbsp;&nbsp;&nbsp; -------<br>
+&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; lab2b<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; -----<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; |<br>
+&nbsp;&nbsp;&nbsp; Acceptable-Use-Policy<br>
+<br>
+</span>9. (cont'd) Draw the above directory tree on a separate sheet of
+paper and keep updating it as you complete the following commands<br>
+<span style="font-family: monospace;"><br>
+</span>10. Working from <span style="font-family: monospace;">lab2b</span>,
+use the <span style="font-family: monospace;">cat</span> command to
+view the contents of <span style="font-family: monospace;">/etc/passwd</span><br>
+<br>
+11. Repeat the previous question using the <span
+ style="font-family: monospace;">more</span> command<br>
+<br>
+12. Copy the <span style="font-family: monospace;">/etc/group</span>
+file to your current working directory (<span
+ style="font-family: monospace;">lab2b</span>)<br>
+<br>
+13. Create a subdirectory under <span style="font-family: monospace;">lab2b</span>
+named <span style="font-family: monospace;">lab2b_sub</span><br>
+<br>
+14. Without changing directories, copy <span
+ style="font-family: monospace;">/etc/passwd</span> to<span
+ style="font-family: monospace;"> lab2b_sub</span><br>
+<br>
+15. Copy your local copy of <span style="font-family: monospace;">group</span>
+to <span style="font-family: monospace;">lab2b_sub</span> but make
+sure the newest copy is named <span style="font-family: monospace;">group.copy</span><br>
+<br>
+16.Copy <span style="font-family: monospace;">/etc/passwd</span> to
+the <span style="font-family: monospace;">lab2b_sub</span> directory,
+naming the copy <span style="font-family: monospace;">passwd.copy</span><br>
+<br>
+17. Create a subdirectory under <span style="font-family: monospace;">lab2b_sub</span>
+named <span style="font-family: monospace;">lab2b_sub.copy</span><br>
+<br>
+18. List the contents of <span style="font-family: monospace;">lab2b_sub</span><br>
+<br>
+19. Copy the file <span style="font-family: monospace;">~/.bash_profile</span>
+to the <span style="font-family: monospace;">lab2b_sub</span>
+directory, naming it <span style="font-family: monospace;">myProfile</span><br>
+<br>
+20. List the entire contents of <span style="font-family: monospace;">lab2b_sub</span>
+<span style="font-weight: bold; font-style: italic;">except</span> for <span
+ style="font-family: monospace;">myProfile</span><br>
+<br>
+21. List all files/directories under <span
+ style="font-family: monospace;">lab2b_sub</span> that contain the
+digit <big><big><span style="font-family: monospace;">2</span></big></big>
+in their name<br>
+<br>
+22. Copy the myProfile file to your home directory<br>
+<br>
+23. Copy <span style="font-family: monospace;">~/.bash_profile</span>
+to the <span style="font-family: monospace;">lab2b_sub.copy</span>
+directory<br>
+<br>
+24. List the contents of <span style="font-family: monospace;">lab2b_sub.copy</span><br>
+<br>
+25. Using <span style="font-family: monospace;">rmdir</span>, try to
+delete the <span style="font-family: monospace;">lab2b_sub.copy</span>
+directory. Why did it fail?<br>
+<br>
+26. Use rm to delete the <span style="font-family: monospace;">.bash_profile</span>
+file that is located in <span style="font-family: monospace;">lab2b_sub.copy</span><br>
+<br>
+27. Now try question 25 again<br>
+<br>
+28. Make <span style="font-family: monospace;">Labs</span> your
+working directory<br>
+<br>
+29. Using <span style="font-family: monospace;">rm</span>, which
+command-line will remove the <span style="font-family: monospace;">lab2b_sub</span>
+directory and it's contents interactively? (DO NOT EXECUTE!)<br>
+<br>
+30. Now try the command but only answer <span
+ style="font-family: monospace; font-weight: bold;">"<big><big>y</big></big>"</span>
+to the prompts to descend into subdirectories. Then say <span
+ style="font-family: monospace; font-weight: bold;">"<big><big>n</big></big>"</span>
+to all remove prompts except for the <span
+ style="font-family: monospace;">Acceptable-Use Policy</span> file
+under <span style="font-family: monospace;">lab2b</span><br>
+<br>
+31. Redraw the remaining directory tree from <span
+ style="font-family: monospace;">lab2b</span> downward. Use rectangles
+for directories and ovals for regular files.<br>
+<br>
+32. After you redraw your directory tree below,&nbsp; go back to your
+matrix account and from the command line execute the lab1.check program
+by typing in:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-style: italic;">/home/chris.jankul/Labs/lab2.check<br>
+</span>and then follow the instructions from the screen.<br>
+<hr><br>
+<br>
+</body>
+</html>

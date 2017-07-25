@@ -1,0 +1,117 @@
+# Today, we're going to look at a couple of advanced string operations.
+# First, recall strings:
+>>> s = 'ABCDE'
+>>> 'B' in s
+True
+>>> s[1]
+'B'
+>>> s
+'ABCDE'
+
+# But it turns out that while we can access items within strings using
+# indexing and slicing, we can't *assign* values to strings. Strings are
+# immutable.
+>>> s[1] = 'b'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'str' object does not support item assignment
+
+# In the same way, methods like lower don't actually change the string 
+# they operate on. 
+>>> s.lower()
+'abcde'
+>>> s
+'ABCDE'
+>>> s = s.lower()
+>>> s
+'abcde'
+
+# Immutability can make it a bit difficult to work with formatted output,
+# and Python has as solution: format strings. First, some motivation:
+>>> print("The value of pi is", 3.14159)
+The value of pi is 3.14159
+
+# See the space after the bad value of e? I don't want that space? What do I 
+# have to do to get rid of it ...
+>>> print("The value of pi is", 3.14159, "and the value of e is", 2.000001, "?")
+The value of pi is 3.14159 and the value of e is 2.000001 ?
+>>> print("The value of pi is", 3.14159, "and the value of e is", 2.000001 + "?")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unsupported operand type(s) for +: 'float' and 'str'
+>>> print("The value of pi is", 3.14159, "and the value of e is", str(2.000001) + "?")
+The value of pi is 3.14159 and the value of e is 2.000001?
+
+# Yuck! So, how does a format string help?
+>>> 'The value of pi is {0} and the value of e is {1}?'
+'The value of pi is {0} and the value of e is {1}?'
+>>> 'The value of pi is {0} and the value of e is {1}?'.format(3.14159, 2.000001)
+'The value of pi is 3.14159 and the value of e is 2.000001?'
+
+# Format strings let us define positions where we want items inserted. Those items
+# can be strings or other objects like the float in the example above. 
+
+# We can also use format strings to set minimum and maximum sizes for the items
+# to be inserted.
+>>> 'The value of pi is {0:5} and the value of e is {1}?'.format(3.14159, 2.000001)
+'The value of pi is 3.14159 and the value of e is 2.000001?'
+>>> 'The value of pi is {0:5.5} and the value of e is {1}?'.format(3.14159, 2.000001)
+'The value of pi is 3.1416 and the value of e is 2.000001?'
+>>> 'The value of pi is {0:5.2} and the value of e is {1}?'.format(3.14159, 2.000001)
+'The value of pi is   3.1 and the value of e is 2.000001?'
+
+# Can you see what is happening with the second item (index 1)? 
+>>> 'The value of pi is {0:5.2} and the value of e is {1:2}?'.format(3.14159, 2.000001)
+'The value of pi is   3.1 and the value of e is 2.000001?'
+>>> 'The value of pi is {0:5.2} and the value of e is {1:2.1}?'.format(3.14159, 2.000001)
+'The value of pi is   3.1 and the value of e is 2e+00?'
+>>> 'The value of pi is {0:5.2} and the value of e is {1:2.2}?'.format(3.14159, 2.000001)
+'The value of pi is   3.1 and the value of e is 2.0?'
+>>> 'The value of pi is {0:5.2} and the value of e is {1:2.3}?'.format(3.14159, 2.000001)
+'The value of pi is   3.1 and the value of e is 2.0?'
+>>> 'The value of pi is {0:5.2} and the value of e is {1:2.4}?'.format(3.14159, 2.000001)
+'The value of pi is   3.1 and the value of e is 2.0?'
+>>> 'The value of pi is {0:5.2} and the value of e is {1:2.5}?'.format(3.14159, 2.000001)
+'The value of pi is   3.1 and the value of e is 2.0?'
+>>> 'The value of pi is {0:5.2} and the value of e is {1:2.6}?'.format(3.14159, 2.000001)
+'The value of pi is   3.1 and the value of e is 2.0?'
+>>> 'The value of pi is {0:5.2} and the value of e is {1:2.7}?'.format(3.14159, 2.000001)
+'The value of pi is   3.1 and the value of e is 2.000001?'
+
+# Now, let's shift our focus to how strings are stored. We know that strings are "ordered".
+>>> 'a' < 'b'
+True
+>>> 'b' < 'a'
+False
+>>> 'A' < 'a'
+True
+
+# And it turns out that the ordering is based on the numeric value of each character.
+# The function ord lets us get that value, and the function chr lets us turn an integer
+# into a character.
+>>> ord('a')
+97
+>>> chr(97)
+'a'
+>>> ord('b')
+98
+>>> ord('c')
+99
+>>> ord('A')
+65
+>>> ord('Z')
+90
+>>> chr(91)
+'['
+>>> chr(92)
+'\\'
+>>> chr(93)
+']'
+>>> chr(94)
+'^'
+>>> chr(95)
+'_'
+>>> ord('a') + 1
+98
+>>> chr(ord('a') + 1)
+'b'

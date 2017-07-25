@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>ULI101 - LAB 2b</title>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=ISO-8859-1">
+<!--ISO-8859-1 is Latin 1 or Western Europe-->
+  <meta name="Author" content="Brian Gray">
+</head>
+<body>
+<p align="right"> <a href="http://validator.w3.org/check/referer"> <img
+ border="0" src="http://www.w3.org/Icons/valid-html401"
+ alt="Valid HTML 4.01!" height="31" width="88"> </a> </p>
+<h1>ULI101 Unix Linux and the Internet</h1>
+<h3>TITLE: </h3>
+<blockquote><span style="font-weight: bold;"> LAB 2c</span> Using
+Command Line FTP </blockquote>
+<h3>OBJECTIVE: </h3>
+<blockquote> As a result of this lab the student should be able to
+transfering files using command line FTP. </blockquote>
+<hr>
+<h3>PART I</h3>
+<blockquote>
+  <ol>
+    <li>Right click on the following link and select "Save target
+as..." <br>
+      <a href="vilabs.tar.gz">vi Lab Files</a></li>
+    <li>Save the file to the C:\TEMP folder </li>
+    <li>Open a Windows Command Prompt window and make C:\ your current
+working directory.</li>
+    <li>Start the FTP client by typing FTP and the pressing Enter. You
+should see a prompt that looks like this:<br>
+ftp&gt;</li>
+    <li>You now need to open a connection to matrix.senecac.on.ca by
+typing: <br>
+      <b>open matrix.senecac.on.ca</b><br>
+at the ftp&gt; prompt.</li>
+    <li>Enter your matrix account name and password when prompted.</li>
+    <li>Enter the command pwd and view the result. Where does it say
+you are? ___________________________________________</li>
+    <li>Enter the command ls and view the result. Where do you think
+you are? ____________________________________________</li>
+    <li>On the remote server change directories to the Labs directory
+using the command <b>cd Labs</b></li>
+    <li>Create a new directory on the remote computer by using the
+command <b>mkdir vilabs</b></li>
+    <li>On the remote server change directories to the vilabs directory
+using the command <b>cd vilabs</b></li>
+    <li>On the local computer change directories to the TEMP directory
+by using the command <b>lcd TEMP</b></li>
+    <li>The file we are transfering is a compressed archive file and
+not just text. We should transfer this file using Binary mode.</li>
+    <li>The default transfer mode is ASCII. Switch to Binary by using
+the command <b>binary</b> </li>
+    <li>Transfer the file to the remote server by using the command <b>put
+vilabs.tar.gz</b></li>
+    <li>What transfer mode was used to transfer the file?
+________________________________________________</li>
+    <li>How would you verify that the file had been transferred?
+__________________________________________</li>
+    <li>Close the connection by using the command <b>close</b></li>
+    <li>Exit the FTP client by using the command <b>quit</b></li>
+  </ol>
+You have now successfully transfered a file to the matrix server.<br>
+  <br>
+Open a terminal window connection to matrix and login using your account<br>
+Locate the file you just transfered. Change to the directory where it
+is stored.<br>
+We are going to extract the files from the compressed archive using the
+tar utility. (More on this utility later)<br>
+Execute the following command: <b>tar xvzf vilabs.tar.gz</b><br>
+  <br>
+What files were extracted from the archive?<br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+Remove the archive file by executing the command <b>rm vilabs.tar.gz</b><br>
+Now we can practise transfering files fom matrix to our local hard
+drive.<br>
+  <ol>
+    <li>Open an FTP connection to matrix again and change to the
+correct directories.</li>
+    <li>The files we are transfering now are ASCII text files. So we
+should make sure we transfer them in ASCII mode by using the command <b>ascii&gt;</b></li>
+    <li>This time instead of "putting" the files on the server we are
+"getting" the files from the server.</li>
+    <li>Enter the command <b>get 1basics</b>. How many files were
+transfered? _______________</li>
+    <li>If we want to transfer multiple files at once we need to use
+command <b>mget *</b> This will transfer all files from the current
+remote directory.</li>
+    <li>You will need to confirm the transfer of each file by typing <b>y</b>
+enter.</li>
+    <li>Try transfering multiple files to matrix using the <b>mput</b>
+command.</li>
+    <li>Close the connection and quit ftp</li>
+  </ol>
+  <b>Command line FTP is a very handy skill to have and it is worth
+practising occasionally!!</b><br>
+  <br>
+Try using ftp to transfer files back and forth between phobos and
+matrix.<br>
+  <br>
+</blockquote>
+<hr>
+</body>
+</html>

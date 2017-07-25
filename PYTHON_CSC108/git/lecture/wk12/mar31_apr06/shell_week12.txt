@@ -1,0 +1,247 @@
+3.3.3 (v3.3.3:c3896275c0f6, Nov 16 2013, 23:39:35) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)]
+Python Type "help", "copyright", "credits" or "license" for more information.
+[evaluate day.py]
+Cannot read termcap database;
+using dumb terminal settings.
+
+d = Day(2, 'April', 2014)
+
+#At this point we haven't yet defined the __str__ method
+#in the Day class. 
+print(d)
+<__main__.Day object at 0x101445a50>
+None
+
+str(d)
+'<__main__.Day object at 0x101445a50>'
+
+#We have not written an __eq__ method in Day class either.
+d2 = Day(3, 'April', 2014)
+d == d2
+False
+
+id(d)
+4316224080
+
+id(d2)
+4316224592
+
+d3 = Day(3, 'April', 2014)
+d2 == d3
+False
+
+id(d2)
+4316224592
+
+id(d3)
+4316225488
+
+[evaluate day.py]
+**********************************************************************
+File "/Applications/Wing101.app/Contents/MacOS/src/debug/tserver/_sandbox.py", line ?, in __main__.Day.__str__
+Failed example:
+    print(d)
+Exception raised:
+    Traceback (most recent call last):
+      File "/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/doctest.py", line 1287, in __run
+        compileflags, 1), test.globs)
+      File "<doctest __main__.Day.__str__[3]>", line 1, in <module>
+        print(d)
+    TypeError: __str__ returned non-string (type NoneType)
+**********************************************************************
+1 items had failures:
+   1 of   4 in __main__.Day.__str__
+***Test Failed*** 1 failures.
+d = Day(4, 'April', 2014)
+
+d.day
+4
+
+d.month
+'April'
+
+d.year
+2014
+
+d.events
+[]
+
+d.time
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.AttributeError: 'Day' object has no attribute 'time'
+
+e = event.Event(11, 12, 'Meeting')
+type(e)
+<class 'event.Event'>
+
+d = Day(4, 'April', 2014)
+type(d)
+<class '__main__.Day'>
+
+e = event.Event(11, 12, 'Meeting')
+print(e)
+Meeting: from 11 to 12
+None
+
+str(e)
+'Meeting: from 11 to 12'
+[evaluate day.py]
+**********************************************************************
+File "/Applications/Wing101.app/Contents/MacOS/src/debug/tserver/_sandbox.py", line ?, in __main__.Day.__str__
+Failed example:
+    print(d)
+Expected:
+    4 April 2014:
+    - Submit last exercise: from 13 to 14
+    - Celebrate end of classes: from 19 to 23
+Got:
+    4 April 2014:
+    -Submit last exercise: from 13 to 14
+    -Celebrate end of classes: from 19 to 23
+**********************************************************************
+1 items had failures:
+   1 of   4 in __main__.Day.__str__
+***Test Failed*** 1 failures.
+[evaluate day.py]
+[evaluate day.py]
+
+d = Day(4, 'April', 2014)
+print(d)
+4 April 2014:
+None
+
+[evaluate day.py]
+5 April 2014:
+5 April 2014:
+- Sleep in: from 0 to 11
+[evaluate day.py]
+5 April 2014:
+- Sleep in: from 0 to 11
+- Brunch: from 11 to 13
+[evaluate day.py]
+5 April 2014:
+- Sleep in: from 0 to 11
+- Brunch: from 11 to 13
+
+#Default Parameter Values
+help(print)
+Help on built-in function print in module builtins:
+
+print(...)
+    print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False)
+    
+    Prints the values to a stream, or to sys.stdout by default.
+    Optional keyword arguments:
+    file:  a file-like object (stream); defaults to the current sys.stdout.
+    sep:   string inserted between values, default a space.
+    end:   string appended after the last value, default a newline.
+    flush: whether to forcibly flush the stream.
+
+None
+print("Hello", "World")
+Hello World
+None
+
+print("Hello", "World", sep="-")
+Hello-World
+None
+
+print("Hello", "World", sep="-", end="!")
+Hello-World!None
+
+[evaluate default_parameters.py]
+total_amount(20)
+20
+
+total_amount(20, 3)
+60
+
+[evaluate default_parameters.py]
+course_code()
+'CSC108'
+
+course_code("APS")
+'APS108'
+
+course_code(105)
+Traceback (most recent call last):
+  File "/Applications/Wing101.app/Contents/MacOS/src/debug/tserver/_sandbox.py", line 1, in <module>
+    # Used internally for debug sandbox under external interpreter
+  File "/Applications/Wing101.app/Contents/MacOS/src/debug/tserver/_sandbox.py", line 12, in course_code
+builtins.TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+course_code(course_number=105)
+'CSC105'
+
+#Improved Day Worksheet
+
+[evaluate improved_day.py]
+**********************************************************************
+File "/Applications/Wing101.app/Contents/MacOS/src/debug/tserver/_sandbox.py", line ?, in __main__.Day.__init__
+Failed example:
+    d.year
+Expected:
+    2013
+Got:
+    2014
+**********************************************************************
+1 items had failures:
+   1 of   5 in __main__.Day.__init__
+***Test Failed*** 1 failures.
+[evaluate improved_day.py]
+
+d = Day()
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.TypeError: __init__() missing 3 required positional arguments: 'day', 'month', and 'year'
+
+[evaluate improved_day.py]
+d = Day()
+print(d)
+<__main__.Day object at 0x1017a3d10>
+None
+
+[evaluate improved_day.py]
+d = Day()
+print(d)
+1 January 2014:
+None
+[evaluate improved_day.py]
+1 January 2014:
+[evaluate improved_day.py]
+1 January 2014:
+[evaluate improved_day.py]
+1 January 2014:
+2 April 2014:
+[evaluate improved_day.py]
+1 January 2014:
+2 April 2014:
+6 January 2014:
+[evaluate improved_day.py]
+1 January 2014:
+2 April 2014:
+6 January 2014:
+1 July 2014:
+[evaluate improved_day.py]
+**********************************************************************
+File "/Applications/Wing101.app/Contents/MacOS/src/debug/tserver/_sandbox.py", line ?, in __main__.Day.__str__
+Failed example:
+    d.schedule_event(event.Event(13, 14, 'Submit last exercise'))
+Expected nothing
+Got:
+    True
+**********************************************************************
+File "/Applications/Wing101.app/Contents/MacOS/src/debug/tserver/_sandbox.py", line ?, in __main__.Day.__str__
+Failed example:
+    d.schedule_event(event.Event(19, 23, 'Celebrate end of classes'))
+Expected nothing
+Got:
+    True
+**********************************************************************
+1 items had failures:
+   2 of   4 in __main__.Day.__str__
+***Test Failed*** 2 failures.
+[evaluate improved_day.py]
+[evaluate improved_day.py]

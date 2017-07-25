@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <title>ULI101</title>
+   <meta charset="utf-8">
+   <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+   <h1>ULI101 - Introduction to Unix/Linux and the Internet</h1>
+   <h2>Lecture 5 - Simple Filter Commands; Redirection; Piping; Multiple Commands</h2>
+   <h3><u>Simple Filter Commands</u></h3>
+   <ul>
+      <li><tt>head -7 filename &nbsp;</tt>- displays first 7 lines, 10 is default</li>
+      <li><tt>tail -11 filename </tt>- displays last 11 lines, 10 is default</li>
+      <li><b>cut</b> is used to extract fields and characters from records
+         <ul>
+            <li><tt>cut -f2 filename&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>
+               - extract 2nd field from all records in file1, using tab as delimiter (default)</li>
+            <li><tt>cut -d' ' -f2,5 filename&nbsp;&nbsp;&nbsp;</tt> - extract 2nd and 5th field, using space as delimiter</li>
+            <li><tt>cut -d' ' -f1-3,5 filename&nbsp;</tt> - extract 1st through 3rd and 5th fields, using space as delimiter</li>
+            <li><tt>cut -c3-5 filename&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt> - extract 3rd to 5th characters</li>
+         </ul></li>
+      <li><tt>sort filename </tt>- displays records in ascending order
+         <ul>
+            <li>by default uses dictionary (ascii sort) order, from first to last character in each record</li>
+            <li><tt><b>sort</b> -f filename &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>
+               - sort ignoring case (fold to uppercase)</li>
+            <li><tt><b>sort</b> -k 3 filename &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>
+               - sort on 3rd field (default field delimiter is space)</li>
+            <li><tt><b>sort</b> -t: -k 3 filename &nbsp;&nbsp;</tt>
+               - sort on 3rd field using colon as field delimiter</li>
+            <li><tt><b>sort</b> -rk 3 filename &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>
+               - sort on 3rd field in reverse (descending) order</li>
+            <li><tt><b>sort</b> -nk 5 filename &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>
+               - sort numerically on 5th field</li>
+            <li><tt><b>sort</b> -u filename &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>
+               - sort records, drop duplicate records</li>
+         </ul></li>
+      <li><b>tr</b> is used to translate characters to different characters
+         <ul>
+            <li><tt><b>tr</b> a A &lt; filename &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>
+               - translate all characters "a" to "A"</li>
+            <li><tt><b>tr</b> "[a-z]" "[A-Z]" &lt; filename &nbsp;</tt> - translate lowercase "a" through "z" to uppercase</li>
+            <li><tt><b>tr</b> ':' ' ' &lt; filename &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>
+               - translate all colons to spaces</li>
+            <li><tt><b>tr</b> ' ' '\n' &lt; filename &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>
+               - translate all spaces to newline characters</li>
+            <li><tt><b>tr</b> -d '\n' &lt; filename &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>
+               - delete all newline characters</li>
+         </ul></li>
+      <li><tt>wc filename </tt> - displays various counts of the contents of a file
+         <ul>
+            <li><tt>wc -l filename &nbsp;&nbsp;&nbsp;</tt> - displays number of lines in file</li>
+            <li><tt>wc -c filename &nbsp;&nbsp;&nbsp;</tt> - displays number of characters in file</li>
+            <li><tt>wc -w filename &nbsp;&nbsp;&nbsp;</tt> - displays number of words in file</li>
+         </ul></li>
+      <li><tt>grep 'string' filename </tt> &nbsp;- displays lines in file that contain the string
+         <ul>
+            <li><b>grep</b> will be revisited in the lecture about regular expressions</li>
+         </ul></li>
+   </ul>
+   <h3><u> Redirection</u></h3>
+   <h3>Standard Input, Output, and Error</h3>
+   <ul>
+      <li>standard input, output, and error for commands are sent to your terminal, unless they are redirected
+         <ul>
+            <li><tt>cat </tt> - (by itself) will take input from terminal (use control-d to end input), send output and error messages to terminal</li>
+         </ul></li>
+      <li>&gt; will redirect standard output to a file, deleting any existing contents of the file
+         <ul>
+            <li><tt>cat &gt; temp </tt> - will redirect output to a file called temp (this technique is sometimes called an "on the fly" document)</li>
+         </ul></li>
+      <li>&gt;&gt; will redirect standard output to a file, but will append (add to) the end of the file
+         <ul>
+            <li><tt>cat temp &gt;&gt; temp2 </tt> will append the contents of temp to the contents of temp2</li>
+         </ul></li>
+      <li>2&gt; will redirect standard error to a file (note that &gt; is the same as 1&gt;)</li>
+      <li>2&gt;&gt; will append standard error to a file</li>
+      <li>&gt;&amp;2 (or 1&gt;&amp;2) will redirect standard output to standard error</li>
+      <li>/dev/null can be used to get rid of unwanted output
+         <ul>
+            <li><tt>find / -name *.tmp 2>/dev/null</tt></li>
+         </ul></li>
+      <li>&lt; will redirect standard input from a file, as in previous examples of <tt>tr</tt></li>
+   </ul>
+   <h3><u>Piping</u></h3>
+   <ul>
+      <li>| (pipe) will connect the standard output of the command to its left, to the standard input of the command to its right
+         <ul>
+            <li><tt>ls -al | more</tt></li>
+            <li><tt>ls -al | grep "temp" | sort -rnk5</tt></li>
+         </ul></li>
+      <li> <b>tee</b> will take standard input from a pipe, and send it as output to one or more files and to its standard output
+         <ul>
+            <li><tt>ls -al | tee file1 file2</tt></li>
+         </ul></li>
+   </ul>
+   <h3><u>Multiple Commands</u></h3>
+   <ul>
+      <li>besides piping, there are other ways that multiple commands may be placed in one line</li>
+      <li>commands may be separated by semi-colons
+         <ul>
+            <li>each command will be executed when the previous command has terminated</li>
+            <li>for example: <tt>sleep 5; ls</tt></li>
+         </ul></li>
+      <li>commands may be grouped by using parentheses
+         <ul>
+            <li><tt>(echo "Who is on:"; w) > whoson</tt></li>
+         </ul></li>
+      <li>commands may also be split over multiple lines, making it easier (for humans) to interpret a long command
+         <ul>
+            <li>quote or "escape" the newline character at the end of a line, to get rid of the special meaning of newline (to end a command line)</li>
+            <li>for example:
+               <pre>echo "This will be split over multiple \
+lines.  Note that the shell will realize \
+that a pipe requires another command, so \
+it will automatically go to the next line" |
+tr '[a-z]' '[A-Z]'</pre></li>
+         </ul></li>
+   </ul>
+</body>
+
+</html>

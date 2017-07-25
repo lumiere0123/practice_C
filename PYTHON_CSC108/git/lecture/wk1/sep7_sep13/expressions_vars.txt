@@ -1,0 +1,187 @@
+peters43:~/courses/108/utm/website/lectures/lecture2_a$ python3
+Python 3.4.1 (v3.4.1:c0e311e010fc, May 18 2014, 00:54:21) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+>>> # This file contains output from a Python shell.
+>>> # Note that lines that start with a "#" are comments. The computer ignores them.
+>>> 
+>>> # An expression is a computation that results in a value. 
+>>> 7
+7
+>>> 3 + 2
+5
+>>> 3 - 2
+1
+>>> 2 - 3
+-1
+>>> 3 * 3
+9
+>>> 3 ** 2
+9
+>>> -3 ** 2
+-9
+>>> (-3) ** 2
+9
+>>> -4
+-4
+>>> --4
+4
+>>> ---4
+-4
+>>> 8 / 2
+4.0
+>>> # Whoa! 8 / 2 is 4? Why 4.0?
+>>> type(4.0)
+<class 'float'>
+>>> type(4)
+<class 'int'>
+>>> # Python values each have a "type". The type describes what the value is.
+>>> # An "int" (integer) and a "float" (floating point number) are both numbers.  
+>>> # However, division can result in a fraction, so the result is a float.
+>>> 7 / 2
+3.5
+>>> # If you want integer division (and remainders) 
+>>> 7 // 2
+3
+>>> 7 % 2
+1
+>>> 7 // 5
+1
+>>> 7 % 5
+2
+>>> 
+>>> # Question: What about dividing by zero?
+>>> # Try it! You can't break anything in the console. 
+>>> 0 / 0
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ZeroDivisionError: division by zero
+>>>
+>>> # This is an example of an "exception" -- an error.
+>>> # The last line describes the problem -- a "ZeroDivision" error.
+>>> # The lines before it tell you where the line occurred. In our case, in the console ("<stdin>")
+>>> 
+>>> # Question: Does Python have other types?
+>>> "Hi, class!"
+'Hi, class!'
+>>> type("Hi, class!")
+<class 'str'>
+>>> # Strings -- human readable things.
+>>> (2, 3, 4, 5)
+(2, 3, 4, 5)
+>>> type((2, 3, 4, 5))
+<class 'tuple'>
+>>> # Tuples -- collections of things, like coordinates for a point.
+>>> 
+>>> # You can do some weird stuff with the "normal" operators 
+>>> "Hi" * 6
+'HiHiHiHiHiHi'
+>>> "    Hello" * 2
+'    Hello    Hello'
+>>> # The point is that expressions are things you can calculate. Some of those
+>>> # things are are comfortable with (numbers). Other things will take some 
+>>> # getting used to, but fundamentally, it's the same. We're transforming 
+>>> # values into new values using operations.  
+>>> 
+>>> # Earlier, we used parenthesis  but just as a note, yes, you can use them 
+>>> # to group items in an expression.
+>>> 6 * 4 + 3
+27
+>>> 6 * (4 + 3)
+42
+>>> 
+>>> # But please don't use square brackets.
+>>> 6 * [4 + 3]
+[7, 7, 7, 7, 7, 7]
+>>> type([7, 7, 7, 7, 7, 7])
+<class 'list'>
+>>> # Square brackets are for lists, another collection of items.
+>>> 
+>>> # What if we want to save a computation for later?
+>>> x = 3
+>>> x + 1
+4
+>>> x
+3
+>>> # This is our first example of a "statement" -- a command.
+>>> # This is an "assignment statement." Read "x = 3" as "x refers to the value 3".
+>>> # The "=" separates the left hand side from the right hand side. 
+>>> # The left hand side is the name of the variable.
+>>> # The right hand side is an expression.
+>>> 
+>>> # How can we use these?
+>>> # Say we want to compute the y-value for a line.
+>>> m = 2
+>>> b = 5
+>>> y = m * x + b
+>>> y
+11
+>>> 
+>>> # One warning: you will see this error a few times 
+>>> z + 2
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'z' is not defined
+>>> # We hadn't given z a value, so it's "not defined" -- a "NameError".
+>>>
+>>> # One more thing ... say you need help with a term that I mention in class.
+>>> # You could go to the discussion board or to google (though I would be careful
+>>> # about google), or you could use python's built-in help.
+>>>
+>>> # Python has two commands for getting help. 
+>>> # "dir()" lists possible help topics
+>>> dir(__builtins__)
+['ArithmeticError', 'AssertionError', 'AttributeError', 'BaseException', 'BufferError', 'BytesWarning', 'DeprecationWarning', 'EOFError', 'Ellipsis', 'EnvironmentError', 'Exception', 'False', 'FloatingPointError', 'FutureWarning', 'GeneratorExit', 'IOError', 'ImportError', 'ImportWarning', 'IndentationError', 'IndexError', 'KeyError', 'KeyboardInterrupt', 'LookupError', 'MemoryError', 'NameError', 'None', 'NotImplemented', 'NotImplementedError', 'OSError', 'OverflowError', 'PendingDeprecationWarning', 'ReferenceError', 'RuntimeError', 'RuntimeWarning', 'StandardError', 'StopIteration', 'SyntaxError', 'SyntaxWarning', 'SystemError', 'SystemExit', 'TabError', 'True', 'TypeError', 'UnboundLocalError', 'UnicodeDecodeError', 'UnicodeEncodeError', 'UnicodeError', 'UnicodeTranslateError', 'UnicodeWarning', 'UserWarning', 'ValueError', 'Warning', 'ZeroDivisionError', '__debug__', '__doc__', '__import__', '__name__', '__package__', 'abs', 'all', 'any', 'apply', 'basestring', 'bin', 'bool', 'buffer', 'bytearray', 'bytes', 'callable', 'chr', 'classmethod', 'cmp', 'coerce', 'compile', 'complex', 'copyright', 'credits', 'delattr', 'dict', 'dir', 'divmod', 'enumerate', 'eval', 'execfile', 'exit', 'file', 'filter', 'float', 'format', 'frozenset', 'getattr', 'globals', 'hasattr', 'hash', 'help', 'hex', 'id', 'input', 'int', 'intern', 'isinstance', 'issubclass', 'iter', 'len', 'license', 'list', 'locals', 'long', 'map', 'max', 'memoryview', 'min', 'next', 'object', 'oct', 'open', 'ord', 'pow', 'print', 'property', 'quit', 'range', 'raw_input', 'reduce', 'reload', 'repr', 'reversed', 'round', 'set', 'setattr', 'slice', 'sorted', 'staticmethod', 'str', 'sum', 'super', 'tuple', 'type', 'unichr', 'unicode', 'vars', 'xrange', 'zip']
+>>>
+>>> # And "help()" lists help for that topic.
+>>> help(round)
+Help on built-in function round in module __builtin__:
+
+round(...)
+    round(number[, ndigits]) -> number
+    
+    Round a number to a given precision in decimal digits (default 0 digits).
+    This returns an int when called with one argument, otherwise the
+    same type as the number. ndigits may be negative.
+>>>
+>>> # The help is just enough to get you started. Then, you should experiment in the shell.
+>>> round(3.14159)
+3
+>>> round(3.14159, 0)
+3.0
+>>> round(3.14159, 2)
+3.14
+>>> round(3.14159, -2)
+0.0
+>>> round(31415.9, -2)
+31400.0
+>>> 
+>>> # How about abs?
+>>> help(abs)
+Help on built-in function abs in module builtins:
+
+abs(...)
+    abs(number) -> number
+    
+    Return the absolute value of the argument.
+>>>
+>>> abs(3)
+3
+>>> abs(3.14159)
+3.14159
+>>> abs(-3)
+3
+>>> abs(-3.14159)
+3.14159
+>>> round(abs(-3.14159), 2)
+3.14
+>>> # That last example is a bit of a brain-twister. The thing is, abs(-3.14159) is
+>>> # an expression. It evaluates to a number. Round expects to take a number, and
+>>> # it doesn't care where it comes from. Does this make more sense to you?
+>>> pi = abs(-3.14159)
+>>> round(pi, 2)
+3.14
+>>> # It's essentially the same thing -- we have to evaluate 3.14159, pi, and abs(-3.14159). 
+>>> # It's just that some of those options are more complex -- and look stranger 
+>>> # to us -- than others!

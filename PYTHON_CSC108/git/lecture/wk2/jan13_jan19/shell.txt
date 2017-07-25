@@ -1,0 +1,81 @@
+3.3.0 (v3.3.0:bd8afb90ebf2, Sep 29 2012, 02:56:36) 
+[GCC 4.2.1 (Apple Inc. build 5577)]
+Python Type "help", "copyright", "credits" or "license" for more information.
+def double(num):
+    return num * 2
+
+double(6)
+12
+
+double(7)
+14
+double(5.7)
+11.4
+
+
+def our_maximum(num1, num2):
+    return max(num1, num2)
+
+def our_maximum(num1, num2):
+    maximum = max(num1, num2)
+
+def our_maximum(num1, num2):
+    maximum = max(num1, num2)
+    return maximum
+
+our_maximum(4, 3.7)
+4
+x = 89.3
+y = 34.2
+our_maximum(x, y)
+89.3
+
+
+def max_of_min(num1, num2, value1, value2):
+    minimum = min(num1, num2)
+    minimum_value = min(value1, value2)
+    return max(minimum, minimum_value)
+
+max_of_min(4, 3.7, 6, 3.5)
+3.7
+
+def max_of_min(num1, num2, value1, value2):
+    return max(min(num1, num2), min(value1, value2))
+
+[evaluate origin.py]
+distance(1, 1)
+1.4142135623730951
+distance(0, )
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.TypeError: distance() missing 1 required positional argument: 'y'
+distance(0, 0)
+0.0
+help(round)
+Help on built-in function round in module builtins:
+
+round(...)
+    round(number[, ndigits]) -> number
+    
+    Round a number to a given precision in decimal digits (default 0 digits).
+    This returns an int when called with one argument, otherwise the
+    same type as the number. ndigits may be negative.
+
+None
+help(distance)
+Help on function distance in module __main__:
+
+distance(x, y)
+    (number, number) -> float
+    
+    Return the distance from point (x, y) to the origin.
+    
+    >>> distance(1, 1)
+    1.414213562730951
+    >>> distance(0, 0)
+    0.0
+
+None
+[evaluate origin.py]
+distance(1, 1)
+1.4142135623730951

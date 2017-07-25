@@ -1,0 +1,169 @@
+# We just saw an example that used "parallel lists" --
+# two lists organized such that each position in both
+# lists contains related information.
+>>> animals = ['cat', 'dog']
+>>> counts = [1, 2]
+# In the example above, the animals list contains names
+# of animals seen. The counts list contains the number 
+# of times each animal has been seen. The index [0] 
+# contains info related to cats (seen 1 time), and the 
+# index [1] contains info related to dogs (seen twice).
+
+# Updating a parallel list requires that we update both 
+# lists to maintain the relation.
+>>> add_sighting(animals, counts, 'goose')
+>>> animals
+['cat', 'dog', 'goose']
+>>> counts
+[1, 2, 1]
+>>> add_sighting(animals, counts, "goose")
+>>> animals
+['cat', 'dog', 'goose']
+>>> counts
+[1, 2, 2]
+
+# Python provides a better way to manage this kind of 
+# related info: a dictionary.  
+>>> {}
+{}
+>>> type({})
+<class 'dict'>
+>>> sightings = {}
+
+# Dictionaries allow us to use a python value as a "key"
+# -- essentially, as an index -- to find associated 
+# values. 
+>>> sightings['cat'] = 1
+>>> sightings['dog'] = 3
+>>> sightings
+{'cat': 1, 'dog': 3}
+>>> sightings['dog']
+3
+
+# The values themselves cannot be used to index into 
+# the dictionary. Keys must be unique (there can only be 
+# one key 'dog' in the example above), but values don't
+# have to be.
+>>> sightings[3]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 3
+
+# Instead of using array notation, we can also use the 
+# "get" method to extract information from a dict. get
+# has an advantage that it does not fail if the key is 
+# not in the dictionary. Instead, it returns None.
+>>> sightings.get(3)
+>>> sightings.get('dog')
+3
+
+# You can also extract the keys and values as iterable 
+# values (values that can be used in a for loop like a 
+# list).
+>>> sightings.keys()
+dict_keys(['cat', 'dog'])
+>>> list(sightings.keys())
+['cat', 'dog']
+>>> list(sightings.values())
+[1, 3]
+>>> for key in sightings.keys():
+...     print(key)
+... 
+cat
+dog
+>>> for val in sightings.values():
+...     print(val)
+... 
+1
+3
+
+# What kind of values can we use as keys?
+>>> D = {}
+>>> D[2] = 'two'
+>>> D[3.0] = 'three'
+>>> D['quatro'] = 'four'
+>>> D[[0, 1, 2]] = 'list of items'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unhashable type: 'list'
+>>> D[{1:1, 2:2}] = 'dict of items'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unhashable type: 'dict'
+
+# Values that are mutable cannot be used as keys. Hence,
+# we can't use lists or dicts. The issue is that keys are
+# "hashed" to find where they are in the dict. If a value
+# changes, then its hash would change, so the key would 
+# not be findable (would be lost). 
+
+# If you want to use a sequence as a key, you can use a 
+# tuple, an immutable ordered collection. In fact, 
+# dictionaries use tuples to store their (key, value) pairs
+# as you can see if you iterate over the dictionary's items().
+>>> D[(1, 2)] = 'tuple'
+>>> (1, 2, 3, 4, 5)
+(1, 2, 3, 4, 5)
+>>> type((1, 2, 3, 4, 5))
+<class 'tuple'>
+>>> for item in D.items():
+...     print(item)
+... 
+((1, 2), 'tuple')
+(2, 'two')
+(3.0, 'three')
+('quatro', 'four')
+>>> for item in D.items():
+...     print(type(item))
+... 
+<class 'tuple'>
+<class 'tuple'>
+<class 'tuple'>
+<class 'tuple'>
+
+# Here's a bit more about files. Here's a file that we'll use today.
+Artist,Album,Rating
+Metallica,Metallica,4.5
+The Black Keys,Brothers,4.5
+U2,October,3
+U2,War,5
+Metallica,Ride the Lightning,4
+The Black Keys,El Camino,4.5
+Metallica,Master of Puppets,5
+U2,Songs of Innocence,2
+
+# Note that files are mutable. If we pass a file into a function that 
+# uses it, the open file structure will be empty after the function.
+>>> album_file = open("albums.txt")
+>>> count_albums(album_file)
+{'U2': 3, 'Metallica': 3, 'The Black Keys': 2}
+>>> album_file
+<_io.TextIOWrapper name='albums.txt' mode='r' encoding='UTF-8'>
+>>> album_file.readline()
+''
+
+# The file on disk is not used up, however. Re-opening it allows you to
+# access the file again.
+>>> album_file = open("albums.txt")
+>>> album_file.readline()
+'Artist,Album,Rating\n'
+
+# Can we do more than read files? Sure. We can also "write" to them.
+# BE CAREFUL. If you open a file for writing, you will erase everything
+# inside it!
+>>> album_file = open("albums.txt")
+>>> counts = count_albums(album_file)
+>>> counts
+{'U2': 3, 'Metallica': 3, 'The Black Keys': 2}
+>>> counts_file = open("albums_counts.txt", "w")
+>>> counts_file.write(str(counts))
+46
+>>> counts_file.close()
+
+# Here is the content of album_counts.txt:
+{'U2': 3, 'Metallica': 3, 'The Black Keys': 2}
+
+# You an also "append" to a file. That adds an item to the end.
+>>> albums = open("albums.txt", "a")
+>>> albums.write("Coldplay,Mylo Xyloto,4.5\n")
+25

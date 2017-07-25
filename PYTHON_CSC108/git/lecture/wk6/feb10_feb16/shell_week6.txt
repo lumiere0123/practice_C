@@ -1,0 +1,320 @@
+3.3.3 (v3.3.3:c3896275c0f6, Nov 16 2013, 23:39:35) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)]
+Python Type "help", "copyright", "credits" or "license" for more information.
+[evaluate difference.py]
+greatest_difference([1, 2, 3], [6, 8, 10])
+7
+
+greatest_difference([1, -2, 3], [-6, 8, 10])
+10
+
+[evaluate swap_name.py]
+name = ['John', 'Smith']
+swap_name(name)
+None
+
+name
+['Smith', 'John']
+
+politicians = [['Rob', 'Ford'], ['Kathleen', 'Wynne'], ['Stephen', 'Joseph', 'Harper']]
+
+politicians[1]
+['Kathleen', 'Wynne']
+
+politicians[1][0]
+'Kathleen'
+
+politicians[1][0][1]
+'a'
+
+for person in politicians:
+    print(person)
+
+['Rob', 'Ford']
+['Kathleen', 'Wynne']
+['Stephen', 'Joseph', 'Harper']
+
+for person in politicians:
+    swap_name(person)
+
+politicians
+[['Ford', 'Rob'], ['Wynne', 'Kathleen'], ['Harper', 'Joseph', 'Stephen']]
+
+#-------------------------------
+#Nested Lists and Loop Worksheet
+#-------------------------------
+
+data = [['a', 'b'], [3, 4], ["epsilon", "zeta"]]
+sublist = data[2]
+
+data[2]
+['epsilon', 'zeta']
+
+data[1][0]
+3
+#Be careful! A few people wrote [3] instead.
+#data[1] is of type list, but data[1][0] is an integer and NOT a list.
+
+type(data[1][0])
+<class 'int'>
+
+type(data[1])
+<class 'list'>
+
+sublist[0]
+'epsilon'
+
+data[2][0]
+'epsilon'
+
+#So, Part 1 answer is (b) 
+
+#sublist and data[2] contain the same memory address (refer to the same list object) 
+id(sublist)
+4314101664
+
+id(data[2])
+4314101664
+
+#Part 2
+nums = []
+for i in range(4):
+    nums = nums + [i]
+
+nums
+[0, 1, 2, 3]
+#So (a) does not create a nested list.
+
+nums = []
+for in range(4):
+    nums.append([i])
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+Syntax Error: for in range(4):: <string>, line 1, pos 6
+#forgot i before in range..
+
+for i in range(4):
+    nums.append([i])
+
+nums
+[[0], [1], [2], [3]]
+
+#What would the previous code return if we used extend method instead of append?
+#[0, 1, 2, 3]
+
+#Part 3
+teams = [['Canadiens',  'Leafs', 'Senators'], ['Jets'], ['Oilers', 'Canucks']]
+
+#teams is a nested list.
+teams
+[['Canadiens', 'Leafs', 'Senators'], ['Jets'], ['Oilers', 'Canucks']]
+
+#len(teams) evaluates to 3; the nested list has three elements of type list
+#Correct answer is (c)
+
+teams[0][1]
+'Leafs'
+
+len(teams[0][1])
+5
+#the previous code is equivalent to len("Leafs")
+
+#------------
+#Nested Loops
+#------------
+
+[evaluate nested_loops.py]
+digital_sum(['64', '128', '256'])
+34
+
+digital_sum(['12', '3'])
+6
+
+[evaluate nested_loops.py]
+can_pay_with_two_coins([1, 5, 10, 25], 35)
+True
+
+can_pay_with_two_coins([1, 5, 10, 25], 12)
+False
+
+#------
+#Files
+#------
+
+f = open("my_first_file.txt", 'r')
+for line in f:
+    print(line)
+
+This is the first line.
+
+Second line!
+
+This is the last line of this file.
+
+#Nothing left to print.
+for line in f:
+    print(line)
+
+f.close()
+None
+
+#Once I close a file, I cannot read from it. I get an error (see below)
+f.readline()
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.ValueError: I/O operation on closed file.
+
+#readline() **returns** the next line from a file as a string (includes new line character, if one exists)
+
+f = open("my_first_file.txt", 'r')
+f.readline()
+'This is the first line.\n'
+
+f.readline()
+'Second line!\n'
+
+f.readline()
+'This is the last line of this file.\n'
+
+#We've read all the file contents. Nothing else left to read, so readline() will be returning the empty string
+f.readline()
+''
+
+#Always close your files!
+f.close()
+None
+
+#readlines() returns all lines in a file in a list. The lines include the newline character.
+f = open("my_first_file.txt", 'r')
+
+f.readlines()
+['This is the first line.\n',
+ 'Second line!\n',
+ 'This is the last line of this file.\n']
+
+f.close()
+None
+
+#read() returns the whole file as a single string
+f = open("my_first_file.txt", 'r')
+f.read()
+'This is the first line.\nSecond line!\nThis is the last line of this file.\n'
+f.close()
+
+
+#Files worksheet.
+
+
+f = open("my_first_file.txt", 'r')
+for line in f:
+    print(line)
+
+This is the first line.
+
+Second line!
+
+This is the last line of this file.
+
+f.close()
+None
+#Option (a) maps to (3); it prints all lines of the file
+
+
+f = open("my_first_file.txt", 'r')
+f.readline()
+'This is the first line.\n'
+f.close()
+None
+
+f = open("my_first_file.txt", 'r')
+a = f.readline()
+a
+'This is the first line.\n'
+for line in f:
+    print(line)
+
+Second line!
+
+This is the last line of this file.
+
+f.close()
+None
+#Option (b) maps to (2). The first line is not printed (just returned).
+#Remember in the Shell if you print something you'll see no surrounding quotes.
+#If a function call returns a string, then you'll see quotes (e.g., for f.readline())
+
+f = open("my_first_file.txt", 'r')
+for line in f:
+    print(line)
+    f.readline()
+
+This is the first line.
+
+This is the last line of this file.
+
+f.close()
+None
+
+#Option (c) prints every second line (4).  
+
+f = open("my_first_file.txt", 'r')
+print(f.realines()[0])
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.AttributeError: '_io.TextIOWrapper' object has no attribute 'realines'
+#forgot d in readlines
+
+print(f.readlines()[0])
+This is the first line.
+
+None
+f.close()
+None
+
+#Option (d) only prints the first line.
+
+#A great summary on how to read from a file
+#is in the lecture summary of the reading files video lecture on Coursera.
+
+#----------------
+#writing to files
+#----------------
+
+budget_file = open("budgie_budget.txt", 'w')
+budget_file.write("Seed: $10/month")
+15
+budget_file.write("Cage: $50")
+9
+budget_file.close()
+None
+
+#To write to a file you need to use write (not print!)
+#write() returns the number of characters you just wrote to that file.
+#write() does not add a new line character '\n'. You have to explicitly add that
+#yourselves.
+#Otherwise it will all be glued together like in this example. Answer (d)
+#See the generated file budgie_budget.txt.
+
+#Files Worksheet - Part 3
+
+dict1 = open("dict.txt", 'r')
+[evaluate dictionary.py]
+is_correct("Zyrtec")
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.TypeError: is_correct() missing 1 required positional argument: 'word'
+#We need to give two arguments (there was a typo in the function examples)
+
+#Here we get an incorrect result because of the new line issue.
+#See comments in dictionary.py
+is_correct(dict1, "Zyrtec")
+False
+
+[evaluate dictionary.py]
+dict1.close()
+None
+
+dict1 = open("dict.txt", 'r')
+is_correct(dict1, "Zyrtec")
+True

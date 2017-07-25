@@ -1,0 +1,494 @@
+3.3.3 (v3.3.3:c3896275c0f6, Nov 16 2013, 23:39:35) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)]
+Python Type "help", "copyright", "credits" or "license" for more information.
+[evaluate indexing.py]
+find_third_letter("Can you find the secret letter?")
+'n'
+[evaluate slicing.py]
+
+#if you forget to put the end index
+find_hidden_letters("No I can't")
+" I can't"
+[evaluate slicing.py]
+
+#if you forget to put the start index
+find_hidden_letters("No I can't")
+'No I'
+
+#using negative indices when indexing strings
+test = "hello"
+test
+'hello'
+test[-1]
+'o'
+test[-0]
+'h'
+test[-2]
+'l'
+test[-3]
+'l'
+test[-4]
+'e'
+test[-5]
+'h'
+test[-6]
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.IndexError: string index out of range
+#Index -6 is invalid, we ran out of characters in the string
+len(test)
+5
+#using negative indices
+test[-len(test)]
+'h'
+test[-len(test) + 1]
+'e'
+test[-len(test) + 2]
+'l'
+
+#the in operator
+"a" in "abc"
+True
+
+"ade" in "abc"
+False
+
+#the empty string is contained in every other string
+"" in "abc"
+True
+
+"" in ""
+True
+
+#a string with a space is different than the empty string
+" " in "abc"
+False
+
+test
+'hello'
+#we cannot modify a string
+test[0]='k'
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.TypeError: 'str' object does not support item assignment
+
+#WS1 - String operations and methods
+phrase_new = "laughing out loud"
+phrase_new[9]
+'o'
+
+phrase_new[0]
+'l'
+
+phrase_new[-4]
+'l'
+
+phrase_new[-4] + phrase[-3] + phrase[0]
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.NameError: name 'phrase' is not defined
+
+phrase_new[-4] + phrase_new[-3] + phrase_new[0]
+'lol'
+
+phrase_new[0] + phrase_new[9] + phrase_new[0]
+'lol'
+
+a = 'scores'
+b = a[2:]
+b
+'ores'
+
+a
+'scores'
+
+a == 'scores' and b == 'ores'
+True
+
+lyrics = 'abc easy as 123'
+'easy' in lyrics
+True
+
+'' in lyrics
+True
+
+str(len('mj')) in lyrics
+True
+
+#forgot closing quote
+len('mj)
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+Syntax Error: len('mj): <string>, line 1, pos 9
+
+len('mj')
+2
+
+#What happens if I put quotes around lyrics?
+#No longer a variable but the string "lyrics"
+str(len('mj')) in "lyrics"
+False
+
+'2' in 'lyrics'
+False
+
+#Find all methods of str
+dir(str)
+['__add__',
+ '__class__',
+ '__contains__',
+ '__delattr__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__getitem__',
+ '__getnewargs__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__iter__',
+ '__le__',
+ '__len__',
+ '__lt__',
+ '__mod__',
+ '__mul__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__rmod__',
+ '__rmul__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ 'capitalize',
+ 'casefold',
+ 'center',
+ 'count',
+ 'encode',
+ 'endswith',
+ 'expandtabs',
+ 'find',
+ 'format',
+ 'format_map',
+ 'index',
+ 'isalnum',
+ 'isalpha',
+ 'isdecimal',
+ 'isdigit',
+ 'isidentifier',
+ 'islower',
+ 'isnumeric',
+ 'isprintable',
+ 'isspace',
+ 'istitle',
+ 'isupper',
+ 'join',
+ 'ljust',
+ 'lower',
+ 'lstrip',
+ 'maketrans',
+ 'partition',
+ 'replace',
+ 'rfind',
+ 'rindex',
+ 'rjust',
+ 'rpartition',
+ 'rsplit',
+ 'rstrip',
+ 'split',
+ 'splitlines',
+ 'startswith',
+ 'strip',
+ 'swapcase',
+ 'title',
+ 'translate',
+ 'upper',
+ 'zfill']
+
+help(str.lower)
+Help on method_descriptor:
+
+lower(...)
+    S.lower() -> str
+    
+    Return a copy of the string S converted to lowercase.
+
+None
+
+help(str.swapcase)
+Help on method_descriptor:
+
+swapcase(...)
+    S.swapcase() -> str
+    
+    Return a copy of S with uppercase characters converted to lowercase
+    and vice versa.
+
+None
+
+wish = 'Happy Birthday'
+wish[0].lower() + wish[6].lower()
+'hb'
+
+wish.swapcase()
+'hAPPY bIRTHDAY'
+
+#does swap case affect numbers? No.
+test2 = "aB2"
+test2.swapcase()
+'Ab2'
+
+wish.lower()
+'happy birthday'
+
+wish[0].lower() + wish[1:6] + wish[6].lower() + wish[7:]
+'happy birthday'
+
+#for loops over string. char is a variable name. Can be called anything.
+
+s = 'Computer'
+for char in s:
+    print(char)
+
+C
+o
+m
+p
+u
+t
+e
+r
+
+s[0]
+'C'
+
+s[1]
+'o'
+
+
+print(s[0])
+C
+None
+
+for char in s:
+    print(char)
+
+C
+o
+m
+p
+u
+t
+e
+r
+
+#What was the number of iterations of the next loop?
+#8, the two print(char) happen in a single iteration
+for char in s:
+    print(char)
+    print(char)
+
+C
+C
+o
+o
+m
+m
+p
+p
+u
+u
+t
+t
+e
+e
+r
+r
+
+#for variable in str:
+#    body
+
+char = '0'
+
+#is char not equal to the entire "01234" string?
+#If you want to find if char is a substring of "01234" you need to use in
+char != "01234"
+True
+
+char = 'b'
+char != "01234"
+True
+
+[evaluate ip_address.py]
+is_IP_address("123.100.12")
+True
+
+is_IP_address("123.100.12Assda")
+False
+
+for apples in s:
+    print(apples)
+
+C
+o
+m
+p
+u
+t
+e
+r
+
+help(str.isupper)
+Help on method_descriptor:
+
+isupper(...)
+    S.isupper() -> bool
+    
+    Return True if all cased characters in S are uppercase and there is
+    at least one cased character in S, False otherwise.
+
+None
+
+'A' > 'B'
+False
+
+letter = 'A'
+letter.isupper()
+True
+
+letter = 'a'
+letter.isupper()
+False
+
+[evaluate for_loops_over_strings.py]
+count_uppercase("abcD EF")
+3
+
+[evaluate for_loops_over_strings.py]
+#think of corner case. Does your code work with the empty string?
+count_uppercase("")
+0
+
+"a" < "b"
+True
+
+[evaluate for_loops_over_strings.py]
+count_uppercase("")
+0
+
+count_uppercase("abcD EF")
+3
+
+letter = 'a'
+#you need to put the () next to isupper. It shows it's a method
+letter.isupper
+<built-in method isupper of str object at 0x1003b0dc0>
+
+[evaluate for_loops_over_strings.py]
+
+fluffy_so_far("fly")
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.NameError: name 'fluffy_so_far' is not defined
+
+all_fluffy("fly")
+True
+
+all_fluffy("flap")
+False
+
+[evaluate for_loops_over_strings.py]
+add_underscores("hello")
+h_
+e_
+l_
+l_
+o_
+None
+[evaluate for_loops_over_strings.py]
+
+add_underscores("hello")
+h_
+h_e_
+h_e_l_
+h_e_l_l_
+h_e_l_l_o_
+None
+
+[evaluate for_loops_over_strings.py]
+add_underscores("hello")
+'h_e_l_l_o'
+
+add_underscores("")
+''
+
+#Python deals with incorrect indices for slicing gracefully
+word1 = "letter"
+word1[3:2000]
+'ter'
+
+#while expression:
+#   body
+while (3 < 2):
+   print("less than")
+
+#While Loops vs. For loops
+#If I increment i before the print statement the first letter of Computer
+#is not printed and I get a string index out of range error
+[evaluate while_vs_for.py]
+c
+o
+m
+p
+u
+t
+e
+r
+o
+m
+p
+u
+t
+e
+r
+Traceback (most recent call last):
+  File "/Users/myrtoula/Documents/Teaching/lecture_week4/while_vs_for.py", line 11, in <module>
+builtins.IndexError: string index out of range
+
+#Now it works
+[evaluate while_vs_for.py]
+c
+o
+m
+p
+u
+t
+e
+r
+c
+o
+m
+p
+u
+t
+e
+r
+word = "hello"
+
+len(word)
+5
+
+word[5]
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.IndexError: string index out of range
+
+[evaluate while1.py]
+every_nth_character("Computer science", 3)
+'Cpesee'

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <title>ULI101</title>
+   <meta charset="utf-8">
+   <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+   <h1>ULI101 - Introduction to Unix/Linux and the Internet</h1>
+   <h2>Lecture 1 - Introduction to ULI101 &amp; UNIX; Some Commands</h2>
+   <h3><u>Introduction to ULI101</u></h3>
+   <ul>
+      <li>
+         Check out the course outline - <a href="http://scs.senecac.on.ca/course/uli101">
+         <b>ULI101 Course Outline</b></a></li>
+   </ul>
+   <h3>Course Requirements</h3>
+   <ul>
+      <li>final mark is based on:
+         <ul>
+            <li>25% for 1 test</li>
+            <li>10% for 5 quizzes</li>
+            <li>20% for 2 assignments</li>
+            <li>10% for 2 labs</li>
+            <li>35% for final exam</li>
+         </ul></li>
+      <li>to pass, you must:
+         <ul>
+            <li>achieve a grade of 50% or better on the final exam</li>
+            <li>achieve a weighted average of 50% or better for the test and final exam</li>
+            <li>achieve a grade of 50% or better on the overall course</li>
+            <li>satisfactorily complete both assignments</li>
+         </ul></li>
+   </ul>
+   <h3>Tests and Exam</h3>
+   <ul>
+      <li>there will be one test worth 25%</li>
+      <li>the exam will be worth 35%</li>
+   </ul>
+   <h3>Quizzes</h3>
+   <ul>
+      <li>there will be 5 quizzes worth a total of 10%</li>
+      <li>the quizzes will cover material up to the previous week's lectures</li>
+   </ul>
+   <h3>Labs</h3>
+   <ul>
+      <li>there will be two labs worth a total of 10%</li>
+      <li>labs will be due by midnight on the due date</li>
+      <li>late labs will be penalized 10% per day, including weekends and holidays</li>
+   </ul>
+   <h3>Assignments</h3>
+   <ul>
+      <li>there will be two assignments worth a total of 20%</li>
+      <li>assignments will be due by midnight on the due date</li>
+      <li>late assignments will be penalized 10% per day, including weekends and holidays</li>
+      <li>both assignments must be completed and working in order to pass this course</li>
+      <li>if the first assignment is not submitted by the last scheduled day of classes, then a failure in the course will result</li>
+      <li>if the second assignment is not submitted by the last scheduled day of classes, then a mark of "Incomplete" will be awarded</li>
+   </ul>
+   <h3>Reference Material</h3>
+   <ul>
+      <li>there is a LOT of reference material available on the internet</li>
+      <li>if you prefer a book, a good reference is <b>"A Practical Guide to Linux Commands, Editors and Shell
+         Programming"</b> by Mark Sobell, Prentice Hall, ISBN 0-131-47823-0
+         <br>
+         <img border="0" src="../resources/PracticalGuide.jpg" width="125" height="157"
+            alt="Text" /></li>
+      <li>a huge amount of Linux documentation has been collected at <b><a href="http://en.tldp.org">en.tldp.org</a>
+         </b>(this used to be www.linuxdoc.org), have a look!</li>
+   </ul>
+   <h3><u>Introduction to UNIX</u></h3>
+   <h3>Operating Systems</h3>
+   <ul>
+      <li>allocate resources and schedule tasks</li>
+      <li>resources include CPU, memory, disk, tape, printers, terminals, modems, etc.</li>
+      <li>only one user allowed at a time for each resource</li>
+      <li>keeps track of filenames and directory structure</li>
+      <li>multi-tasking (one task at a time per processor actually executing)</li>
+      <li>multi-processing (schedules multiple processors)</li>
+      <li>multi-user</li>
+   </ul>
+   <h3>History of UNIX</h3>
+   <ul>
+      <li>developed at Bell Labs (AT&amp;T) in 1969</li>
+      <li>unlike most OS's at the time, UNIX was multi-user, interactive, and simplified sharing of data &amp; programs</li>
+      <li>became popular in industry as college and university graduates were trained in it</li>
+      <li>open system, ported to many different hardware platforms (unlike IBM, Burroughs, Univac mainframes)</li>
+      <li>software written for one UNIX system will often run on other systems with little or no modification</li>
+      <li>still very weak in areas of system management - tape management, security, hardware accounting, capacity planning tools, performance
+         management including prioritization of jobs</li>
+      <li>hardware manufacturers modified UNIX to run on their systems and added enhancements</li>
+      <li>standardization was begun in response to Windows NT threat</li>
+      <li>System V Release 4 is one of the steps to address standardization</li>
+      <li>SVR4 includes many of the modifications that were being done by hardware manufacturers, if they were universally useful and applicable</li>
+   </ul>
+   <h3>History of Linux</h3>
+   <ul>
+      <li>GNU (Gnu's not Unix) was started in early 80's to create and promote free software</li>
+      <li>Linux was created by Linus Torvalds in the 1990's, released to the Internet in 1994, mostly using GNU C compiler</li>
+      <li>about 1/3 of Linux is GNU code from the Free Software Foundation - a Linux distribution consists of Linux kernel + GNU
+         compilers/tools/utilities + other free software</li>
+      <li>Linux uses the Open Source model for development - code is placed on the Internet, users download and test it, programmers improve it
+         and place it back on the web</li>
+      <li>there is competition among programmers to fix bugs and improve Linux</li>
+   </ul>
+   <h3>UNIX Structure</h3>
+   <ul>
+      <li>Hardware, surrounded by</li>
+      <li>UNIX Kernel (basic OS), surrounded by</li>
+      <li>Shell (user interface, command interpreter, and some built-in commands), surrounded by</li>
+      <li>Utilities (or commands)</li>
+      <li>most common shells: Bourne shell (<b>sh</b>), C shell (<b>csh</b>), Korn shell (<b>ksh</b>), Bourne again shell (<b>bash</b>),
+         TC shell (<b>tcsh</b>), Z shell (<b>zsh</b>)</li>
+      <li>we'll mostly be concerned with the Bash shell, which is the most popular Linux shell</li>
+      <li>the Korn shell is the most popular Unix shell, and is very similar to the Bash shell</li>
+   </ul>
+   <h3>Entering Commands, Logging In &amp; Out</h3>
+   <ul>
+      <li>to login, use an ssh (or similar) program, and provide userid and password</li>
+      <li>to backspace (erase), usually backspace, control-h, or control-backspace</li>
+      <li>to interrupt a process, usually control-c</li>
+      <li>to logout, use <b>exit</b>, <b>logout</b>, or control-d</li>
+      <li>use <b>passwd</b> to change password</li>
+      <li>command line arguments can be separated by one or more spaces or tabs</li>
+   </ul>
+   <h3>Using the Matrix server at Seneca</h3>
+   <ul>
+      <li>Check out the following document, which gives a brief overview of the computer systems at Seneca:
+         <a href="https://scs.senecac.on.ca/page/seneca-computer-systems-overview">Seneca Computer Systems Overview</a>.</li>
+      <li>If you haven't yet gone through the process of getting and testing your My.Seneca and Learn accounts, or don't know how to
+         access them, here is a
+         <a href="https://scs.senecac.on.ca/page/seneca-computer-systems-overview#howtogetstartedoverview">step-by-step procedure</a> from
+         the Seneca Computer Systems Overview referenced above.</li>
+      <li>Make sure that you have access to the Matrix server:
+         <ul>
+            <li>your Matrix account should be the same userid and password as your Learn (email) account</li>
+            <li>if you don't already have a Matrix account, follow this link:
+               <a href="https://matrix.senecac.on.ca/webadmin/agree/agreement.php">
+               https://matrix.senecac.on.ca/webadmin/agree/agreement.php</a></li>
+            <li>contact <a href="https://inside.senecac.on.ca/clientservices/">Client Services</a> in case of problems</li>
+         </ul></li>
+   </ul>
+   <h3><u>Some Commands</u></h3>
+   <ul>
+      <li><tt>pwd</tt> will show your current directory</li>
+      <li><tt>cd</tt> is used to change current directory, eg. <tt>cd directory-name</tt></li>
+      <li><tt>ls</tt> - lists information about files and directories
+         <ul>
+            <li><tt>ls -a</tt> - all files (including hidden)</li>
+            <li><tt>ls -l</tt> - long form, gives more information about files</li>
+            <li><tt>ls -d</tt> - gives information about the directory itself, not contained files</li>
+            <li>these options can be mixed and matched, eg. <tt>ls -ld</tt></li>
+         </ul></li>
+      <li><tt>cal</tt> - displays a calendar of the current month
+         <ul>
+            <li><tt>cal 1995</tt> - displays calendar for specified year</li>
+            <li><tt>cal 3 1995</tt> - displays calendar for specified month of specified year</li>
+         </ul></li>
+      <li><tt>date</tt> - gives date and time</li>
+      <li><tt>who</tt>, <tt>w</tt> - information about users logged on to system
+         <ul>
+            <li><tt>who am i</tt>, <tt>whoami</tt> - information about your session </li>
+         </ul></li>
+      <li>here is a list of most of the commands we'll be seeing in this course:
+         <a href="Lecture1a.html">Command Summary</a></li>
+   </ul>
+</body>
+
+</html>

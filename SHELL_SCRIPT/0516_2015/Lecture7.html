@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <title>ULI101</title>
+   <meta charset="utf-8">
+   <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+   <h1>ULI101 - Introduction to Unix/Linux and the Internet</h1>
+   <h2>Lecture 7 - Linking; Process Management; Shell Startup; Command History; alias</h2>
+   <h3><u>Linking</u></h3>
+   <ul>
+      <li><tt>ln</tt> (link) command gives a file an additional name, or pointer, from the same or a different directory</li>
+      <li>one common use of links is to give a long pathname an easy to remember shortcut</li>
+      <li><b>hard links </b>
+         <ul>
+            <li><tt>ln file1 file2</tt> - gives file1 the additional name file2 (hard link) </li>
+            <li><tt>ls -i file1</tt> - and </li>
+            <li><tt>ls -i file2</tt> - will give same index (or inode) numbers, they are physically the same file </li>
+            <li>a file will not be removed until all of its hard links are removed (using <tt>rm</tt>)</li>
+         </ul></li>
+      <li><b>symbolic links (or soft links)</b>
+         <ul>
+            <li><tt>ln -s file1 file2</tt> - gives file1 the additional name file2, as an indirect pointer</li>
+            <li>a file can be removed even if it still has symbolic links </li>
+            <li><tt>ln -s path/dir1 dir2</tt> - gives dir1 the additional name dir2 in the current directory </li>
+            <li>directories can only be linked symbolically (except by the administrator)</li>
+            <li>symbolic links are useful where you wish to recreate a file without having to remove and recreate a lot of links</li>
+         </ul></li>
+   </ul>
+   <h3><u>Process Management</u></h3>
+   <ul>
+      <li>a process is the execution of a command</li>
+      <li>every process has a process id</li>
+      <li>a parent process forks (or spawns) a child process</li>
+      <li><b>&amp;</b> at the end of a command line will run the command in the background, and gives the unique process identification (PID)
+         and a job number
+         <ul>
+            <li>eg. <b>ls</b> -lR / &gt; test 2&gt; testerror <b>&amp;</b> (recursive listing of all files and directories under the root
+               directory)</li>
+            <li>eg. <b>tail</b> -f test &amp; (endless loop waiting for additional lines)</li>
+         </ul></li>
+      <li><b>ps</b> - will display process status with PID, for current terminal only</li>
+      <li><b>ps -U username</b> - will display status for all terminals belonging to specified username</li>
+      <li><b>ps -f</b> - will display additional info, such as parent PID (PPID) of each process</li>
+      <li><b>ps f</b> - will display processes showing parent/child relationships</li>
+      <li>there are LOTS of <b>ps</b> options, varies by system</li>
+      <li><b>top</b> - will display resource usage, continually updated (end with 'q')</li>
+      <li><b>jobs</b> - will show job number of processes</li>
+      <li><b>kill</b> pid# (or %job) - will abort process with specific PID or job number</li>
+      <li><b>kill -9</b> pid# - will abort process that has been written to ignore other signals</li>
+      <li><b>kill -stop</b> pid# - will suspend (stop) a background job</li>
+      <li><b>&lt;Ctrl&gt;-z</b> - will suspend a foreground job</li>
+      <li><b>bg</b> %job - will start running a suspended process in the background, defaults to last suspended job</li>
+      <li><b>fg</b> %job - will start running a suspended process in the foreground</li>
+   </ul>
+   <h3><u>Shell Startup</u></h3>
+   <h3>bash startup</h3>
+   <ul>
+      <li>upon login, <tt>/etc/profile</tt> executes
+         <ul>
+            <li>controlled by system administrator</li>
+            <li>common to all shells</li>
+         </ul></li>
+      <li>then <tt>~/.bash_profile</tt> executes
+         <ul>
+            <li>used to customize environment for each user (eg. set PATH, umask, mesg, aliases, etc.)</li>
+            <li><tt>.bash_login</tt> is used if <tt>.bash_profile</tt> doesn't exist</li>
+            <li><tt>.profile</tt> is used if <tt>.bash_profile</tt> and <tt>.bash_login</tt> don't exist</li>
+         </ul></li>
+      <li><tt>.bashrc</tt> is used for interactive sub-shells</li>
+      <li><tt>.bash_logout</tt> is executed when shell is exited</li>
+   </ul>
+   <h3>ksh startup</h3>
+   <ul>
+      <li>upon login, <b>/etc/profile</b> executes, then <b>.profile</b> in home directory</li>
+      <li><b>.kshrc</b> is used for interactive sub-shells</li>
+   </ul>
+   <h3><u>Command History</u></h3>
+   <ul>
+      <li><tt>.bash_history</tt> is used to store recently executed command lines</li>
+      <li>allows use of arrow keys to move back and forth within history</li>
+      <li><tt>&lt;Ctrl&gt;-r</tt> can be used to search history by keyword</li>
+   </ul>
+   <h3><u>alias</u></h3>
+   <ul>
+      <li>assigns a new name to an existing utility</li>
+      <li>eg. <tt>alias dir=ls</tt></li>
+      <li>eg. <tt>alias ls='ls -al'</tt></li>
+      <li>eg. <tt>alias clearfile='cat /dev/null >'</tt></li>
+      <li>can be useful, but can also make your scripts cryptic</li>
+   </ul>
+</body>
+
+</html>

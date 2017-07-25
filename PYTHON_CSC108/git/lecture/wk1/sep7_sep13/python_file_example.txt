@@ -1,0 +1,15 @@
+# What happens if we create a file that contains the code we typed in the console?
+
+2
+m = 5
+x = 2
+b = 2
+y = m * x + b
+
+# Nothing printed! The console is great for experimenting and getting quick answers,
+# but if you want to run code multiple times, you should save it in a file and run
+# the file. However, we then have to think about how to display the results of our 
+# code. The "print" function will come in handy. To see what it does, uncomment 
+# (remove the "#" from) the line below and then run your program again.
+
+# print(y)

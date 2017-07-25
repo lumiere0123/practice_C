@@ -1,0 +1,160 @@
+3.3.3 (v3.3.3:c3896275c0f6, Nov 16 2013, 23:39:35) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)]
+Python Type "help", "copyright", "credits" or "license" for more information.
+#dictionaries recap
+fruit_to_colours = {'apple': 'green', 'strawberry': 'red', 'raspberry': 'red'}
+fruit_to_colours['apple']
+'green'
+
+fruit_to_colours['strawberry']
+'red'
+
+#for loop loops over the keys of the dictionary
+for fruit in fruit_to_colours:
+    print(fruit)
+
+strawberry
+apple
+raspberry
+
+#what if I want to print both the key and its associated value?
+for fruit in fruit_to_colours:
+    print(fruit, fruit_to_colours[fruit])
+
+strawberry red
+apple green
+raspberry red
+
+
+name_to_binomial = {'human': 'Homo sapiens',
+                    'dog': 'Canis familiaris',
+                    'narwhal': 'Monodon monoceros'}
+
+len(name_to_binomial)
+3
+
+'dog' in name_to_binomial
+True
+
+#The in operator checks if a key is in the dictionary.
+#'Homo sapiens' is a value
+'Homo sapiens' in name_to_binomial
+False
+
+#We cannot index the dictionaries as we do lists.
+#0 is not a key in the dictionary so get a  KeyError
+name_to_binomial[0] == 'human'
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.KeyError: 0
+
+#dictionaries are unordered
+name_to_binomial == {'dog': 'Canis familiaris',
+                     'narwhal': 'Monodon monoceros',
+                     'human': 'Homo sapiens'}
+
+True
+
+animal_to_locomotion = {'fish': ['swim'],
+                        'kangaroo': ['hop'],
+                        'frog': ['swim', 'hop']}
+
+animal_to_locomotion['kangaroo']
+['hop']
+
+#(dict of {str: list}
+
+animal_to_locomotion['human'] = ['swim', 'run', 'walk', 'airplane']
+
+animal_to_locomotion
+{'fish': ['swim'],
+ 'frog': ['swim', 'hop'],
+ 'human': ['swim', 'run', 'walk', 'airplane'],
+ 'kangaroo': ['hop']}
+
+animal_to_locomotion['orangutan'].append('brachiate')
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.KeyError: 'orangutan'
+
+animal_to_locomotion['kangaroo'].append('airplane')
+None
+
+len(animal_to_locomotion)
+4
+
+animal_to_locomotion['frog'] = ['tapdance']
+animal_to_locomotion
+{'fish': ['swim'],
+ 'frog': ['tapdance'],
+ 'human': ['swim', 'run', 'walk', 'airplane'],
+ 'kangaroo': ['hop', 'airplane']}
+
+animal_to_locomotion['frog'].append('drive')
+None
+
+animal_to_locomotion
+{'fish': ['swim'],
+ 'frog': ['tapdance', 'drive'],
+ 'human': ['swim', 'run', 'walk', 'airplane'],
+ 'kangaroo': ['hop', 'airplane']}
+
+animal_to_locomotion['dolphin'] = animal_to_locomotion['fish']
+
+animal_to_locomotion
+{'dolphin': ['swim'],
+ 'fish': ['swim'],
+ 'frog': ['tapdance', 'drive'],
+ 'human': ['swim', 'run', 'walk', 'airplane'],
+ 'kangaroo': ['hop', 'airplane']}
+
+id(animal_to_locomotion['dolphin'])
+4316230648
+
+id(animal_to_locomotion['fish'])
+4316230648
+
+#Question: what if I change the value associated
+#with key 'fish'? Will the value associated with key 'dolphin'
+#change too? The answer is no. You may want to visualize this example.
+animal_to_locomotion['fish'] = ['fly']
+
+animal_to_locomotion
+{'dolphin': ['swim'],
+ 'fish': ['fly'],
+ 'frog': ['tapdance', 'drive'],
+ 'human': ['swim', 'run', 'walk', 'airplane'],
+ 'kangaroo': ['hop', 'airplane']}
+
+[evaluate dict_example.py]
+D = {'MC': ['run','hockey'],'JC': ['run'],'BP':['run','swim','bike']}
+get_team(D, 'run')
+None
+#In the previous example, we had the incorrect return team.sort() in our code.
+
+[evaluate dict_example.py]
+D = {'MC': ['run','hockey'],'JC': ['run'],'BP':['run','swim','bike']}
+get_team(D, 'run')
+['BP', 'JC', 'MC']
+
+get_team(D, 'bike')
+['BP']
+
+[evaluate dictionaries.py]
+express_checkout({'banana': 3, 'soy milk': 1, 'peanut butter': 1})
+True
+
+express_checkout({'banana': 3, 'soy milk': 1, 'twinkie': 5})
+False
+
+#'banana': [10, 10]
+#'soy milk': [2, 2][evaluate dictionaries.py]
+
+build_placements(['Saucony', 'Asics', 'Asics', 'NB', 'Saucony', \
+                          'Nike', 'Asics', 'Adidas', 'Saucony', 'Asics'])
+
+{'Adidas': [8],
+ 'Asics': [2, 3, 7, 10],
+ 'NB': [4],
+ 'Nike': [6],
+ 'Saucony': [1, 5, 9]}

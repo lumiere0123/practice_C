@@ -1,0 +1,180 @@
+3.3.0 (v3.3.0:bd8afb90ebf2, Sep 29 2012, 02:56:36) 
+[GCC 4.2.1 (Apple Inc. build 5577)]
+Python Type "help", "copyright", "credits" or "license" for more information.
+11 + 7
+18
+23 - 42
+-19
+4 * 5
+20
+8 / 4
+2.0
+8 / 5
+1.6
+# This is a comment.
+# 4 + 5
+# Whatever comes after the # is not executed.
+# Two types so far: int, float
+
+# Float stands for floating-point number.
+# Floatiing-point numbers are approximations to real numbers.
+# The division operator (/) produces a float.
+7 / 2
+3.5
+8 / 2
+4.0
+8 // 2
+4
+# // is integer division. It produces an int.
+8 // 5
+1
+
+8 % 5
+3
+# % is modulo (remainder).
+
+# Arithmetic Operators
+# Q1
+9 / 3
+3.0
+9 // 3
+3
+type(3.0)
+<class 'float'>
+type(3)
+<class 'int'>
+
+10 / 4
+2.5
+10 // 4
+2
+10 // 3
+3
+10 % 3
+1
+
+# Q2
+1 % 2
+1
+2 % 2
+0
+3 % 2
+1
+4 % 2
+0
+% n % 2 produces 0 for even positive numbers
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+Syntax Error: % n % 2 produces 0 for even positive numbers: <string>, line 1, pos 1
+# n % 2 produces 0 for even positive numbers
+# n % 2 produces 1 for odd positive numbers
+
+2 ** 5
+32
+2 ** 5 # 2 to the power of 5
+32
+# ** is called exponentiation
+
+4 + 5 * 3
+19
+4 + (5 * 3)
+19
+(4 + 5) * 3
+27
+
+# Order of precendence
+# from highest to lowest
+# **
+# - (negation)
+# *, /, //, %
+# + (addition), - (subtraction)
+
+5 + 2 ** 3 * 5
+45
+5 + ((2 ** 3) * 5)
+45
+5 - -2
+7
+5 - --2
+3
+5 - -----------------2
+7
+3 + 5 * 2
+13
+3 + (5 * 2)
+13
+4 + 8 / 2 ** 2 / -2
+3.0
+4 + ((8 / (2 ** 2)) / (-2))
+3.0
+
+4 + 6
+10
+4+6
+10
+4+ 6
+10
+4 +6
+10
+
+2 ** 5
+32
+2 * * 5
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+Syntax Error: 2 * * 5: <string>, line 1, pos 5
+4 + 5) * 5
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+Syntax Error: 4 + 5) * 5: <string>, line 1, pos 6
+4 / 0
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.ZeroDivisionError: division by zero
+
+type(60)
+<class 'int'>
+type(65.9)
+<class 'float'>
+min(34, 25)
+25
+min(34, 25, 18)
+18
+min(34, 25, 78)
+25
+max(12, 34, 78)
+78
+max(12, 34, 8)
+34
+abs(-9)
+9
+abs(9)
+9
+help(abs)
+Help on built-in function abs in module builtins:
+
+abs(...)
+    abs(number) -> number
+    
+    Return the absolute value of the argument.
+
+None
+abs(3, 4)
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.TypeError: abs() takes exactly one argument (2 given)
+help(ord)
+Help on built-in function ord in module builtins:
+
+ord(...)
+    ord(c) -> integer
+    
+    Return the integer ordinal of a one-character string.
+
+None
+2 + 3
+5
+2.0 + 3.0
+5.0
+2.0 + 3
+5.0

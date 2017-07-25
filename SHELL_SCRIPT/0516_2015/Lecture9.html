@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <title>ULI101</title>
+   <meta charset="utf-8">
+   <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+   <h1>ULI101 - Introduction to Unix/Linux and the Internet</h1>
+   <h2>Lecture 9 - Regular Expressions</h2>
+   <h3><u>Regular Expressions</u></h3>
+   <ul>
+      <li>many Unix utilities use regular expressions: grep, sed, awk, vi, perl, Tcl</li>
+      <li>shell filename matches are <b>not</b> regular expressions (eg. *.c)</li>
+      <li>examples in this lecture will use the <tt>grep</tt> utility and the file <a href="cars.txt">cars</a></li>
+      <li>regular expressions are used to search for or match text:
+         <ul>
+            <li>literal text can be used to search for that text
+               <ul>
+                  <li><tt>grep "chevy" cars</tt></li>
+               </ul></li>
+            <li>. matches any character (similar to ? wildcard)
+               <ul>
+                  <li><tt>grep ".c" cars</tt></li>
+                  <li><tt>grep "5..." cars</tt></li>
+               </ul></li>
+            <li><tt>[ ]</tt> matches any character within the square brackets (similar to <tt>[ ]</tt> wildcard)
+               <ul>
+                  <li><tt>grep "[cC]hevy" cars</tt></li>
+                  <li><tt>grep "[0-9][0-9][0-9][0-9][0-9]" cars</tt></li>
+               </ul></li>
+            <li><tt>[^ ]</tt> matches any character <b>not</b> within the square brackets (similar to <tt>[! ]</tt> wildcard)
+               <ul>
+                  <li><tt>grep "[^f]ord" cars</tt></li>
+               </ul></li>
+            <li><tt>^</tt> matches beginning of line
+               <ul>
+                  <li><tt>grep "^f" cars</tt></li>
+               </ul></li>
+            <li><tt>$</tt> matches end of line
+               <ul>
+                  <li><tt>grep " [0-9][0-9][0-9]$" cars</tt></li>
+               </ul></li>
+            <li><tt>*</tt> following any character denotes <b>zero or more</b> occurrences of that character
+               <ul>
+                  <li><tt>grep "ford.*83" cars</tt></li>
+                  <li><tt>grep "^[^ ][^ ]* &nbsp;*[^ ][^ ]* &nbsp;*65" cars</tt></li>
+               </ul></li>
+            <li><tt>\</tt> inhibits meaning of special characters
+               <ul>
+                  <li><tt>grep ' [0-9][0-9][0-9]\$' cars</tt></li>
+               </ul></li>
+         </ul></li>
+      <li>extended regular expressions are not recognized by <tt>grep</tt>, can use <tt>egrep</tt> or <tt>grep -E</tt>:
+         <ul>
+            <li><tt>( reg-exp )</tt> parentheses used for grouping
+               <ul>
+                  <li><tt>egrep "^([^ ]+ +){2}65" cars</tt></li>
+               </ul></li>
+            <li><tt>|</tt> means OR, matches reg-exp on either side of the vertical bar
+               <ul>
+                  <li><tt>egrep "ford|chevy" cars</tt></li>
+               </ul></li>
+         </ul></li>
+      <li>regular expression characters may or may not need to be escaped - varies from program to program
+         <ul>
+            <li>eg. <tt>egrep</tt> and <tt>awk</tt> use <tt>(</tt> and <tt>)</tt> for grouping, <tt>sed</tt> uses <tt>\(</tt> and <tt>\)</tt>
+               unless <tt>-r</tt> option is used</li>
+         </ul></li>
+      <li>regular expressions may or may not need delimiters - varies from program to program
+         <ul>
+            <li>eg. <tt>grep</tt> and <tt>egrep</tt> don't use delimiters,<tt>sed</tt> and <tt>awk</tt> use delimiters, eg. <tt>/string/</tt></li>
+         </ul></li>
+      <li>other examples of regular expressions
+         <br />
+         <tt>&nbsp;&nbsp;&nbsp;(Mr|Mrs) Smith &nbsp;&nbsp;-</tt>
+            match either "Mr Smith" or "Mrs Smith"
+         <br />
+         <tt>&nbsp;&nbsp;&nbsp;[a-zA-Z]+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -</tt>
+            match one or more letters
+         <br />
+         <tt>&nbsp;&nbsp;&nbsp;^[a-zA-Z]*$ &nbsp;&nbsp;&nbsp;&nbsp; -</tt>
+            match lines with only letters
+         <br />
+         <tt>&nbsp;&nbsp;&nbsp;[^0-9]+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</tt>
+            match string not containing digits
+         <br />
+         <tt>&nbsp;&nbsp;&nbsp;[+-]?([0-9]+[.]?[0-9]*|[.][0-9]+)([eE][+-]?[0-9]+)? &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - </tt>
+            match valid "C" programming numbers</li>
+   </ul>
+   <h3>grep</h3>
+   <ul>
+      <li>uses regular expression for pattern, eg. <b>grep</b> 'reg-exp' filename, then prints matched lines</li>
+      <li>gives 0 exit status if pattern matched</li>
+      <li>options:
+         <ul>
+            <li><tt>-c </tt>- counts matched lines instead of printing them</li>
+            <li><tt>-i </tt>- ignores case</li>
+            <li><tt>-n </tt>- precedes each line with a line number</li>
+            <li><tt>-v </tt>- reverses sense of test, eg. finds lines not matching pattern</li>
+         </ul></li>
+      <li>examples, using the file <a href="cars.txt">cars</a>
+         <ul>
+            <li><tt>grep 'chevy' cars &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - </tt>display only lines containing the string "chevy"</li>
+            <li><tt>grep -c 'chevy' cars &nbsp;&nbsp;&nbsp; - </tt>display count of lines containing the string "chevy"</li>
+            <li><tt>grep -i 'chevy' cars &nbsp;&nbsp;&nbsp; - </tt>display only lines containing the string "chevy", ignoring case</li>
+            <li><tt>grep -ic 'chevy' cars &nbsp;&nbsp; - </tt>display count of lines containing the string "chevy", ignoring case</li>
+            <li><tt>grep -v 'chevy' cars &nbsp;&nbsp;&nbsp; - </tt>display only lines <b>not</b> containing the string "chevy"</li>
+            <li><tt>grep -ivc 'chevy' cars &nbsp; - </tt>display count of lines <b>not</b> containing the string "chevy", ignoring case</li>
+            <li><tt>grep -n 'chevy' cars &nbsp;&nbsp;&nbsp; - </tt>display only lines containing the string "chevy", with line numbers</li>
+         </ul></li>
+   </ul>
+</body>
+
+</html>

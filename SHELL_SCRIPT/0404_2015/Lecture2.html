@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <title>ULI101</title>
+   <meta charset="utf-8">
+   <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+   <h1>ULI101 - Introduction to Unix/Linux and the Internet</h1>
+   <h2>Lecture 2 - File System; Common Commands; The vi Editor</h2>
+   <h3><u>File System</u></h3>
+   <ul>
+      <li>Unix file system is hierarchical (tree, directory within directory)</li>
+      <li>root directory is <tt>/</tt> - ancestor of all files and directories on system</li>
+      <li>directories "contain" files and/or other directories
+         <ul>
+            <li>directories actually only contain filenames and pointers to inodes (information about the files)</li>
+         </ul></li>
+      <li>to be safe, for file and directory names use alphabetics, numerics, underscore, period, or comma</li>
+      <li>some UNIX systems allow up to 255 characters in a filename, others only allow up to 14</li>
+      <li>files within one directory must have different names</li>
+      <li>hidden filenames begin with a period, <tt>ls</tt> won't list them, but <tt>ls -a</tt> will</li>
+      <li>hidden filenames are used mostly for configuration files, that you don't want to see every time you issue an <tt>ls</tt> command</li>
+      <li><tt>.</tt> represents the current working directory, <tt>..</tt> represents its parent</li>
+      <li>home directory is the working directory upon log in, or after the <tt>cd</tt> command is issued with no arguments</li>
+   </ul>
+   <h3>Standard Directories</h3>
+   <ul>
+      <li>standard directories &amp; files
+         <ul>
+            <li><tt>/home</tt> typically contains the home directories of all users</li>
+            <li><tt>/bin</tt> and <tt>/usr/bin</tt> contain standard utility programs</li>
+            <li><tt>/sbin</tt> and <tt>/usr/sbin</tt> contain utilities for system administration</li>
+            <li><tt>/etc</tt> contains admin &amp; configuration files, such as <tt>/etc/passwd</tt></li>
+            <li><tt>/var</tt> contains files that vary as the system is running, such as temp, log, spool, and mailbox files</li>
+            <li><tt>/dev</tt> contains files representing peripheral devices (device drivers)</li>
+            <li><tt>/tmp</tt> is used by some programs for temporary files</li>
+         </ul></li>
+   </ul>
+   <h3>File Types</h3>
+   <ul>
+      <li>file types, as indicated by the first character in <b>ls -l</b> output:
+         <ul>
+            <li><tt>-</tt> indicates an ordinary file</li>
+            <li><tt>d</tt> indicates a directory</li>
+            <li><tt>l</tt> indicates a symbolic link</li>
+            <li><tt>b</tt> indicates a block device file, such as for a dvd reader</li>
+            <li><tt>c</tt> indicates a character device file, such as for a keyboard</li>
+            <li><tt>p</tt> indicates a pipe, used to communicate between processes on the same server</li>
+            <li><tt>s</tt> indicates a socket, used to communicate between processes on the same or different servers</li>
+         </ul></li>
+   </ul>
+   <h3><u>Common Commands</u></h3>
+   <ul>
+      <li><tt>touch</tt> - creates a new file, or updates stats on an existing file</li>
+      <li><tt>mkdir</tt> - to create directories
+         <ul>
+            <li><tt>mkdir -p</tt> - to create a directory &amp; any parent directories not already existing </li>
+         </ul></li>
+      <li><tt>rmdir</tt> - to delete empty directories, eg. <tt>rmdir directory-list</tt></li>
+      <li><tt>mv</tt> existing-file new-file - to rename or move files &amp; directories</li>
+      <li><tt>cp</tt> source-file destination-file - to copy files (careful, overwrites destination with no warning)
+         <ul>
+            <li><tt>cp -r&nbsp;</tt> - to copy directories including files and subdirectories</li>
+         </ul></li>
+      <li><tt>rm</tt> - to delete files, eg. <tt>rm file-list</tt>
+         <ul>
+            <li><tt>rm -r&nbsp;</tt> - to delete directories including files and subdirectories</li>
+            <li><tt>rm -ir</tt> - to delete directories including files and subdirectories, with prompt to confirm removal </li>
+         </ul></li>
+      <li><tt>cat filename</tt> - display contents of file</li>
+      <li><tt>more</tt> or <tt>less</tt> - displays file contents one page at a time
+         <ul>
+            <li>&lt;space bar&gt; - will go to next page</li>
+            <li>b - will go to previous page</li>
+            <li>/string - will search for string within document being viewed</li>
+            <li>q - will quit</li>
+         </ul></li>
+      <li><tt>file filename</tt> - gives info about the contents of the file</li>
+      <li><tt>find</tt> - to find files matching specified characteristics
+         <ul>
+            <li><tt>find . -name file*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt> - lists pathname of any filenames beginning with "file", from the current
+               directory and any subdirectories</li>
+            <li><tt>find . -size +50k&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt> - lists pathname of any files larger than 50 kb, from the current
+               directory and any subdirectories</li>
+         </ul></li>
+      <li> <tt>man</tt> command - online manual (or help) for command, uses <tt>more</tt> to display information
+         <ul>
+            <li><tt>man -k keyword</tt> - eg. <tt>man -k calendar</tt> - searches through man sections for keyword</li>
+         </ul></li>
+      <li><tt>diff file1 file2 </tt> - displays differences between 2 files</li>
+      <li><tt>echo</tt> text or $variable (eg. $HOME)</li>
+      <li><tt>which utility</tt> - lists pathname that would be used to access this utility</li>
+    </ul>
+   <h3><u>The vi Editor</u></h3>
+   <h3>Modes</h3>
+   <ul>
+      <li>input mode, command mode, or last-line mode (special case of command mode)</li>
+      <li>to get to input mode:
+         <ul>
+            <li>insert - i, I (before cursor, beginning of line)</li>
+            <li>append - a, A (after cursor, end of line)</li>
+            <li>open - o, O (below, above)</li>
+         </ul></li>
+      <li>&lt;escape&gt; to get to command mode</li>
+      <li>basically, if typing doesn't appear on screen, vi is in command mode, if typing appears on screen, vi is in input mode</li>
+   </ul>
+   <h3>Cursor Movement</h3>
+   <ul>
+      <li>cursor moved using h, j, k, l (left, down, up, right)
+         <ul>
+            <li>can use repetition factor, eg. 12j will move down 12 lines</li>
+            <li>arrow keys may also be used, but using h, j, k, l is faster</li>
+         </ul></li>
+      <li> ^f, ^b - scroll forward full screen, backward full screen</li>
+      <li>nG - move to line n, or last line if n not specified</li>
+   </ul>
+   <h3>Common Commands</h3>
+   <ul>
+      <li>J - join current and following line</li>
+      <li>x - delete character under cursor
+         <ul>
+            <li>can use repetition factor, eg. 3x</li>
+         </ul></li>
+      <li>r - replace character under cursor</li>
+      <li>dw, d$, dd - delete text (word, to end of line, line) and copy to buffer
+         <ul>
+            <li>can use repetition factor, eg. 7dw or d7w, 12dd or d12d</li>
+         </ul></li>
+      <li>cw, c$, cc - change - delete text, copy text to buffer, and leave in input mode
+         <ul>
+            <li>can use repetition factor, eg. 5cw or c5w, 12cc or c12c</li>
+         </ul></li>
+      <li>yw, y$, yy - yank - copy text to buffer
+         <ul>
+            <li>can use repetition factor eg. 5yw or y5w, 12yy or y12y</li>
+         </ul></li>
+      <li>p, P - paste buffer after or before cursor (below or above current line if buffer contains entire lines)</li>
+      <li>. - repeat most recent command that made a change</li>
+      <li>u - undo (only one level on older systems)</li>
+      <li>:wq - write changes to disk and quit</li>
+      <li>:q! (quit without saving changes)</li>
+   </ul>
+   <h3>Searching</h3>
+   <ul>
+      <li>/pattern - searches for the next occurrence of pattern after the current cursor position</li>
+      <li>?pattern - searches backwards through the file</li>
+      <li>n - repeat last search</li>
+   </ul>
+</body>
+
+</html>

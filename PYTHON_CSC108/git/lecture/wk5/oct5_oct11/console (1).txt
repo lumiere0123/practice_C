@@ -1,0 +1,233 @@
+# Today, we're introducing a new type -- list.
+>>> lst = [99, 2, 3]
+>>> type(lst)
+<class 'list'>
+
+# Like strings, lists are sequences, so many of the same operations
+# apply. For example, for loops.
+>>> s = "abc"
+>>> for ch in s:
+...     print(ch)
+... 
+a
+b
+c
+>>> for item in lst:
+...     print(item)
+... 
+99
+2
+3
+
+# However, unlike strings, lists are containers. They "contain" other values of 
+# many different types.
+>>> lst = [1, "one", 1.0]
+>>> lst
+[1, 'one', 1.0]
+>>> lst = [99, 2, 3]
+>>> max(lst)
+99
+>>> min(lst)
+2
+>>> sum(lst)
+104
+
+# But note that some list operations, like sum, require that lists contain only
+# numeric types.
+>>> lst = ["Hello", "class", "are", "you", "awake?"]
+>>> sum(lst)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+# Indexing and slicing work as expected.
+>>> lst[0]
+'Hello'
+>>> lst[1]
+'class'
+>>> lst[-1]
+'awake?'
+>>> lst[2:4]
+['are', 'you']
+>>> lst[::-1]
+['awake?', 'you', 'are', 'class', 'Hello']
+
+# We'll talk more about nested lists next week, but note that we can index multiple times.
+>>> nested_lst = [lst, lst]
+>>> nested_lst
+[['Hello', 'class', 'are', 'you', 'awake?'], ['Hello', 'class', 'are', 'you', 'awake?']]
+>>> nested_lst[0]
+['Hello', 'class', 'are', 'you', 'awake?']
+>>> nested_lst[0][0]
+'Hello'
+>>> nested_lst[0][1]
+'class'
+>>> nested_lst[0][3]
+'you'
+
+
+# One big difference between lists and strings is mutability. Strings cannot be modified,
+# but lists can.
+>>> s[2] = 'q'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'str' object does not support item assignment
+>>> lst
+['Hello', 'class', 'are', 'you', 'awake?']
+>>> lst[1] = 'Andrew'
+>>> lst
+['Hello', 'Andrew', 'are', 'you', 'awake?']
+
+# This leads to "side effects". Every function we've seen in this class so far has had
+# to return a value to have an impact on the program. However, because lists are mutable,
+# we can modify them "in place" without having to return them.
+>>> def double_list(L):
+...     for index in range(len(L)):
+...         L[index] = L[index] * 2
+... 
+
+# See? No return value!
+>>> double_list([0, 1, 2])
+
+# But if I pass in a list that I can access after the function call ...
+>>> lst = [0, 1, 2]
+>>> double_list(lst)
+>>> lst
+[0, 2, 4]
+
+# Mutability can lead to some major confusion about whether a value has been modified.
+>>> nested_list = [lst, lst]
+>>> nested_list
+[[0, 2, 4], [0, 2, 4]]
+
+# lst is now referred to within nested_list, so if we modify lst, we also see changes in
+# nested_list.
+>>> double_list(lst)
+>>> lst
+[0, 4, 8]
+>>> nested_list
+[[0, 4, 8], [0, 4, 8]]
+
+# That's completely different from what we have seen with integers and strings.
+>>> x = 1
+>>> y = x + 1
+>>> x = 2
+
+# No change to y after the value x refers to is changed.
+>>> y
+2
+>>> lst = [1, 2, 3]
+>>> lst2 = lst
+>>> lst.append(4)
+
+# But here, lst2 changes because the value referred to by lst is modified. It's not that 
+# lst is referring to something new. It's that the value itself has changed.
+>>> lst2
+[1, 2, 3, 4]
+>>> lst
+[1, 2, 3, 4]
+
+# So are we referring to something new here? Or modifying lst?
+>>> lst2 = lst + [4]
+>>> lst.append(5)
+>>> lst
+[1, 2, 3, 4, 5]
+>>> lst2
+[1, 2, 3, 4, 4]
+
+# One rule of the thumb: if we are calling a list method or passing a list into a function as a 
+# parameter, there is a good chance that it is changing. If we use assignment, then the list is
+# probably not being mutated. 
+
+# You can use the id() function to check your understanding. id() provide a unique identifier
+# for each value in Python. If two variables have the same id(), then they are the same object.
+>>> id(lst)
+4301487880
+>>> id(lst2)
+4301488072
+>>> x = 2
+>>> y = x
+>>> id(x)
+4297370112
+>>> id(y)
+4297370112
+>>> lst = [1, 2, 3]
+>>> lst2 = lst
+>>> id(lst)
+4301487944
+>>> id(lst2)
+4301487944
+>>> lst2.append(4)
+>>> lst
+[1, 2, 3, 4]
+>>> lst2
+[1, 2, 3, 4]
+>>> lst = [1, 2, 3]
+>>> lst2 = lst + [4]
+>>> id(lst)
+4301488072
+>>> id(lst2)
+4301496392
+>>> lst
+[1, 2, 3]
+>>> lst2 = lst
+
+# There are quite a few list methods. We have already seen append, which adds an item
+# to a list. Here's another few ...
+>>> lst.pop()
+3
+>>> lst
+[1, 2]
+>>> lst.pop()
+2
+>>> lst
+[1]
+>>> lst2
+[1]
+>>> lst.insert(0, "Hello")
+>>> lst
+['Hello', 1]
+>>> lst2
+['Hello', 1]
+>>> dir(list)
+['__add__', '__class__', '__contains__', '__delattr__', '__delitem__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__gt__', '__hash__', '__iadd__', '__imul__', '__init__', '__iter__', '__le__', '__len__', '__lt__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__rmul__', '__setattr__', '__setitem__', '__sizeof__', '__str__', '__subclasshook__', 'append', 'clear', 'copy', 'count', 'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']
+>>> L = [3, 4, 1, 2]
+>>> L.sort()
+>>> L
+[1, 2, 3, 4]
+>>> L.reverse()
+>>> L
+[4, 3, 2, 1]
+>>> L.pop()
+1
+>>> L
+[4, 3, 2]
+>>> L.index(1)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: 1 is not in list
+>>> L.index(2)
+2
+>>> L
+[4, 3, 2]
+>>> L.index(3)
+1
+>>> L.index(4)
+0
+>>> L.copy()
+[4, 3, 2]
+>>> L2 = L.copy()
+>>> id(L)
+4301496392
+>>> id(L2)
+4301487880
+>>> L2
+[4, 3, 2]
+>>> L
+[4, 3, 2]
+>>> L.extend(L2)
+>>> L
+[4, 3, 2, 4, 3, 2]
+>>> L.clear()
+>>> L
+[]

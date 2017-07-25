@@ -1,0 +1,41 @@
+# Today, we're going to look at classes. Classes are a way to 
+# create your own types.
+>>> class Point(object):
+...     x = 0
+...     y = 0
+... 
+>>> Point
+<class '__main__.Point'>
+
+# Classes come with a lot of Python-provided supports. For example, 
+# __str__ is what is called whenever you make a str(...) out of something.
+>>> dir(Point)
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'x', 'y']
+>>> p = Point()
+>>> p.__str__()
+'<__main__.Point object at 0x10063c240>'
+>>> str(p)
+'<__main__.Point object at 0x10063c240>'
+
+peters43:~/courses/108/utm/lectures/lecture24/andrew/code$ python3 -i bankaccount.py 
+>>> BankAccount
+<class '__main__.BankAccount'>
+
+# interest_rate is a class attribute.
+>>> BankAccount.interest_rate
+0.03
+
+# Compare this to owner, which is an object (or instance) attribute.
+>>> BankAccount.owner
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: type object 'BankAccount' has no attribute 'owner'
+>>> acc = BankAccount()
+>>> acc.owner
+'Andrew'
+>>> BankAccount.owner
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: type object 'BankAccount' has no attribute 'owner'
+>>> quit()
+

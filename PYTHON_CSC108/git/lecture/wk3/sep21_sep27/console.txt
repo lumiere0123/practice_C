@@ -1,0 +1,169 @@
+# Today, we're going to look at strings. We've already seen some work with 
+# strings. For example, we know that you can concatenate and multiply
+# strings.
+>>> "Hello"
+'Hello'
+>>> type("Hello")
+<class 'str'>
+>>> "Hello" * 2 + "Hi"
+'HelloHelloHi'
+
+# You can also "index into" or "slice" strings. Indexing into a string gets
+# a character at a specific position in a string. Slicing a string gets 
+# a piece of the string (a substring).
+>>> "Hello"[0]
+'H'
+>>> "Hello"[1]
+'e'
+>>> "Hello"[2]
+'l'
+>>> "Hello"[3]
+'l'
+>>> "Hello"[4]
+'o'
+>>> "Hello"[5]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: string index out of range
+>>> s = "Hello"
+>>> s[4]
+'o'
+>>> s[0]
+'H'
+>>> s[5]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: string index out of range
+
+# You can also ask for the length of a string.
+>>> secret_string = "Garfulnergistan"
+>>> len(secret_string)
+15
+
+# Remember zero indexing!
+>>> secret_string[14]
+'n'
+>>> secret_string[15]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: string index out of range
+>>> secret_string[len(secret_string) - 1]
+'n'
+
+# There's an easier way, though, to get items from the end of a string.
+>>> secret_string[-1]
+'n'
+>>> secret_string[-2]
+'a'
+>>> secret_string[-3]
+'t'
+>>> secret_string[-15]
+'G'
+>>> secret_string[-16]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: string index out of range
+
+# Here are some slicing examples. Note that the starting point 
+# is included in the slice but the ending point is not.
+>>> secret_string[0:3]
+'Gar'
+>>> secret_string[0:len(secret_string)]
+'Garfulnergistan'
+>>> secret_string[0:len(secret_string) - 1]
+'Garfulnergista'
+>>> secret_string[0:-1]
+'Garfulnergista'
+>>> secret_string[0:]
+'Garfulnergistan'
+>>> secret_string[:3]
+'Gar'
+>>> secret_string[1:3]
+'ar'
+
+# If you add a third argument to the slice, you're providing a "skip" rate.
+>>> digits = "0123456789"
+>>> digits[::2]
+'02468'
+>>> digits[::3]
+'0369'
+>>> digits[1::3]
+'147'
+>>> digits[1::2]
+'13579'
+>>> digits[1:5:2]
+'13'
+
+# You can also ask if one string is contained within another using "in".
+>>> "345" in digits
+True
+>>> "35" in digits
+False
+>>> "35" in digits[1::2]
+True
+>>> "35"
+'35'
+
+# Adding items of different types doesn't usually work ... so we need to 
+# convert int to str (or str to a number, in some cases).
+>>> 27 + " cats"
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+>>> str(27) + " cats"
+'27 cats'
+>>> str(27)
+'27'
+>>> '27' + 3
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: Can't convert 'int' object to str implicitly
+>>> '27' + str(3)
+'273'
+>>> int(27) + 3
+30
+>>> float(27) + 3
+30.0
+
+# There are a number of string "methods" available. 
+>>> dir(str)
+['__add__', '__class__', '__contains__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getnewargs__', '__gt__', '__hash__', '__init__', '__iter__', '__le__', '__len__', '__lt__', '__mod__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__rmod__', '__rmul__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'capitalize', 'casefold', 'center', 'count', 'encode', 'endswith', 'expandtabs', 'find', 'format', 'format_map', 'index', 'isalnum', 'isalpha', 'isdecimal', 'isdigit', 'isidentifier', 'islower', 'isnumeric', 'isprintable', 'isspace', 'istitle', 'isupper', 'join', 'ljust', 'lower', 'lstrip', 'maketrans', 'partition', 'replace', 'rfind', 'rindex', 'rjust', 'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith', 'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']
+>>> help(str.islower)
+...
+
+# Methods are invoked by using a "." after the object. Remember: this is
+# different from how functions tend to be invoked.
+>>> "345".islower()
+False
+>>> "345a".islower()
+True
+>>> "abc".islower()
+True
+>>> "aBc".islower()
+False
+
+# len is a function, not a method!
+>>> len("abc")
+3
+>>> "abc".len()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'str' object has no attribute 'len'
+
+
+>>> "abc".upper()
+'ABC'
+>>> "Hello".startswith("H")
+True
+>>> "Hello".startswith("h")
+False
+>>> digits
+'0123456789'
+>>> digits.startswith("0")
+True
+>>> digits.find("2")
+2
+>>> digits.find("3")
+3
+>>> digits.find("4")
+4

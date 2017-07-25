@@ -1,0 +1,208 @@
+# Today, we're looking at files. A 'file' is a mechanism
+# for storing data persistently -- across runs of a program
+# or power-offs of a machine. 
+
+# We always have to "open" files. Today, we're only looking 
+# at opening files for reading. Later, we'll look at 
+# writing files.
+>>> f = open('bands.txt')
+>>> type(f)
+<class '_io.TextIOWrapper'>
+
+# The files we will look at are, in all cases, "text files". 
+# A text file contains human readable text organized into 
+# lines. (You could also imagine reading a "binary file" --
+# one that contains binary data -- but that's a bit harder.)
+>>> f.readline()
+'Band,Rating,Plays\n'
+>>> f.readline()
+"#These are some bands in Andrew's playlist.\n"
+>>> f.readline()
+'#Feel free to suggest others by anonymous feedback.\n'
+>>> f.readline()
+'Metallica,7,512\n'
+
+# Whenever you open a file, it starts again at the beginning.
+>>> f = open('bands.txt')
+>>> f.readline()
+'Band,Rating,Plays\n'
+>>> g = open('bands.txt')
+>>> f.readline()
+"#These are some bands in Andrew's playlist.\n"
+>>> f.readline()
+'#Feel free to suggest others by anonymous feedback.\n'
+>>> g.readline()
+'Band,Rating,Plays\n'
+>>> g.readline()
+"#These are some bands in Andrew's playlist.\n"
+
+# You can also read everything in the file at once, but 
+# we usually don't do this because it is more convenient
+# to process text data line by line.
+>>> f = open('bands.txt')
+>>> f.read()
+"Band,Rating,Plays\n#These are some bands in Andrew's playlist.\n#Feel free to suggest others by anonymous feedback.\nMetallica,7,512\nThe Black Keys,8,193\nAmy MacDonald,5,290\nThe Killers,9,402\nU2,9,789\nPortishead,6,116\nRob Dougan,6,184\nColdplay,7,0\n"
+
+# A for loop can be used to iterate through a file
+# one line at a time.
+>>> f = open('bands.txt')
+>>> for line in f:
+...     print(line)
+... 
+Band,Rating,Plays
+
+#These are some bands in Andrew's playlist.
+
+#Feel free to suggest others by anonymous feedback.
+
+Metallica,7,512
+
+The Black Keys,8,193
+
+Amy MacDonald,5,290
+
+The Killers,9,402
+
+U2,9,789
+
+Portishead,6,116
+
+Rob Dougan,6,184
+
+Coldplay,7,0
+
+# Why was the above printed with spaces in between?
+# Hint: think about how print behaves and consider
+# that each line in the file is separated by a character
+# for newline.
+>>> line
+'Coldplay,7,0\n'
+>>> print("\n\n\n\n\n")
+
+
+
+
+
+
+>>> print("")
+
+# We often need to "strip" the whitespace from a line.
+>>> line.strip()
+'Coldplay,7,0'
+
+# And most data has structure that we can use to break
+# it into pieces. The file we've been looking at is a 
+# "comma separated value" file. Each row consists of 
+# values separated by commas.
+>>> line.split(",")
+['Coldplay', '7', '0\n']
+
+# So, a typical pattern for file processing will look
+# like this (where we print instead of doing something):
+>>> f = open("bands.txt")
+>>> for line in f:
+...     fields = line.strip().split(",")
+...     # Do something with those fields
+...     print(fields)
+... 
+['Band', 'Rating', 'Plays']
+["#These are some bands in Andrew's playlist."]
+['#Feel free to suggest others by anonymous feedback.']
+['Metallica', '7', '512']
+['The Black Keys', '8', '193']
+['Amy MacDonald', '5', '290']
+['The Killers', '9', '402']
+['U2', '9', '789']
+['Portishead', '6', '116']
+['Rob Dougan', '6', '184']
+['Coldplay', '7', '0']
+
+# Okay, let's solve a problem:
+# How many times has Andrew listened to ANY music?
+
+# First, lets pull out the correct column. We'll make
+# sure to ignore the comments at the beginning of the file.
+>>> f = open("bands.txt")
+>>> for line in f:
+...     if not line.startswith("#"):
+...         fields = line.strip().split(",")
+...         print(fields[2])
+... 
+Plays
+512
+193
+290
+402
+789
+116
+184
+0
+
+# There was a header line that will mess us up, so 
+# we read it before starting the loop.
+>>> f = open("bands.txt")
+>>> f.readline()
+'Band,Rating,Plays\n'
+
+# field[2] was correct, so we need to use an accumulator
+# to add up all of the plays. We make sure to convert
+# the string to an int before using it.
+>>> total_plays = 0
+>>> for line in f:
+...     if not line.startswith("#"):
+...         fields = line.strip().split(",")
+...         total_plays += int(fields[2])
+... 
+>>> total_plays
+2486
+
+# We can also use a while loop to process files.
+>>> f = open("bands.txt")
+>>> f.readline()
+'Band,Rating,Plays\n'
+>>> f.readline()
+"#These are some bands in Andrew's playlist.\n"
+>>> f.readline()
+'#Feel free to suggest others by anonymous feedback.\n'
+>>> f.readline()
+'Metallica,7,512\n'
+>>> f.readline()
+'The Black Keys,8,193\n'
+>>> f.readline()
+'Amy MacDonald,5,290\n'
+>>> f.readline()
+'The Killers,9,402\n'
+>>> f.readline()
+'U2,9,789\n'
+>>> f.readline()
+'Portishead,6,116\n'
+>>> f.readline()
+'Rob Dougan,6,184\n'
+>>> f.readline()
+'Coldplay,7,0\n'
+>>> f.readline()
+''
+>>> f.readline()
+''
+>>> f.readline()
+''
+>>> f.readline()
+''
+>>> f.readline()
+''
+>>> f.readline()
+''
+>>> f.readline()
+''
+>>> f.readline()
+''
+
+# Here is a pattern. We look for the "empty" 
+# result to our readline call and break out 
+# of the loop when we are done reading the file.
+>>> f = open("bands.txt")
+>>> while 1:
+...     line = f.readline()
+...     if line == '':
+...         break
+... 

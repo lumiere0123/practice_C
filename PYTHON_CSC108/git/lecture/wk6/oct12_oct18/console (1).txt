@@ -1,0 +1,124 @@
+# Here is a nested list -- a list that contains lists.
+# We call the internal lists "sublists".
+>>> lst = [[1, 0, 1], [2, 1, 0], [3, 3, 3]]
+>>> lst
+[[1, 0, 1], [2, 1, 0], [3, 3, 3]]
+>>> len(lst)
+3
+>>> lst[0]
+[1, 0, 1]
+>>> lst[1]
+[2, 1, 0]
+>>> lst[2]
+[3, 3, 3]
+
+# Recall: we can't modify strings, but lists are mutable.
+>>> s = "Hello"
+>>> s[2] = "L"
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'str' object does not support item assignment
+>>> lst[2] = [3, 2, 1]
+>>> lst
+[[1, 0, 1], [2, 1, 0], [3, 2, 1]]
+
+# This lead us to look for ways to create copies of lists.
+# Using the list constructor will do this. Now we have two
+# outer lists.
+>>> lst2 = list(lst)
+>>> id(lst)
+4301493576
+>>> id(lst2)
+4301494664
+>>> lst
+[[1, 0, 1], [2, 1, 0], [3, 2, 1]]
+>>> lst2
+[[1, 0, 1], [2, 1, 0], [3, 2, 1]]
+>>> lst.append(["a", "b"])
+>>> lst
+[[1, 0, 1], [2, 1, 0], [3, 2, 1], ['a', 'b']]
+>>> lst2
+[[1, 0, 1], [2, 1, 0], [3, 2, 1]]
+# But those lists contain aliases to shared inner lists. In 
+# other words, our copy is just a "shallow" copy. Modifying
+# those inner lists will lead to changes within both lst and
+# lst2
+>>> lst2[0].append(0)
+>>> lst2
+[[1, 0, 1, 4], [2, 1, 0], [3, 2, 1]]
+>>> lst
+[[1, 0, 1, 4], [2, 1, 0], [3, 2, 1], ['a', 'b']]
+
+# Here's another example of mutation of sublists.
+>>> lst2 = [[1, 0, 1], [2, 1, 0], [3, 2, 1]]
+>>> matrix = lst2
+>>> matrix
+[[1, 0, 1], [2, 1, 0], [3, 2, 1]]
+>>> lst2
+[[1, 0, 1], [2, 1, 0], [3, 2, 1]]
+>>> lst2[0][2] = 4
+>>> matrix
+[[1, 0, 4], [2, 1, 0], [3, 2, 1]]
+
+# Using a single loop means that we can iterate over the 
+# outer list, but that leads items of type list -- the sublists.
+>>> for row in matrix:
+...     print(row)
+... 
+[1, 0, 4]
+[2, 1, 0]
+[3, 2, 1]
+
+# To iterate over every item in each sublist, we need a nested
+# loop. The outer loop iterates over the items in the outer list.
+# The inner loop iterates over the items in each sublist.
+>>> for row in matrix:
+...     for column in row:
+...         print(column)
+... 
+1
+0
+4
+2
+1
+0
+3
+2
+1
+
+# Can we have more deeply nested lists? 
+>>> matrix3d = [[[1, 2], [2, 2], [3, 2]], [[2,3], [3,3], [4,3]]]
+>>> matrix3d
+[[[1, 2], [2, 2], [3, 2]], [[2, 3], [3, 3], [4, 3]]]
+>>> for row in matrix3d:
+...     print(row)
+... 
+[[1, 2], [2, 2], [3, 2]]
+[[2, 3], [3, 3], [4, 3]]
+>>> for row in matrix3d:
+...     for column in row:
+...         print(column)
+... 
+[1, 2]
+[2, 2]
+[3, 2]
+[2, 3]
+[3, 3]
+[4, 3]
+>>> for row in matrix3d:
+...     for column in row:
+...         for item in column:
+...             print(item)
+... 
+1
+2
+2
+2
+3
+2
+2
+3
+3
+3
+4
+3

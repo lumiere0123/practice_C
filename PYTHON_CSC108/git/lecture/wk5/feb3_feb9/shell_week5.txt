@@ -1,0 +1,586 @@
+3.3.3 (v3.3.3:c3896275c0f6, Nov 16 2013, 23:39:35) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)]
+Python Type "help", "copyright", "credits" or "license" for more information.
+[evaluate while_loop_prompting_example.py]
+Enter a number greater than 100: 1
+input("Give a number")
+Give a number10
+'10'
+
+num = input("Give a number: ")
+Give a number: 34
+
+num
+'34'
+#input() returns a string, so we need to convert this to an int
+int('34')
+34
+
+[evaluate while_loop_prompting_example.py]
+Enter a number greater than 100: 2
+Enter a number greater than 100: 10
+Enter a number greater than 100: 100
+Enter a number greater than 100: 101
+
+#while loops
+i = 0
+s = "hello"
+while i < len(s):
+    print("Character is", s[i])
+    i = i + 1
+
+Character is h
+Character is e
+Character is l
+Character is l
+Character is o
+
+[evaluate while_loops.py]
+find_letter_n_times('Computer Science', 'e', 2)
+None
+[evaluate while_loops.py]
+find_letter_n_times('Computer Science', 'e', 2)
+'Computer Scie'
+find_letter_n_times('Computer Scieence', 'e', 2)
+'Computer Scie'
+[evaluate while_loops.py]
+#I've temporarily modified the while loop condition to be count <= n
+#That's incorrect because then we'll iterate one more time than needed, when count equals n, 
+#and could find an additional letter.
+find_letter_n_times('Computer Scieence', 'e', 2)
+'Computer Sciee'
+
+#collatz conjecture:
+#if even number divide by 2
+#if odd => multiply by 3 and add 1
+
+#6 / 2 => 3 - Step 1
+#3  => 10 - Step 2
+#10 => 5 - Step 3
+#5 => 16 - Step 4
+#16 => 8
+#8 => 4
+#4 => 2
+#2 => 1[evaluate while_loops.py]
+count_collatz_steps(6)
+8
+
+count_collatz_steps(1)
+0
+
+[evaluate while_loops.py]
+mystery_function("abc123")
+3
+
+mystery_function("abcabc")
+6
+
+
+# Lists
+[10, 3, 2]
+[10, 3, 2]
+
+#L is a variable name which refers to a list object
+L = [10, 3, 2]
+L
+[10, 3, 2]
+
+#can index lists similar to strings
+L[0]
+10
+
+L[1]
+3
+
+L[-1]
+2
+
+#use the in operator
+15 in L
+False
+
+10 in L
+True
+
+#find the number of elements in list L
+len(L)
+3
+
+#find the maximum value
+max(L)
+10
+
+L2 = ["abc", "d", "klm"]
+#can do this with a list of str (use dictionary order)
+max(L2)
+'klm'
+
+#a list can contain elements of multiple types
+L3 = ["Myrto", 111111, True]
+
+#Use dir(list) to find all the methods of the list object
+dir(list)
+['__add__',
+ '__class__',
+ '__contains__',
+ '__delattr__',
+ '__delitem__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__getitem__',
+ '__gt__',
+ '__hash__',
+ '__iadd__',
+ '__imul__',
+ '__init__',
+ '__iter__',
+ '__le__',
+ '__len__',
+ '__lt__',
+ '__mul__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__reversed__',
+ '__rmul__',
+ '__setattr__',
+ '__setitem__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ 'append',
+ 'clear',
+ 'copy',
+ 'count',
+ 'extend',
+ 'index',
+ 'insert',
+ 'pop',
+ 'remove',
+ 'reverse',
+ 'sort']
+
+help(list.count)
+Help on method_descriptor:
+
+count(...)
+    L.count(value) -> integer -- return number of occurrences of value
+
+None
+
+a = [10, 2, 4]
+help(list.append)
+Help on method_descriptor:
+
+append(...)
+    L.append(object) -> None -- append object to end
+
+None
+
+a.append(8)
+None
+
+a
+[10, 2, 4, 8]
+
+help(list.sort)
+Help on method_descriptor:
+
+sort(...)
+    L.sort(key=None, reverse=False) -> None -- stable sort *IN PLACE*
+
+None
+a.sort()
+None
+
+a
+[2, 4, 8, 10]
+
+a.insert(1, 3)
+None
+
+a
+[2, 3, 4, 8, 10]
+
+#List Operations and Methods Worksheet
+a = [1, 0]
+id(a)
+4316724256
+
+a.append(8)
+None
+
+id(a)
+4316724256
+#memory address returned by id() was the same
+#so append modified the original list
+
+
+a = a + [8]
+id(a)
+4316757960
+#id(a) returned a new memory address. The previous
+#code fragment created a new list
+
+#insert() modifies the existing list as well
+a.insert(len(a), 8)
+None
+id(a)
+4316757960
+
+
+a = [a[0], a[1], 8]
+id(a)
+4316724544
+#Code fragment (d) created a new list as well.
+
+
+#Sorting a list
+a = [1, 0, 8]
+b = a.sort()
+
+help(list.sort)
+Help on method_descriptor:
+
+sort(...)
+    L.sort(key=None, reverse=False) -> None -- stable sort *IN PLACE*
+
+None
+
+#a refers to the sorted list. Sorted **in-place**
+a
+[0, 1, 8]
+
+#b refers to None
+b
+None
+
+#No need to use b = a.sort()
+#You can just call a.sort()
+a = [1, 0, 8]
+a.sort()
+None
+
+a
+[0, 1, 8]
+
+#Question: what happens if a list contains a number and a string?
+#Answer: You get an error that these types are unorderable. 
+a = [1, "a"]
+a.sort()
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.TypeError: unorderable types: str() < int()
+
+
+#lists are mutable types
+
+#strings are immutable; you cannot modify a string object.
+str1 = "hello"
+str1[2] = 'b'
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.TypeError: 'str' object does not support item assignment
+
+#lists are mutable; we can modify a list object
+a2 = [10, 2]
+a2[1] = 3
+a2
+[10, 3]
+
+
+a = [0, 1, 2]
+b = a
+b[2] = 100
+
+a
+[0, 1, 100]
+b
+[0, 1, 100]
+
+id(a)
+4318149016
+id(b)
+4318149016
+
+#We learned about for-loops over strings
+for ch in "abcd":
+    print(ch)
+
+a
+b
+c
+d
+
+#Now we'll learn about for loops over a range of numbers
+help(range)
+Help on class range in module builtins:
+
+class range(object)
+ |  range(stop) -> range object
+ |  range(start, stop[, step]) -> range object
+ |  
+ |  Return a virtual sequence of numbers from start to stop by step.
+ |  
+ |  Methods defined here:
+ |  
+ |  __contains__(...)
+ |      x.__contains__(y) <==> y in x
+ |  
+ |  __eq__(...)
+ |      x.__eq__(y) <==> x==y
+ |  
+ |  __ge__(...)
+ |      x.__ge__(y) <==> x>=y
+ |  
+ |  __getattribute__(...)
+ |      x.__getattribute__('name') <==> x.name
+ |  
+ |  __getitem__(...)
+ |      x.__getitem__(y) <==> x[y]
+ |  
+ |  __gt__(...)
+ |      x.__gt__(y) <==> x>y
+ |  
+ |  __hash__(...)
+ |      x.__hash__() <==> hash(x)
+ |  
+ |  __iter__(...)
+ |      x.__iter__() <==> iter(x)
+ |  
+ |  __le__(...)
+ |      x.__le__(y) <==> x<=y
+ |  
+ |  __len__(...)
+ |      x.__len__() <==> len(x)
+ |  
+ |  __lt__(...)
+ |      x.__lt__(y) <==> x<y
+ |  
+ |  __ne__(...)
+ |      x.__ne__(y) <==> x!=y
+ |  
+ |  __reduce__(...)
+ |  
+ |  __repr__(...)
+ |      x.__repr__() <==> repr(x)
+ |  
+ |  __reversed__(...)
+ |      Return a reverse iterator.
+ |  
+ |  count(...)
+ |      rangeobject.count(value) -> integer -- return number of occurrences of value
+ |  
+ |  index(...)
+ |      rangeobject.index(value, [start, [stop]]) -> integer -- return index of value.
+ |      Raise ValueError if the value is not present.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |  
+ |  start
+ |  
+ |  step
+ |  
+ |  stop
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |  
+ |  __new__ = <built-in method __new__ of type object>
+ |      T.__new__(S, ...) -> a new object with type S, a subtype of T
+
+None
+
+#range you need at minimum specify when to stop 
+for i in range(10):
+    print(i)
+
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+#you can also optionally specify where to start from
+for i in range(2, 10):
+    print(i)
+
+2
+3
+4
+5
+6
+7
+8
+9
+
+#and change the step as well (default was 1)
+for i in range(2, 10, 2):
+    print(i)
+
+2
+4
+6
+8
+
+
+for i in range(1, 24, 2):
+    print("na")
+
+na
+na
+na
+na
+na
+na
+na
+na
+na
+na
+na
+na
+
+for i in range(1, 12):
+    print("na")
+
+na
+na
+na
+na
+na
+na
+na
+na
+na
+na
+na
+for i in range(6, 12):
+    print("na")
+    print("na")
+
+na
+na
+na
+na
+na
+na
+na
+na
+na
+na
+na
+na
+
+
+#L is a variable which refers to a list object
+L = [1, 2, 3]
+#item is also a variable name.
+for item in L:
+    print(2 * item)
+
+2
+4
+6
+
+#Use new_list as an accumulator
+new_list = []
+for item in L:
+    new_list.append(item)
+
+
+new_list
+[1, 2, 3]
+
+
+for item in L:
+    new_list.append(2 * item)
+
+new_list
+[1, 2, 3, 2, 4, 6]
+
+list1 = [1, 2, 4]
+list2 = []
+for el1 in list1:
+    list2.append(2 * el1)
+
+list2
+[2, 4, 8]
+
+id(list1)
+4318200176
+
+id(list2)
+4318200392
+
+L = [10, 2, 5]
+
+L[0]
+10
+
+L[2]
+5
+
+L[4]
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.IndexError: list index out of range
+
+L[-2]
+2
+
+#Go over every element of the list
+for item in L:
+    print("Item is ", item)
+
+Item is  10
+Item is  2
+Item is  5
+
+L
+[10, 2, 5]
+
+#Modify list L in-place.
+for i in range(len(L)):
+    L[i] = 2 * L[i]
+
+L
+[20, 4, 10]
+
+[evaluate for_loops_over_lists.py]
+collect_underperformers([1, 2, 3, 4], 3)
+[1, 2]
+
+collect_underperformers([], 7)
+[]
+
+[evaluate for_loops_over_lists.py]
+grades = [45, 50, 55, 95]
+scale_midterm_grades(grades, 1, 10)
+None
+grades
+[55, 60, 65, 100]
+
+[evaluate parallel_strings_lists.py]
+stretch_string('Hello', [2, 0, 3, 1, 1])
+'HHllllo'
+
+stretch_string('echo', [0, 0, 1, 5])
+'hooooo'
+
+#Question: what happens if I multiply a string with 0? I get the empty string.
+a = "abc"
+a * 0
+''
+ 

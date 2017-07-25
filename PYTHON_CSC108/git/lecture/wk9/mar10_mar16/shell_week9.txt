@@ -1,0 +1,101 @@
+3.3.3 (v3.3.3:c3896275c0f6, Nov 16 2013, 23:39:35) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)]
+Python Type "help", "copyright", "credits" or "license" for more information.
+a = [1, 2]
+
+tuple(a)
+(1, 2)
+
+#testing we built our dictionary correctly
+[evaluate test_story.py]
+{('ship', 'and'): ['the'], ('the', 'ship'): ['and'], ('fan', 'and'): ['the'], ('the', 'cup'): ['And'], ('and', 'the'): ['cup', 'fish'], ('cup', 'And'): ['the'], ('And', 'the'): ['fan', 'ship'], ('the', 'fan'): ['and']}
+
+import random
+dir(random)
+['BPF',
+ 'LOG4',
+ 'NV_MAGICCONST',
+ 'RECIP_BPF',
+ 'Random',
+ 'SG_MAGICCONST',
+ 'SystemRandom',
+ 'TWOPI',
+ '_BuiltinMethodType',
+ '_MethodType',
+ '_Sequence',
+ '_Set',
+ '__all__',
+ '__builtins__',
+ '__cached__',
+ '__doc__',
+ '__file__',
+ '__initializing__',
+ '__loader__',
+ '__name__',
+ '__package__',
+ '_acos',
+ '_ceil',
+ '_cos',
+ '_e',
+ '_exp',
+ '_inst',
+ '_log',
+ '_pi',
+ '_random',
+ '_sha512',
+ '_sin',
+ '_sqrt',
+ '_test',
+ '_test_generator',
+ '_urandom',
+ '_warn',
+ 'betavariate',
+ 'choice',
+ 'expovariate',
+ 'gammavariate',
+ 'gauss',
+ 'getrandbits',
+ 'getstate',
+ 'lognormvariate',
+ 'normalvariate',
+ 'paretovariate',
+ 'randint',
+ 'random',
+ 'randrange',
+ 'sample',
+ 'seed',
+ 'setstate',
+ 'shuffle',
+ 'triangular',
+ 'uniform',
+ 'vonmisesvariate',
+ 'weibullvariate']
+
+a = [1, 20, 4, 5]
+random.choice(a)
+20
+
+random.choice(a)
+20
+
+random.choice(a)
+4
+
+random.choice(a)
+4
+
+random.choice(a)
+1
+
+[evaluate random_story.py]
+training_file = open('alice.txt', 'r')
+
+generate_random_story(training_file, 2, 40)
+"execution--once more the pig-baby was sneezing and howling alternately without a grin,' thought Alice; `I can't remember things as I do,' said Alice indignantly, and she looked back once or twice she had tired herself out with trying, the poor"
+
+training_file.close()
+None
+
+training_file = open('alice.txt', 'r')
+generate_random_story(training_file, 2, 20)
+"said the Mock Turtle, `Drive on, old fellow! Don't be all day about it!' Last came a rumbling of little"

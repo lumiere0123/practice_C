@@ -1,0 +1,24 @@
+# Here is an updated version of our pi program
+
+x = 2 ** (0.5)
+y = 2 ** (0.25)
+pi = 2 + x
+print("Pi:", pi)
+
+# Instead of copying and pasting the code, we use a structure called a "loop"
+# We will investigate loops in a great deal more detail in a few weeks.
+# For now, it's a good way for us to explore the idea that python uses 
+# indentation (whitespace) to organize blocks of code.
+counter = 0
+while counter < 5:
+    # All of the indented code is part of the loop. It is executed as a block
+    # -- all or none. If counter < 5, then we execute the following, up to 
+    # the point that the code is no longer indented.
+    x = (0.5) * (x ** (0.5) + x ** (-0.5))
+    new_y = (y * x ** (0.5) + x ** (-0.5)) / (y + 1)
+    pi = pi * (x + 1) / (y + 1)
+    y = new_y
+    counter = counter + 1
+
+# This code follows the loop. It executes only once the loop has completed.
+print("Pi:", pi)

@@ -1,0 +1,136 @@
+# We can use the locals() and globals() commands to see what names are 
+# available in the "local" and "global" scopes.
+>>> locals()
+{'filtered': <function filtered at 0x100631bf8>, '__spec__': None, '__builtins__': <module 'builtins' (built-in)>, '__package__': None, '__cached__': None, '__loader__': <_frozen_importlib.SourceFileLoader object at 0x100540588>, '__name__': '__main__', '__doc__': None}
+>>> globals()
+{'filtered': <function filtered at 0x100631bf8>, '__spec__': None, '__builtins__': <module 'builtins' (built-in)>, '__package__': None, '__cached__': None, '__loader__': <_frozen_importlib.SourceFileLoader object at 0x100540588>, '__name__': '__main__', '__doc__': None}
+
+# But there's a lot of cruft in them -- lots of builtin material -- so 
+# this function will help us clean it up:
+>>> def filtered(d):
+...     return {k:v for (k, v) in d.items() if not k.startswith('__')}
+>>> filtered(locals())
+{'filtered': <function filtered at 0x100631bf8>}
+
+# What is local and global at the "module" level.
+>>> filtered(locals())
+{'filtered': <function filtered at 0x100631bf8>}
+>>> filtered(globals())
+{'filtered': <function filtered at 0x100631bf8>}
+# At the top level, local and global are the same!
+
+# Let's see what is local and global within a function.
+>>> def foo():
+...     print(filtered(locals()))
+...     print(filtered(globals()))
+... 
+>>> foo()
+{}
+{'foo': <function foo at 0x100631d08>, 'filtered': <function filtered at 0x100631bf8>}
+# "global" is what was global at the module level, but local is now empty.
+
+# Lets write a function that has a local variable.
+>>> def bar(x):
+...     print(filtered(locals()))
+...     print(filtered(globals()))
+... 
+>>> bar(3)
+{'x': 3}
+{'foo': <function foo at 0x100631d08>, 'bar': <function bar at 0x10063f1e0>, 'filtered': <function filtered at 0x100631bf8>}
+
+# What about a function that accesses a global variable? 
+>>> x = 3
+>>> filtered(globals())
+{'x': 3, 'filtered': <function filtered at 0x100631bf8>}
+>>> def thud():
+...     y = x + 1
+...     print(filtered(locals()))
+...     print(filtered(globals()))
+... 
+>>> thud()
+{'y': 4}
+{'x': 3, 'thud': <function thud at 0x2e90f0>, 'filtered': <function filtered at 0x100631bf8>}
+# It uses the global x to calculate a local y
+
+# What about a function that modifies a variable that is in the global scope?
+>>> def thud2():
+...     x = x + 1
+...     print(filtered(locals()))
+...     print(filtered(globals()))
+... 
+>>> thud2()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 2, in thud2
+UnboundLocalError: local variable 'x' referenced before assignment
+
+# Huh? Why is x local ... ?
+
+>>> def thud2():
+...     x = 1
+...     print(filtered(locals()))
+...     print(filtered(globals()))
+... 
+>>> thud2()
+{'x': 1}
+{'x': 3, 'thud2': <function thud2 at 0x2e9030>, 'thud': <function thud at 0x2e90f0>, 'filtered': <function filtered at 0x100631bf8>}
+
+# There are two x variables. One is local an the other is local. They have
+# different values. 
+# Python assumes you want a local variable when you assign a value. You must
+# explicitly tell it otherwise if you want to modify a global variable!
+
+# This is going to look a bit odd, but how about a function within a function?
+>>> def baz(x):
+...     def inner_baz(y):
+...         print(filtered(locals()))
+...         print(filtered(globals()))
+...     print(filtered(locals()))
+...     return inner_baz
+... 
+>>> func = baz(2)
+{'x': 2, 'inner_baz': <function baz.<locals>.inner_baz at 0x10063f378>}
+
+>>> func(3)
+{'y': 3}
+{'foo': <function foo at 0x100631d08>, 'bar': <function bar at 0x10063f1e0>, 'filtered': <function filtered at 0x100631bf8>, 'func': <function baz.<locals>.inner_baz at 0x10063f378>, 'baz': <function baz at 0x10063f268>}
+# Note: there is no reference to x visible. Do you think we could access it?
+
+>>> def baz(x):
+...     def inner_baz():
+...         print(x)
+...     return inner_baz
+... 
+>>> func = baz(4)
+>>> func()
+4
+# Yes! It's neither local nor global -- it's in an "enclosing scope". It's not
+# local to the function, but it isn't module global, either.
+
+# Classes are like this. They provide an enclosing scope where some variables
+# and methods (class attributes) are available.
+
+# Next, let's look at the @property decorator. This lets us create getters 
+# (and setters) for variables in a Pythonic way. Look at the code in 
+# bankaccount.py. Note that it doesn't define a balance variable. Yet ...
+peters43:~/courses/108/utm/lectures/lecture25/andrew/code$ python3 -i bankaccount.py 
+>>> acc = BankAccount("Andrew")
+>>> acc.balance
+0
+>>> acc.balance = 500
+>>> acc.balance
+500
+>>> acc.withdraw(200)
+True
+>>> quit()
+
+# If we remove the setter property, however, we remove the ability to
+# modify the balance directly.
+peters43:~/courses/108/utm/lectures/lecture25/andrew/code$ python3 -i bankaccount.py 
+>>> acc = BankAccount("Andrew")
+>>> acc.balance
+0
+>>> acc.balance = 500
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: can't set attribute

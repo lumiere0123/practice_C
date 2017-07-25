@@ -1,0 +1,476 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0062)https://cs.senecac.on.ca/~fac/uli101/live/labs/week4_lab2.html -->
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  
+  <meta name="ProgId" content="Word.Document">
+  <meta name="Generator" content="Microsoft Word 10">
+  <meta name="Originator" content="Microsoft Word 10">
+  <link rel="File-List" href="https://cs.senecac.on.ca/~fac/uli101/live/labs/ULILab04a_files/filelist.xml">
+  <link rel="Edit-Time-Data" href="https://cs.senecac.on.ca/~fac/uli101/live/labs/ULILab04a_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+  <title>Week4 Lab2 - Using Absolute and Relative Path Names</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>user</o:Author>
+  <o:LastAuthor>user</o:LastAuthor>
+  <o:Revision>57</o:Revision>
+  <o:TotalTime>887</o:TotalTime>
+  <o:Created>2005-09-26T02:32:00Z</o:Created>
+  <o:LastSaved>2005-09-27T17:20:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>1207</o:Words>
+  <o:Characters>6882</o:Characters>
+  <o:Lines>57</o:Lines>
+  <o:Paragraphs>16</o:Paragraphs>
+  <o:CharactersWithSpaces>8073</o:CharactersWithSpaces>
+  <o:Version>10.2625</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]-->
+  <style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:536871559 0 0 0 415 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	color:black;}
+h3
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:3;
+	font-size:13.5pt;
+	font-family:"Times New Roman";
+	color:black;
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	color:black;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+  </style><!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+</style>
+<![endif]--><!--Copyright 2002, Prof. John Hunter, Seneca College, All Rights Reserved--><!--May be used by all Seneca College Instructors--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="4098"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+<body bgcolor="white" lang="EN-US" link="blue" vlink="blue" style="">
+<div class="Section1">
+<table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+  <tbody>
+    <tr style="">
+      <td width="54%" style="padding: 0in; width: 54%;">
+      <h3><span style="font-size: 18pt;">ULI101 - Week4 Lab2:</span><span style="font-family: Verdana;">Unix Pathnames / Directory Structure</span></h3>
+      </td>
+      <td width="46%" style="padding: 0in; width: 46%;">
+      <p class="MsoNormal" align="right" style="text-align: right;"><span style="font-size: 7.5pt; font-family: Verdana; color: rgb(153, 153, 153);">Created
+by INT120 Instructor John Hunter, Fall 2002<o:p></o:p></span></p>
+      <p class="MsoNormal" align="right" style="text-align: right;"><span style="font-size: 7.5pt; font-family: Verdana; color: rgb(153, 153, 153);">Modified
+by ULI101 Instructor Murray Saul, Winter 2006</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="MsoNormal" align="center" style="text-align: center;">
+<hr size="2" width="100%" align="center"></div>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">Pathnames in
+Unix/Linux are divided into two types</span></b><span style="font-size: 10pt; font-family: Verdana;">. The first is the
+absolute pathname, which always starts
+with the<b> / </b>(<b>slash</b>), commonly named the<b> <i>root</i></b>.
+The
+second type of pathname is the relative pathname, which is aptly named,
+for it
+is <b><i>relative to</i></b> your current working directory location.
+It is
+important for the user to be able to create and manipulate the file
+structure
+by either using absolute pathnames or relative pathnames, or both. </span></p>
+<blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
+  <p><span style="font-size: 10pt; font-family: Verdana;">First, let's
+take a look
+at a sample of an <b>absolute pathname</b> to create a directory off
+of your
+home directory named <span class="GramE"><b><i style="">seneca</i></b></span>.</span><br>
+  <span style="font-size: 10pt; font-family: Verdana;">Since we are
+using an
+absolute pathname to create the <span class="GramE"><b style=""><i style="">seneca</i></b></span> directory,
+we know that the pathname must start with the /, or root. Hence, the
+command
+line<span class="GramE">:</span><br>
+  <b style="">username@matrix:~&gt;</b> </span><b><span style="font-family: Verdana; color: rgb(0, 0, 153);">mkdir
+/home/username/seneca</span></b> (where "username" is your Matrix login ID).</p>
+  <p><span style="font-size: 10pt; font-family: Verdana;">Second, if
+you want to
+make the same directory off of your home directory using a relative
+pathname
+you would <b>not</b> start with the slash, or root, but would simply
+name the
+file, because your current working directory is <b>already your home
+directory.
+  </b>Hence, the command line<span class="GramE">:</span></span><br>
+  <b style=""><span style="font-size: 10pt; font-family: Verdana;">username@matrix:~&gt;<span style=""> </span></span></b><b><span style="font-family: Verdana; color: rgb(0, 0, 153);">mkdir
+Seneca<o:p></o:p></span></b></p>
+  <div class="MsoNormal" align="center" style="text-align: center;"><span style="color: windowtext;">
+  <hr size="2" width="100%" align="center"></span></div>
+</blockquote>
+<p class="MsoNormal"><span style="font-size: 13.5pt; font-family: Verdana; color: rgb(153, 0, 0);">Practical
+Application<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="font-size: 13.5pt; font-family: Verdana; color: rgb(153, 0, 0);">Create
+the directory tree structure shown below using relative
+pathnames </span><span style="font-size: 13.5pt; font-family: Verdana; color: rgb(0, 153, 102);">in
+your matrix account</span>
+<span style="font-size: 13.5pt; font-family: Verdana; color: rgb(153, 0, 0);">. You can use the <b>touch</b> command to create the filenames displayed within the directories. You can detect a directory if the name appears in blue - all regular files appear in green or black.<br><br>
+Note: If the "Labs" directory still exists from your week2_lab3, you do not need to create that directory.<span style="font-size: 13.5pt; font-family: Verdana; color: rgb(153, 0, 0);"><o:p></o:p></span></span></p>
+<p class="MsoNormal"><span style="font-size: 13.5pt; font-family: Verdana; color: blue;">~<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="font-size: 13.5pt; font-family: Verdana; color: blue;"><!--[if gte vml 1]><v:shapetype id="_x0000_t75" coordsize="21600,21600"
+ o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe" filled="f"
+ stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1027" type="#_x0000_t75" style='width:255.75pt;
+ height:413.25pt'>
+ <v:imagedata src="images/ULILab4aImage.jpg" o:title=""/>
+</v:shape><![endif]--> <!--[if !vml]--><img width="341" height="551" src="./Week4 Lab2 - Using Absolute and Relative Path Names_files/ULILab4aImage.jpg" v:shapes="_x0000_i1027"><!--[endif]--><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="font-size: 13.5pt; font-family: Verdana; color: blue;"><o:p>&nbsp;</o:p></span></p>
+<p style="page-break-after: avoid;"><b><span style="font-family: Verdana;">Verify
+that your directory structure is correct by issuing a </span></b><b><span style="font-family: Verdana; color: rgb(0, 0, 204);">tree</span></b><b><span style="font-family: Verdana;"> command at the prompt.<br>
+Examine the tree diagram that is shown and verify you have correctly
+created
+the above structure before continuing this lab.</span></b><b><span style="font-size: 10pt; font-family: Verdana;"><o:p></o:p></span></b></p>
+<p style="page-break-after: avoid;"><b><span style="font-size: 10pt; font-family: Verdana;">To move around in a
+directory tree you can also use absolute
+pathnames, or relative pathnames. Using the directory tree structure
+shown
+above, let's take a look at how to navigate the entire tree. You need
+to
+replace username with your own login name.<br style="">
+<!--[if !supportLineBreakNewLine]--><br style="">
+<!--[endif]--><o:p></o:p></span></b></p>
+<p><span style="font-size: 10pt; font-family: Verdana;">First, your
+current
+location is your home directory which is under <b>/home</b>. To move
+to the <b style=""><i style="">seneca</i></b>
+directory using an<b> <i>absolute pathname</i><span class="GramE">:</span><br>
+$ </b></span><b><span style="font-family: Verdana; color: rgb(0, 0, 153);">cd
+/home/username/Labs/lab4a/seneca</span></b><b><span style="font-size: 10pt; font-family: Verdana;"><br>
+To do the same operation using a relative path:<br>
+$ </span></b><b><span style="font-family: Verdana; color: rgb(0, 0, 153);">cd
+Labs/lab4a/seneca</span></b><span style="font-size: 10pt; font-family: Verdana;"><o:p></o:p></span></p>
+<p><span style="font-size: 10pt; font-family: Verdana;">Second, your
+current
+location is <b style=""><i style="">library</i></b>. To move to the <b style=""><i style="">newnham</i></b> directory<span class="GramE">:</span><b><br>
+$ </b></span><b><span style="font-family: Verdana; color: rgb(0, 0, 153);">cd ..</span></b><b><span style="font-size: 10pt; font-family: Verdana;"><br>
+</span></b><span style="font-size: 10pt; font-family: Verdana;">This
+operation
+uses two single dots (or periods) to signify the <b><i>parent</i></b>
+directory. <b><br>
+</b>(If you examine the <b style=""><i style="">library</i></b>
+directory you will notice
+that <b style=""><i style="">newnham</i></b>
+is the parent of library.)<b><br>
+This method of using <span class="GramE">the ..</span> <span class="GramE">is</span>
+a type of relative pathname. </b></span></p>
+<p><span style="font-size: 10pt; font-family: Verdana;">Third,
+your current location is <b><i style="">security</i></b>.
+To move to the <b><i style="">cns</i></b> directory<span class="GramE">:</span><br>
+<b>$ </b></span><b><span style="font-family: Verdana; color: rgb(0, 0, 153);">cd ../../s@y/cns</span></b><b><span style="font-size: 10pt; font-family: Verdana;"><br>
+The first set <span class="GramE">of ..</span>'<span class="GramE">s</span>
+moves
+you to the <i style="">newnham</i> directory, the
+second set of ..'<span class="GramE">s</span> moves you to the root.
+Then you
+simply declare the path down to your location. </span></b></p>
+<p class="MsoNormal"><span style="font-size: 13.5pt; font-family: Verdana; color: rgb(153, 0, 0);"><o:p></o:p></span><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font size="3"><br>
+</font></b></font>
+</p>
+<hr><big style="color: rgb(255, 0, 0);">Before continuing with this lab
+make sure you execute the following&nbsp; command successfully:<br>
+</big><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font size="3"><big style="color: rgb(255, 0, 0);">w4lab2_dir.sh</big><br>
+</font></b> </font>
+<hr><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font size="4" color="#990000"><br>
+</font></font>
+<p class="MsoNormal"><o:p></o:p><span style="font-size: 13.5pt; font-family: Verdana; color: rgb(153, 0, 0);"><o:p>&nbsp;</o:p>Next,
+perform the following operations:</span></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">1. <span class="GramE">To</span>
+start, make sure you are in your home directory. </span></b></p>
+<p style="margin-bottom: 12pt;"><b><span style="font-size: 10pt; font-family: Verdana;">Command line used<span class="GramE">:_</span>_________________________________</span></b></p>
+<p style="margin-bottom: 12pt;"><b><span style="font-size: 10pt; font-family: Verdana;">2. Move to </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">lab4a</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> using a relative
+pathname. <br>
+<br>
+Command line used<span class="GramE">:_</span>_________________________________</span></b></p>
+<p style="margin-bottom: 12pt;"><b><span style="font-size: 10pt; font-family: Verdana;">3. Move to the </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">security</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory using a
+relative
+pathname.<br>
+<br>
+Command line used<span class="GramE">:_</span>_________________________________</span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">4. Move to
+the </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">newnham</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory using a
+relative pathname.</span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">Command line
+used<span class="GramE">:_</span>_________________________________</span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">5. Move to </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: blue;">your</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">home</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory using a
+relative
+pathname.<br>
+(<span class="GramE">don't</span> use the tilde (~) for this move)</span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">Command line
+used<span class="GramE">:_</span>_________________________________</span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;"><a href="https://cs.senecac.on.ca/~fac/uli101/live/labs/path1.htm"></a></span></b></p>
+<div class="MsoNormal" align="center" style="text-align: center;">
+<hr size="2" width="100%" align="center"></div>
+<p><span style="font-size: 13.5pt; font-family: Verdana; color: rgb(153, 0, 0);">More
+Practical Application Using <span class="GramE">Unix</span> Commands
+&amp; </span><span style="font-size: 13.5pt; font-family: Verdana; color: teal;">Relative
+Paths</span><span style="font-size: 13.5pt; font-family: Verdana; color: rgb(153, 0, 0);"><br>
+Perform the following operations on the above directory structure.</span></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;"><br>
+6. Move to the </span></b><span class="GramE"><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">seneca</span></i></b></span><b><span style="font-size: 10pt; font-family: Verdana;"> directory to get
+started.</span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">7. Still in </span></b><span class="GramE"><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">seneca</span></i></b></span><b><span style="font-size: 10pt; font-family: Verdana;">, using a relative
+pathname, make
+a copy of the file named <i style="">parking</i>
+(from the </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: blue;">security</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory) and name it
+<i style="">parking2</i> and place it in your current
+directory. <br>
+<br>
+Command line used<span class="GramE">:_</span>____________________________________________________<br>
+</span></b><span style="font-size: 7.5pt; font-family: Verdana; color: rgb(51, 153, 153);">(verify
+you were successful by issuing a tree -d command.)</span></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">8. Still in </span></b><span class="GramE"><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">seneca</span></i></b></span><b><span style="font-size: 10pt; font-family: Verdana;">, using a relative
+pathname,
+rename the file named </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: windowtext;">annex</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> (from the </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: blue;">richmondhill</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory) to </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: windowtext;">annex2</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;">, leaving it in its
+present
+location.<br>
+<br>
+Command line used<span class="GramE">:_</span>____________________________________________________<br>
+</span></b><span style="font-size: 7.5pt; font-family: Verdana; color: rgb(51, 153, 153);">(verify
+you were successful by issuing a tree -d command.)</span><b><span style="font-size: 10pt; font-family: Verdana;"> </span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">9. Still in </span></b><span class="GramE"><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: blue;">seneca</span></i></b></span><b><span style="font-size: 10pt; font-family: Verdana;">, using a relative
+pathname, move
+to the </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">s@y</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory.<br>
+<br>
+Command line used<span class="GramE">:_</span>____________________________________________________<br>
+</span></b><span style="font-size: 7.5pt; font-family: Verdana; color: rgb(51, 153, 153);">(verify
+you were successful by issuing a tree -d command.)</span><b><span style="font-size: 10pt; font-family: Verdana;"> </span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">10. Now in
+the </span></b><span class="GramE"><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">s@y</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"><span style="">&nbsp;
+</span>directory</span></b></span><b><span style="font-size: 10pt; font-family: Verdana;">, using a relative
+pathname, move the file <i style="">outline.doc</i> to the </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">lab4a</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory.<br>
+</span></b><span style="font-size: 10pt; font-family: Verdana;"><br>
+<b>Command line used<span class="GramE">:_</span>____________________________________________________<br>
+</b></span><span style="font-size: 7.5pt; font-family: Verdana; color: rgb(51, 153, 153);">(verify
+you were successful by issuing a tree -d command.)</span><span style="font-size: 10pt; font-family: Verdana;"> </span></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">11. Still in
+the </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">s@y</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory, using a
+relative pathname, delete the </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">faculty</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory.</span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">Command line
+used<span class="GramE">:_</span>____________________________________________________<br>
+</span></b><span style="font-size: 7.5pt; font-family: Verdana; color: rgb(51, 153, 153);">(verify
+you were successful by issuing a tree -d command.)</span></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">12. Still in
+the </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">s@y</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory, using a
+relative pathname, make a new empty regular file
+named </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: blue;">dir_practice</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> inside the </span></b><b><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">library2</span></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory.</span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">Command line
+used<span class="GramE">:_</span>____________________________________________________<br>
+</span></b><span style="font-size: 7.5pt; font-family: Verdana; color: rgb(51, 153, 153);">(verify
+you were successful by issuing a tree -d command.)</span></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;"><a href="https://cs.senecac.on.ca/~fac/uli101/live/labs/path2.htm"></a></span></b><br>
+<span <hr="" size="2" width="100%" align="center"></span></p></div>
+<p><span style="font-size: 13.5pt; font-family: Verdana; color: rgb(153, 0, 0);"><br>
+At this point in the lab you have likely noticed that we have been
+working
+exclusively with<i> relative pathnames</i>.<br> However, it is very
+important to also practice your absolute pathnames.</span></p>
+For the following questions 13 - 24, answer the same questions you performed in questions 1 - 12, but use absolute pathnames. Do this on paper below, do <u>NOT</u> issue the commands on your matrix account!<br>
+ <span style="font-size: 10pt; font-family: Verdana; color: rgb(153, 0, 0);">
+</span><p></p>
+<p></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">13. Move to </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: blue;">your</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">home</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory</span></b><b><span style="font-size: 10pt; font-family: Verdana; color: rgb(153, 0, 0);">
+using an absolute
+pathname.</span></b></p>
+<p style="margin-bottom: 12pt;"><b><span style="font-size: 10pt; font-family: Verdana;">Command line used<span class="GramE">:_</span>_________________________________</span></b></p>
+<p style="margin-bottom: 12pt;"><b><span style="font-size: 10pt; font-family: Verdana;">14. Move to </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">lab4a</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> </span></b><b><span style="font-size: 10pt; font-family: Verdana; color: rgb(153, 0, 0);">using
+an absolute
+pathname.</span></b><b><span style="font-size: 10pt; font-family: Verdana;"> <br>
+<br>
+Command line used<span class="GramE">:_</span>_________________________________</span></b></p>
+<p style="margin-bottom: 12pt;"><b><span style="font-size: 10pt; font-family: Verdana;">15. Move to the </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">security</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory </span></b><b><span style="font-size: 10pt; font-family: Verdana; color: rgb(153, 0, 0);">using
+an absolute
+pathname.</span></b><b><span style="font-size: 10pt; font-family: Verdana;"> <br>
+<br>
+Command line used<span class="GramE">:_</span>_________________________________</span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">16. Move to
+the </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">newnham</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory </span></b><b><span style="font-size: 10pt; font-family: Verdana; color: rgb(153, 0, 0);">using
+an absolute pathname.</span></b><b><span style="font-size: 10pt; font-family: Verdana;"> </span></b></p>
+<p style="margin-bottom: 12pt;"><b><span style="font-size: 10pt; font-family: Verdana;">Command line used<span class="GramE">:_</span>_________________________________</span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">17. Move to </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: blue;">your</span></i></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana;"> </span></i></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">home</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory </span></b><b><span style="font-size: 10pt; font-family: Verdana; color: rgb(153, 0, 0);">using the shortest command and using
+an absolute pathname.</span></b><b><span style="font-size: 10pt; font-family: Verdana;"> </span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">Command line
+used<span class="GramE">:_</span>_________________________________</span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;"><a href="https://cs.senecac.on.ca/~fac/uli101/live/labs/path4.htm"></a></span></b></p>
+<p><span <p=""><b><span style="font-size: 10pt; font-family: Verdana;">
+18. Move to the </span></b><span class="GramE"><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">seneca</span></i></b></span><b><span style="font-size: 10pt; font-family: Verdana;"> directory to get
+started </span></b><b><span style="font-size: 10pt; font-family: Verdana; color: rgb(153, 0, 0);">using
+an absolute
+pathname.</span></b></span></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">19. </span></b><b><span style="font-size: 10pt; font-family: Verdana; color: rgb(153, 0, 0);">Using
+absolute
+pathnames,</span></b><b><span style="font-size: 10pt; font-family: Verdana;"> make
+a copy of the file named <i style="">parking</i>
+(from the </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: blue;">security</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory) and name it
+<i style="">parking2</i> and place it in your current directory.
+<br>
+<br>
+Command line used<span class="GramE">:_</span>___________________________________________________</span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">20. </span></b><b><span style="font-size: 10pt; font-family: Verdana; color: rgb(153, 0, 0);">Using
+absolute
+pathnames,</span></b><b><span style="font-size: 10pt; font-family: Verdana;">
+rename the file named <i style="">annex</i> (from the
+</span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: blue;">richmondhill</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory) to <i style="">annex2</i>, leaving it in its present
+location.<br>
+<br>
+Command line used<span class="GramE">:_</span>____________________________________________________</span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">21. </span></b><b><span style="font-size: 10pt; font-family: Verdana; color: rgb(153, 0, 0);">Using
+an absolute
+pathname,</span></b><b><span style="font-size: 10pt; font-family: Verdana;"> move
+to the </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">s@y</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory.<br>
+<br>
+Command line used<span class="GramE">:_</span>____________________________________________________</span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">22. </span></b><span class="GramE"><b><span style="font-size: 10pt; font-family: Verdana; color: rgb(153, 0, 0);">Using</span></b></span><b><span style="font-size: 10pt; font-family: Verdana; color: rgb(153, 0, 0);">
+absolute
+pathnames,</span></b><b><span style="font-size: 10pt; font-family: Verdana;"> move
+the file outline.doc to the </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">lab4a</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory.<br>
+</span></b><span style="font-size: 10pt; font-family: Verdana;"><br>
+<b>Command line used<span class="GramE">:_</span>____________________________________________________</b></span></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">23. </span></b><span class="GramE"><b><span style="font-size: 10pt; font-family: Verdana; color: rgb(153, 0, 0);">Using</span></b></span><b><span style="font-size: 10pt; font-family: Verdana; color: rgb(153, 0, 0);">
+an absolute
+pathname,</span></b><b><span style="font-size: 10pt; font-family: Verdana;">
+delete the </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">faculty</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory.</span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">Command line
+used<span class="GramE">:_</span>____________________________________________________</span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">24. </span></b><span class="GramE"><b><span style="font-size: 10pt; font-family: Verdana; color: rgb(153, 0, 0);">Using</span></b></span><b><span style="font-size: 10pt; font-family: Verdana; color: rgb(153, 0, 0);">
+an absolute
+pathname,</span></b><b><span style="font-size: 10pt; font-family: Verdana;"> make
+a new empty regular file named </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: blue;">dir_practice</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> inside the </span></b><b><i style=""><span style="font-size: 10pt; font-family: Verdana; color: rgb(0, 0, 204);">library2</span></i></b><b><span style="font-size: 10pt; font-family: Verdana;"> directory.</span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;">Command line
+used<span class="GramE">:_</span>____________________________________________________</span></b></p>
+<p><b><span style="font-size: 10pt; font-family: Verdana;"><a href="https://cs.senecac.on.ca/~fac/uli101/live/labs/path5.htm"></a></span></b></p>
+<p><b><span style="font-family: Verdana; color: rgb(153, 0, 0);">This
+lab has covered the
+creation of directories and files using both absolute pathnames and
+relative
+pathnames. To strengthen the knowledge you have gained from this lab,
+make sure
+to always think of the alternative method when manipulating files and
+directories. If you only use one method you will find yourself to be
+very weak
+in the other and this will <span class="GramE">effect</span> your test
+scores.</span></b></p>
+<div class="MsoNormal" align="center" style="text-align: center;">
+<hr size="2" width="100%" align="center"></div>
+<p>&nbsp; <big style="color: rgb(255, 0, 0);"><big>Lab
+Submission:&nbsp; </big><br>
+&nbsp;<br>
+</big><span style="font-size: 13.5pt; font-family: Verdana; color: rgb(153, 0, 0);">To
+submit your lab, do the following steps:<br>
+a) Using vi open a file called <span style="font-weight: bold;">week4lab2.ans</span>
+located in your <span style="font-weight: bold;">Labs</span> directory<br>
+b) Copy all your answers into this file, use the following format for
+your answers:<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1. "Your answer"<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 2. </span><span style="font-size: 13.5pt; font-family: Verdana; color: rgb(153, 0, 0);">"Your
+answer"<br>
+<br>
+up to ...
+<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp; 24. </span><span style="font-size: 13.5pt; font-family: Verdana; color: rgb(153, 0, 0);">"Your
+answer"<br>
+c) Execute the command:&nbsp; </span><big style="color: rgb(255, 0, 0);">&nbsp;</big><span style="color: rgb(255, 0, 0);"> </span><big style="color: rgb(255, 0, 0); font-weight: bold;"><big>w4lab2.check</big></big></p>
+<p>&nbsp;</p>
+
+
+
+</body></html>

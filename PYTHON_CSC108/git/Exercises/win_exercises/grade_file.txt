@@ -1,0 +1,10 @@
+stu1 1 a A 1
+stu1 1 a A 3
+stu1 1 a A 3
+stu1 1 a B 2
+stu1 1 a A 4
+stu1 1 a B 1
+stu1 1 a A 5
+stu1 1 a B 3
+stu1 1 a A 6
+stu1 1 a A 7

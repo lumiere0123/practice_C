@@ -1,0 +1,26 @@
+3.3.0 (v3.3.0:bd8afb90ebf2, Sep 29 2012, 02:56:36) 
+[GCC 4.2.1 (Apple Inc. build 5577)]
+Python Type "help", "copyright", "credits" or "license" for more information.
+[evaluate names.py]
+format_name('Billy', 'Bob')
+('Bob', 'Billy')
+[evaluate names.py]
+format_name('Billy', 'Bob')
+'BobBilly'
+[evaluate names.py]
+format_name('Billy', 'Bob')
+'lastfirst'
+[evaluate names.py]
+format_name('Billy', 'Bob')
+'Bob, Billy'
+[evaluate names.py]
+to_listing('Billy', 'Bob', '416-123-4567')
+Traceback (most recent call last):
+  File "<string>", line 1, in <fragment>
+builtins.NameError: name 'to_listing' is not defined
+[evaluate names.py]
+to_listing('Billy', 'Bob', '416-123-4567')
+'Bob, Billy:416-123-4567'
+[evaluate names.py]
+to_listing('Billy', 'Bob', '416-123-4567')
+'Bob, Billy: 416-123-4567'

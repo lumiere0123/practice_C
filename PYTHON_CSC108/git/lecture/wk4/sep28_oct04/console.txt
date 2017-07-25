@@ -1,0 +1,84 @@
+# Sometimes, we want to indicate that a value is "empty". In some languages, 
+# this condition is called "null". In Python, we use "None".
+
+# For example, one common error is to fail to return a value.
+>>> def return_nothing():
+...     1
+... 
+>>> return_nothing()
+>>> type(return_nothing())
+<class 'NoneType'>
+
+# The "empty" value -- None -- is different from 0!
+>>> def return_zero():
+...     return 0
+...
+>>> return_zero()
+0
+>>> def return_none():
+...     return None
+...
+>>> return_none()
+>>>
+>>> None
+>>> x = None
+>>> x
+>>> print(x)
+None
+
+# None, like 0, has a boolean value of False
+>>> if x:
+...     print("None is True")
+... else:
+...     print("None is False")
+... 
+None is False
+# Let's use None to finish our server_status function!
+
+# In class, we did an exercise. Everyone raised their hand for True values and dropped their 
+# hands for expressions that would evaluate to False.
+>>> True
+True
+>>> False
+False
+>>> 4 > 3
+True
+>>> 7 >=7
+True
+>>> 4 * 3 == 11
+False
+>>> 4 == 4.0
+True
+>>> x = True
+>>> y = False
+>>> x and y
+False
+>>> x and not y
+True
+
+# Be careful about order of operations!
+>>> not x and y
+False
+>>> not (x and y)
+True
+
+>>> a = True
+>>> b = False
+>>> not (x and y) or (a and b)
+True
+>>> not (x and y)
+True
+>>> not (x and y) and 7 / 0
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ZeroDivisionError: division by zero
+>>> not (x and y) or 7 / 0
+True
+
+>>> x or y
+True
+# Is there a quick way to evaluate the line below, given the line above?
+>>> not x and not y
+True
+# de Morgan's laws!
+# http://en.wikipedia.org/wiki/De_Morgan's_laws

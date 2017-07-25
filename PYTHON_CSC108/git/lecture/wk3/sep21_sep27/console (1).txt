@@ -1,0 +1,149 @@
+# Question: How do you put strings in alphabetical order?
+# In the same way that we can compare integers, we can compare strings.
+>>> 1 < 2
+True
+>>> "a" < "b"
+True
+>>> "b" < "a"
+False
+>>> "abcd" < "b"
+True
+>>> "cat" < "dog"
+True
+>>> "cat" < "catnip"
+True
+# As you can see above, the equality operators use dictionary order.
+
+# But be careful about mixing case ... upper case and lower case letters
+# don't compare as you expect.
+>>> "Cat" < "dog"
+True
+>>> "Dog" < "cat"
+True
+
+# Question: Why do you use double quotes? Why not single quotes?
+# There are several ways to define strings. Here are four.
+>>> "Dog"
+'Dog'
+>>> 'Dog'
+'Dog'
+>>> '''Dog'''
+'Dog'
+>>> """Dog"""
+'Dog'
+
+# If I want to define a multiline string, I'll use triple quotes.
+>>> '''Duck
+... Duck
+... Duck
+... Goose'''
+'Duck\nDuck\nDuck\nGoose'
+>>> 'Duck
+  File "<stdin>", line 1
+    'Duck
+        ^
+SyntaxError: EOL while scanning string literal
+
+# If I want a string that includes double quotes, I'll use single quotes.
+>>> 'The teacher said, "Help me class! Please speak!"'
+'The teacher said, "Help me class! Please speak!"'
+>>> "The teacher said, "Help me class! Please speak!""
+  File "<stdin>", line 1
+    "The teacher said, "Help me class! Please speak!""
+                           ^
+SyntaxError: invalid syntax
+
+# And vice versa.
+>>> "The class said, 'We remain silent!'"
+"The class said, 'We remain silent!'"
+# Since apostrophes are so common, I tend to use double quotes as my default.
+
+# Let's take a look at if statements. Here is a function with an if statement in it.
+# Note that it also has an "elif" -- else if -- and else.
+>>> def acid_base(ph):
+...     if ph < 7:
+...         print(ph, "is acidic")
+...     elif ph > 7:
+...         print(ph, "is basic")
+...     else:
+...         print(ph, "is neutral")
+... 
+>>> acid_base(2)
+2 is acidic
+>>> acid_base(7)
+7 is neutral
+
+# If statements allow us to program a computer to take different actions based on 
+# the value of a variable or other input.
+# Here's another example. Note that the indentation is very important, since we use 
+# it to determine which "if" the "else" is paired with.
+>>> name = "Andrew"
+>>> if len(name) > 3:
+...     print("Too long")
+...     if name[0].startswith("B"):
+...         print("Starts with B")
+...     else:
+...         print("Not B????")
+... else:
+...     print("Whew! A short one")
+... 
+Too long
+Not B????
+>>> if len(name) > 3:
+...     print("Too long")
+...     if name[0].startswith("B"):
+...         print("Starts with B")
+... else:
+...     print("Whew! A short one")
+... 
+Too long
+
+# Humans naturally worry about "if" something happens, but we commonly forget to
+# define what should happen in the "else" case. If you forget an else case, you
+# will often forget to create or update a variable, so the NameError you see below
+# indicates that you forgot to define y in an "else".
+>>> x = 5
+>>> if x < 5:
+...     y = 6
+... 
+>>> z = y + 1
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'y' is not defined
+>>> if x < 5:
+...     y = 6
+... else:
+...     y = 7
+... 
+>>> z = y + 1
+
+# Order matters. Python evaluates from the top down, and the "else" case
+# must be last.
+>>> z
+8
+>>> if x < 5:
+...     y = 6
+... else:
+...     y = 7
+... elif x > 5:
+  File "<stdin>", line 5
+    elif x > 5:
+       ^
+SyntaxError: invalid syntax
+
+# But you don't need an else.  
+>>> x
+5
+>>> if x < 5:
+...     print("Less than")
+... elif x > 5:
+...     print("Greater than")
+... 
+>>> 
+>>> x = 6
+>>> if x < 5:
+...     print("Less than")
+... elif x > 5:
+...     print("Greater than")
+... 
+Greater than

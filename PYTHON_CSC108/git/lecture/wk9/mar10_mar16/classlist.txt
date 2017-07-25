@@ -1,0 +1,15 @@
+c3xxxxxx 9999999999 LEC 5101 Smith            Kim James
+c3xxxxxx 1999999999 LEC 0101 Yang             Yi
+c3xxxxxx 1999999999 LEC 0201 Chan             Delia
+c3xxxxxx 1999999999 LEC 0201 Grant            Robert
+c3xxxxxx 1999999999 LEC 0201 Ford             Robert
+c3xxxxxx 1999999999 LEC 5101 Ford             Doug
+c3xxxxxx  999999999 LEC 5101 Daniels          Jack
+c3xxxxxx  999999999 LEC 5101 Wang             Jianhuan
+c3xxxxxx  999999999 LEC 0201 Lawrence         Julia
+c3xxxxxx 1999999999 LEC 0101 Galianny         Jane
+c3xxxxxx 1999999999 LEC 0202 Clarence         Tommy
+c3xxxxxx  999999999 LEC 5101 Bundy            King Kong
+c3xxxxxx  999999999 LEC 0201 Duchene          Krista
+c3xxxxxx 1999999999 LEC 0101 Turcott          Edwin
+c3xxxxxx 1999999999 LEC 0301 McCallister      Alex

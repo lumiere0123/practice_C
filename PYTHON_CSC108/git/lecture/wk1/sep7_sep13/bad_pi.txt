@@ -1,0 +1,19 @@
+# This is a broken version of our pi program.
+
+x = 2 ** (0.5)
+y = 2 ** (0.25)
+pi = 2 + x
+print("Pi:", pi)
+
+counter = 0
+while counter < 5:
+    x = (0.5) * (x ** (0.5) + x ** (-0.5))
+    new_y = (y * x ** (0.5) + x ** (-0.5)) / (y + 1)
+    pi = pi * (x + 1) / (y + 1)
+    y = new_y
+
+# This is a common mistake: the update to counter has been moved out of the
+# loop. This means that counter won't be updated, so counter will always be
+# 0, so counter < 5 will always be true. The loop will never end!
+counter = counter + 1
+print("Pi:", pi)

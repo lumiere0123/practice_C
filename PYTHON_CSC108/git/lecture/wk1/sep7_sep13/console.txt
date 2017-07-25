@@ -1,0 +1,169 @@
+# Today, I'm demonstrating how to run Python from a terminal (like you'll)
+# get in the linux lab. Typically, you just run "python"
+
+peters43:~/courses/108/utm/lectures/lecture3/andrew$ python
+Python 2.7.2 (v2.7.2:8527427914a2, Jun 11 2011, 14:13:39) 
+[GCC 4.0.1 (Apple Inc. build 5493)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> quit()
+
+# Unfortunately, on my system, python brings up the wrong version, so 
+# I have to type "python3" -- but in lab, you should just be able to use
+# "python"
+
+peters43:~/courses/108/utm/lectures/lecture3/andrew$ python3
+Python 3.4.1 (v3.4.1:c0e311e010fc, May 18 2014, 00:54:21) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 3 + 7
+10
+>>> x = 3 + 7
+>>> print(x)
+10
+>>> x
+10
+
+# Remember: = and == are not the same! == is a test to see if two things
+# have the same value. = assigns a value to a variable.
+# We will take a look at booleans on Monday.
+
+>>> x == 3
+False
+>>> x == 10
+True
+>>> type(x)
+<class 'bool'>
+
+# Remember: Python executes instructions sequentially. It evaluates each
+# expression based on the current values of variables.
+
+>>> p = 5
+>>> p
+5
+>>> q = p * 7
+>>> q
+35
+
+# So far so good, but since q is based on p, do we have a problem?
+# Nope! q has a value; it does not depend on p in any way.
+
+>>> p = q + 10
+>>> q
+35
+>>> p
+45
+>>> p = "Hello"
+>>> q
+35
+
+# Remember: assignment is not symmetric. You can't switch the right-hand
+# side and the left-hand side.
+
+>>> p = 5
+>>> 5 = p
+  File "<stdin>", line 1
+SyntaxError: can't assign to literal
+>>> quit()
+
+# We modified pi.py in various ways and ran the code ...
+
+peters43:~/courses/108/utm/lectures/lecture3/andrew$ emacs pi.py
+peters43:~/courses/108/utm/lectures/lecture3/andrew$ python3 pi.py
+Pi: 3.414213562373095
+peters43:~/courses/108/utm/lectures/lecture3/andrew$ python3 pi.py
+Pi: 3.414213562373095
+Pi: 3.1426067539416227
+peters43:~/courses/108/utm/lectures/lecture3/andrew$ python3 pi.py
+Pi: 3.414213562373095
+Pi: 3.1426067539416227
+Pi: 3.141592660966044
+
+# Indentation is important. In this case, I added whitespace in front
+# of line 5 and ...
+
+peters43:~/courses/108/utm/lectures/lecture3/andrew$ python3 pi.py
+  File "pi.py", line 5
+    print("Pi:", pi)
+    ^
+IndentationError: unexpected indent
+
+# Indentation is important because python uses it to organize pieces of 
+# code. Here, we use the example of a loop.
+
+peters43:~/courses/108/utm/lectures/lecture3/andrew$ python3 pi.py
+Pi: 3.414213562373095
+Pi: 3.1426067539416227
+Pi: 3.141592660966044
+Pi: 3.141592653589793
+Pi: 3.141592653589793
+Pi: 3.141592653589793
+peters43:~/courses/108/utm/lectures/lecture3/andrew$ python3 pi.py
+Pi: 3.414213562373095
+Pi: 3.141592653589793
+
+# Let's talk about functions. Here's an example of a function call.
+# We are calling (invoking) the "round" function on two arguments.
+
+peters43:~/courses/108/utm/lectures/lecture3/andrew$ python3
+Python 3.4.1 (v3.4.1:c0e311e010fc, May 18 2014, 00:54:21) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> x = 3.14159
+>>> round(x, 2)
+3.14
+>>> quit()
+
+# And now we'll write our first function, double, and then call it.
+
+peters43:~/courses/108/utm/lectures/lecture3/andrew$ mate double.py
+peters43:~/courses/108/utm/lectures/lecture3/andrew$ python3 double.py 
+
+# What just happened? If you just have a function -- and no code that 
+# executes the function or prints -- then you don't get any output! 
+# Here's a trick for the terminal. Call python with "-i", and it will
+# run the code and then put you in the console.
+
+peters43:~/courses/108/utm/lectures/lecture3/andrew$ python3 -i double.py 
+
+# Since double.py has been run, the double function is available to us ...
+
+>>> double
+<function double at 0x1003c1bf8>
+
+# If I call it without any arguments ...
+
+>>> double()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: double() missing 1 required positional argument: 'number'
+
+# Double needs a number, so we give it one ...
+
+>>> double(2)
+4
+>>> double(3.6)
+7.2
+>>> my_number = double(3.6)
+>>> my_number
+7.2
+>>> x = 4
+>>> x = double(x)
+>>> x
+8
+>>> x
+8
+
+# Question: Can I reassign double like we can with variables?
+# Yes, and that's a great question, but we try NOT to. Here's an example ...
+
+>>> double = 6
+>>> double
+6
+
+# Now we've lost the function. We can't call it.
+
+>>> double(2)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'int' object is not callable
+>>> quit()

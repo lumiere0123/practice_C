@@ -1,0 +1,4 @@
+http://www.freeos.com/guides/lsst/ch08.html
+http://tldp.org/LDP/abs/html/exercises.html
+http://www.electromech.info/rhce-linux-howtos-electromech-ahemdabad-gujarat/25-linux-shell-script-exercise.html
+http://crack-linux.blogspot.ca/search/label/Shell%20Script%20Exercises

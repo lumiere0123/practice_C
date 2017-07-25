@@ -1,0 +1,10 @@
+This trace was obtained by printing the list after every insertion pass.
+
+original list: [7, 4, -1, 9, 3, 6, 42]
+[7, 4, -1, 9, 3, 6, 42]
+[4, 7, -1, 9, 3, 6, 42]
+[-1, 4, 7, 9, 3, 6, 42]
+[-1, 4, 7, 9, 3, 6, 42]
+[-1, 3, 4, 7, 9, 6, 42]
+[-1, 3, 4, 6, 7, 9, 42]
+[-1, 3, 4, 6, 7, 9, 42]

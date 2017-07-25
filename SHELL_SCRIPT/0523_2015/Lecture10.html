@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <title>ULI101</title>
+   <meta charset="utf-8">
+   <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+   <h1>ULI101 - Introduction to Unix/Linux and the Internet</h1>
+   <h2>Lecture 10 - Introduction to Scripting</h2>
+   <h3><u>Introduction to Scripting</u></h3>
+   <ul>
+      <li>a shell script is simply a collection of commands in a file, similar to a DOS bat file</li>
+      <li>to run a script by just using the script name:
+         <ul>
+            <li>the script must have r and x permission</li>
+            <li>the script must be in a directory that's included in your PATH, otherwise
+               a path must be provided</li>
+         </ul></li>
+      <li>except on the first line, everything following # on a line is a comment</li>
+      <li>if first line is <tt>#!pathname</tt> (starting in the first column), specified shell is used to run the script
+         <ul>
+            <li>eg. <tt>#!/bin/bash</tt> or <tt>#!/bin/ksh</tt></li>
+            <li>ensures that script will run in correct shell regardless of which shell user is using</li>
+            <li>if not used, script will run in the current shell type</li>
+         </ul></li>
+   </ul>
+   <h3>Variables</h3>
+   <ul>
+      <li>user-created variable names must begin with a letter
+         <ul>
+            <li>eg. <tt>name=lczegel</tt> (no spaces around = )</li>
+         </ul></li>
+      <li>precede variable name with $ for value substitution, eg. <tt>echo $name</tt></li>
+      <li>variables can be read-only, eg. <tt>readonly course=ULI101</tt>
+         <ul>
+            <li>existing variables can be made read-only, eg. <tt>readonly name</tt></li>
+            <li><tt>readonly</tt> by itself will list all existing read-only variables</li>
+         </ul></li>
+      <li>variables may be removed as follows:
+         <ul>
+            <li>eg. <tt>name=</tt></li>
+            <li>eg. <tt>unset name</tt></li>
+            <li>read-only variables will last the life of the login session</li>
+         </ul></li>
+      <li><b>read</b> will read one line from standard input and assign it to variables, for example:
+<pre style="color:white; background-color:blue; border-color:black; border-style:solid; width:48em">
+ ==> cat read.example
+ echo -n "Please enter your name: "
+ read name
+ echo "Hello $name"
+ ==> read.example
+ Please enter your name: Josephine Student
+ Hello Josephine Student
+ ==> _
+ </pre></li>
+      <li>$1 to $9 are first nine positional parameters, or command line arguments
+<pre style="color:white; background-color:blue; border-color:black; border-style:solid; width:48em">
+ ==> cat arguments.example1
+ echo "\$1 is $1"
+ echo "\$2 is $2"
+ ==> arguments.example1 lion tiger bear
+ $1 is lion
+ $2 is tiger
+ ==> arguments.example1 elephant
+ $1 is elephant
+ $2 is
+ ==> _
+ </pre></li>
+      <li>can access beyond $9 by using set braces, eg. ${10} will access 10th argument</li>
+      <li>$* represents all parameters, as a single string</li>
+      <li>$@ represents all parameters, as separate strings</li>
+      <li>$# contains number of parameters</li>
+      <li><tt>shift</tt> shifts parameters left, so that the first one (which was $1) disappears, the second one which was $2 becomes $1, etc.</li>
+      <li>example of <tt>$#</tt> and <tt>shift</tt>:
+<pre style="color:white; background-color:blue; border-color:black; border-style:solid; width:48em">
+ ==> cat arguments.example2
+ echo "\$1 is $1"
+ echo "\$2 is $2"
+ echo "\$# is $#"
+ shift
+ echo "After shift:"
+ echo "\$1 is $1"
+ echo "\$2 is $2"
+ echo "\$# is $#"
+ ==> arguments.example2 lion tiger bear
+ $1 is lion
+ $2 is tiger
+ $# is 3
+ After shift:
+ $1 is tiger
+ $2 is bear
+ $# is 2
+ ==> _
+ </pre></li>
+      <li>$$ is the PID (process ID) number of the current process - useful for naming temporary files</li>
+      <li>$? is the exit status of the last command, 0 means successful</li>
+   </ul>
+   <h3>Environment Variables</h3>
+   <ul>
+      <li>some common environment variables:
+         <ul>
+            <li><tt>PS1 &nbsp;&nbsp;&nbsp; - </tt> primary prompt</li>
+            <li><tt>PWD &nbsp;&nbsp;&nbsp; - </tt> present working directory</li>
+            <li><tt>OLDPWD &nbsp;- </tt> previous working directory, used by <tt>cd -</tt></li>
+            <li><tt>HOME &nbsp;&nbsp; - </tt> absolute path to user's home directory, similar to ~</li>
+            <li><tt>HOST &nbsp;&nbsp; - </tt> name of host</li>
+            <li><tt>USER &nbsp;&nbsp; - </tt> name of current user</li>
+            <li><tt>SHELL &nbsp; - </tt> current shell</li>
+            <li><tt>TERM &nbsp;&nbsp; - </tt> terminal type being emulated</li>
+            <li><tt>PATH &nbsp;&nbsp; - </tt> list of directories containing executables (programs)
+               <ul>
+                  <li>colon-delimited list, try <tt>echo $PATH</tt></li>
+                  <li>for example, to add current directory to PATH: <tt>PATH=$PATH:.</tt></li>
+                  <li>more than one directory may contain a particular executable
+                     <ul>
+                        <li>directory list is searched left to right, first matching executable name is used</li>
+                        <li>can use <tt>which</tt> command to identify which executable will be used</li>
+                        <li>for example, <tt>which grep</tt> will show which executable will be used when <tt>grep</tt> is entered on command line</li>
+                     </ul></li>
+               </ul></li>
+         </ul></li>
+      <li>can show all variables with <tt>set</tt> command using no arguments</li>
+   </ul>
+   <h3>Shell Arithmetic</h3>
+   <ul>
+      <li><tt>expr</tt> is used to evaluate integer expressions in the Bourne shell (also works in Bash and Korn)
+         <ul>
+            <li>spacing is inflexible, and special characters must be quoted</li>
+            <li>eg. <tt>expr \( 2 + 3 \) \* 5</tt></li>
+            <li>eg. <tt>x=`expr $x + 1`</tt></li>
+         </ul></li>
+      <li><tt>let</tt> performs arithmetic in Bash and Korn shells
+         <ul>
+            <li>can't use spaces, and $ optional in front of variables</li>
+            <li>eg. <tt>let x=(2+3)*5</tt></li>
+            <li>eg. <tt>let x=x+1</tt></li>
+         </ul></li>
+      <li><tt>(( expression ))</tt> allows any spacing (works in Bash and Korn)
+         <ul>
+            <li>this is probably the easiest-to-use form of arithmetic expression</li>
+            <li>eg. <tt>((x = (2 + 3) * 5))</tt></li>
+            <li>eg. <tt>x=$(( x + 1 ))</tt></li>
+            <li>eg. <tt>echo $(((x + 6) / 3))</tt></li>
+         </ul></li>
+      <li><tt>$[ expression ]</tt> performs arithmetic in the Bash shell only, used same as <tt>$(( ... ))</tt></li>
+   </ul>
+   <h3><u> Control Structures</u></h3>
+   <h3>if-then</h3>
+   <ul>
+      <li><tt>if</tt> is used to execute, or not execute, contained statements, depending on some condition</li>
+      <li><tt>[ ... ]</tt> is same as <tt>test</tt> command (see
+         test criteria and examples under description of test command - page 794 in the text)</li>
+      <li>to check if the right number of arguments were passed to the script:
+<pre>
+if [ $# != 3 ]
+   then
+      echo "This script requires 3 arguments" &gt;&amp;2
+      exit 1
+fi</pre></li>
+      <li>or to check an exit status of the previous command:
+<pre>
+grep -i "$1" cars
+if [ $? != 0 ]
+   then
+      echo Sorry, $1 is not in the cars file &gt;&amp;2
+      exit 1
+fi</pre></li>
+      <li>or to check if a filename passed as an argument is an existing directory:
+<pre>
+if [ ! -d $1 ]
+   then
+      echo The first argument $1 is not a directory &gt;&amp;2
+      exit 1
+fi</pre></li>
+      <li>other <tt>test</tt> options:
+         <ul>
+            <li><tt>-f - </tt> check if file is an ordinary file</li>
+            <li><tt>-e - </tt> check if file exists, either directory or ordinary file</li>
+            <li><tt>-s - </tt> check if file exists, with file size greater than 0</li>
+            <li><tt>-r - </tt> check if file exists, and you have read permission</li>
+            <li><tt>-w - </tt> check if file exists, and you have write permission</li>
+            <li><tt>-x - </tt> check if file exists, and you have execute permission</li>
+            <li><tt>-n - </tt> check if string has non-zero length</li>
+            <li><tt>-z - </tt> check if string has zero length</li>
+            <li>to compare numbers, can use <tt> -lt -le -gt -ge -eq -ne</tt>
+               <ul>
+                  <li>eg. <tt>if [ $salary -gt 45000 ]</tt></li>
+                  <li>eg. <tt>if test $salary -gt 45000</tt></li>
+               </ul></li>
+         </ul></li>
+   </ul>
+   <h3>for-in</h3>
+   <ul>
+      <li><tt>for</tt> is used to execute statements repeatedly, for a specifed number of repetitions</li>
+      <li>a loop variable takes the values of a specified list, one at a time</li>
+      <li>for example, to process a list of strings:
+<pre>
+for animal in lion tiger bear
+do
+   echo $animal
+done</pre></li>
+      <li>another example, to process a list of strings:
+<pre>
+for count in 3 2 1 'BLAST OFF!!!'
+do
+   sleep 1
+   echo $count
+done</pre></li>
+   </ul>
+</body>
+
+</html>

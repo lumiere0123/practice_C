@@ -1,0 +1,576 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+	
+	<title>Sorting Algorithm Animations</title>
+	<meta name="Description" content="Animation, code, analysis, and discussion of 8 sorting algorithms on 4 initial conditions." />
+	
+	<meta name="verify-v1" content="9GdThEYDHqv4ONz63P284/PgLz28QOtufIyiJZLuGKk=" />
+	<link rel="stylesheet" type="text/css" href="/static/css/sort.css" />
+	<!-- <script type="text/javascript" src="/static/js/prototype-min.js"></script> -->
+	<script type="text/javascript" src="/sort.js"></script>
+</head>
+
+<body onload="selectSize(20);">
+
+	
+
+	<div class="wrapper">
+		
+		
+
+		
+		<div id="header">
+			<!-- AddThis Button -->
+			<script type="text/javascript">
+			addthis_pub  = "dmartin@cs.bc.edu";
+			addthis_options = 'favorites, email, digg, stumbleupon, reddit, delicious, facebook, google, live, more';
+			</script>
+			<!-- http://s7.addthis.com/button1-share.gif -->
+			<!-- http://s7.addthis.com/js/152/addthis_widget.js -->
+			<a class="image" href="http://www.addthis.com/bookmark.php" onmouseover="return addthis_open(this, '', '', 'Sorting Algorithm Animations, Code, Analysis, and Discussion')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img src="/static/img/button1-share.gif" width="125" height="16" border="0" alt="" /></a>
+			<script type="text/javascript" src="/static/js/addthis_widget.js"></script>
+			<!-- <br/> -->
+			<!-- Discuss Link -->
+			<!-- <a id="discuss" target="_blank" href="http://david-royal-martin.blogspot.com/2008/11/sorting-algorithm-animations-on-google.html" title="Leave comments or discuss this website.">COMMENT/DISCUSS</a> -->
+		</div>
+
+		
+<h1>Sorting Algorithm Animations</h1>
+<div id="sizes" style="clear:both;">
+	Problem Size:&nbsp;
+<a href="javascript:selectSize(20);" title="Set problem size to 20">20</a>
+&middot;
+<a href="javascript:selectSize(30);" title="Set problem size to 30">30</a>
+&middot;
+<a href="javascript:selectSize(40);" title="Set problem size to 40">40</a>
+&middot;
+<a href="javascript:selectSize(50);" title="Set problem size to 50">50</a>
+&nbsp;
+&nbsp;
+Magnification:&nbsp;
+<a href="javascript:selectResolution(1);" title="Set image magnification to 1x">1x</a>
+&middot;
+<a href="javascript:selectResolution(2);" title="Set image magnification to 2x">2x</a>
+&middot;
+<a href="javascript:selectResolution(3);" title="Set image magnification to 3x">3x</a>
+
+</div>
+<div id="others1">
+	Algorithm:&nbsp;
+
+<a href="/insertion-sort" title="Explore this algorithm">Insertion</a>
+
+&middot;
+
+
+<a href="/selection-sort" title="Explore this algorithm">Selection</a>
+
+&middot;
+
+
+<a href="/bubble-sort" title="Explore this algorithm">Bubble</a>
+
+&middot;
+
+
+<a href="/shell-sort" title="Explore this algorithm">Shell</a>
+
+&middot;
+
+
+<a href="/merge-sort" title="Explore this algorithm">Merge</a>
+
+&middot;
+
+
+<a href="/heap-sort" title="Explore this algorithm">Heap</a>
+
+&middot;
+
+
+<a href="/quick-sort" title="Explore this algorithm">Quick</a>
+
+&middot;
+
+
+<a href="/quick-sort-3-way" title="Explore this algorithm">Quick3</a>
+
+
+
+</div>
+<div id="others2">
+	Initial Condition:&nbsp;
+
+<a href="random-initial-order" title="Explore this initial condition">Random</a>
+
+&middot;
+
+
+<a href="nearly-sorted-initial-order" title="Explore this initial condition">Nearly Sorted</a>
+
+&middot;
+
+
+<a href="reversed-initial-order" title="Explore this initial condition">Reversed</a>
+
+&middot;
+
+
+<a href="few-unique-keys" title="Explore this initial condition">Few Unique</a>
+
+
+
+</div>
+
+<table>
+	<tr>
+		<th>
+			<a class="restart" href="javascript:sortRestart('*','*');"
+			title="Restart all"><img width="48" height="48" src="/static/img/reload-48x48.jpg" alt="" /></a>
+		</th>
+		
+		<th>
+			<a class="restart" href="javascript:sortRestart('*','insertion-sort');" title="Restart column">
+				<img width="24" height="24" src="/static/img/reload-24x24.gif" alt="" />
+			</a><br/>
+			<a href="/insertion-sort" title="Explore this algorithm">Insertion</a>
+		</th>
+		
+		<th>
+			<a class="restart" href="javascript:sortRestart('*','selection-sort');" title="Restart column">
+				<img width="24" height="24" src="/static/img/reload-24x24.gif" alt="" />
+			</a><br/>
+			<a href="/selection-sort" title="Explore this algorithm">Selection</a>
+		</th>
+		
+		<th>
+			<a class="restart" href="javascript:sortRestart('*','bubble-sort');" title="Restart column">
+				<img width="24" height="24" src="/static/img/reload-24x24.gif" alt="" />
+			</a><br/>
+			<a href="/bubble-sort" title="Explore this algorithm">Bubble</a>
+		</th>
+		
+		<th>
+			<a class="restart" href="javascript:sortRestart('*','shell-sort');" title="Restart column">
+				<img width="24" height="24" src="/static/img/reload-24x24.gif" alt="" />
+			</a><br/>
+			<a href="/shell-sort" title="Explore this algorithm">Shell</a>
+		</th>
+		
+		<th>
+			<a class="restart" href="javascript:sortRestart('*','merge-sort');" title="Restart column">
+				<img width="24" height="24" src="/static/img/reload-24x24.gif" alt="" />
+			</a><br/>
+			<a href="/merge-sort" title="Explore this algorithm">Merge</a>
+		</th>
+		
+		<th>
+			<a class="restart" href="javascript:sortRestart('*','heap-sort');" title="Restart column">
+				<img width="24" height="24" src="/static/img/reload-24x24.gif" alt="" />
+			</a><br/>
+			<a href="/heap-sort" title="Explore this algorithm">Heap</a>
+		</th>
+		
+		<th>
+			<a class="restart" href="javascript:sortRestart('*','quick-sort');" title="Restart column">
+				<img width="24" height="24" src="/static/img/reload-24x24.gif" alt="" />
+			</a><br/>
+			<a href="/quick-sort" title="Explore this algorithm">Quick</a>
+		</th>
+		
+		<th>
+			<a class="restart" href="javascript:sortRestart('*','quick-sort-3-way');" title="Restart column">
+				<img width="24" height="24" src="/static/img/reload-24x24.gif" alt="" />
+			</a><br/>
+			<a href="/quick-sort-3-way" title="Explore this algorithm">Quick3</a>
+		</th>
+		
+	</tr>
+	
+	<tr>
+		<th>
+			<a class="restart" href="javascript:sortRestart('random-initial-order','*');" title="Restart row">
+				<img width="24" height="24" src="/static/img/reload-24x24.gif" alt="" />
+			</a><br/>
+			<a href="/random-initial-order" title="Explore this initial condition">Random</a>
+		</th>
+		
+		<td>
+			<img id="random-initial-order_insertion-sort" title="Click to restart" onclick="sortRestart('random-initial-order','insertion-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="random-initial-order_selection-sort" title="Click to restart" onclick="sortRestart('random-initial-order','selection-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="random-initial-order_bubble-sort" title="Click to restart" onclick="sortRestart('random-initial-order','bubble-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="random-initial-order_shell-sort" title="Click to restart" onclick="sortRestart('random-initial-order','shell-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="random-initial-order_merge-sort" title="Click to restart" onclick="sortRestart('random-initial-order','merge-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="random-initial-order_heap-sort" title="Click to restart" onclick="sortRestart('random-initial-order','heap-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="random-initial-order_quick-sort" title="Click to restart" onclick="sortRestart('random-initial-order','quick-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="random-initial-order_quick-sort-3-way" title="Click to restart" onclick="sortRestart('random-initial-order','quick-sort-3-way');" width="86" height="86" src="" alt="" />
+		</td>
+		
+	</tr>
+	
+	<tr>
+		<th>
+			<a class="restart" href="javascript:sortRestart('nearly-sorted-initial-order','*');" title="Restart row">
+				<img width="24" height="24" src="/static/img/reload-24x24.gif" alt="" />
+			</a><br/>
+			<a href="/nearly-sorted-initial-order" title="Explore this initial condition">Nearly Sorted</a>
+		</th>
+		
+		<td>
+			<img id="nearly-sorted-initial-order_insertion-sort" title="Click to restart" onclick="sortRestart('nearly-sorted-initial-order','insertion-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="nearly-sorted-initial-order_selection-sort" title="Click to restart" onclick="sortRestart('nearly-sorted-initial-order','selection-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="nearly-sorted-initial-order_bubble-sort" title="Click to restart" onclick="sortRestart('nearly-sorted-initial-order','bubble-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="nearly-sorted-initial-order_shell-sort" title="Click to restart" onclick="sortRestart('nearly-sorted-initial-order','shell-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="nearly-sorted-initial-order_merge-sort" title="Click to restart" onclick="sortRestart('nearly-sorted-initial-order','merge-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="nearly-sorted-initial-order_heap-sort" title="Click to restart" onclick="sortRestart('nearly-sorted-initial-order','heap-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="nearly-sorted-initial-order_quick-sort" title="Click to restart" onclick="sortRestart('nearly-sorted-initial-order','quick-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="nearly-sorted-initial-order_quick-sort-3-way" title="Click to restart" onclick="sortRestart('nearly-sorted-initial-order','quick-sort-3-way');" width="86" height="86" src="" alt="" />
+		</td>
+		
+	</tr>
+	
+	<tr>
+		<th>
+			<a class="restart" href="javascript:sortRestart('reversed-initial-order','*');" title="Restart row">
+				<img width="24" height="24" src="/static/img/reload-24x24.gif" alt="" />
+			</a><br/>
+			<a href="/reversed-initial-order" title="Explore this initial condition">Reversed</a>
+		</th>
+		
+		<td>
+			<img id="reversed-initial-order_insertion-sort" title="Click to restart" onclick="sortRestart('reversed-initial-order','insertion-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="reversed-initial-order_selection-sort" title="Click to restart" onclick="sortRestart('reversed-initial-order','selection-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="reversed-initial-order_bubble-sort" title="Click to restart" onclick="sortRestart('reversed-initial-order','bubble-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="reversed-initial-order_shell-sort" title="Click to restart" onclick="sortRestart('reversed-initial-order','shell-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="reversed-initial-order_merge-sort" title="Click to restart" onclick="sortRestart('reversed-initial-order','merge-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="reversed-initial-order_heap-sort" title="Click to restart" onclick="sortRestart('reversed-initial-order','heap-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="reversed-initial-order_quick-sort" title="Click to restart" onclick="sortRestart('reversed-initial-order','quick-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="reversed-initial-order_quick-sort-3-way" title="Click to restart" onclick="sortRestart('reversed-initial-order','quick-sort-3-way');" width="86" height="86" src="" alt="" />
+		</td>
+		
+	</tr>
+	
+	<tr>
+		<th>
+			<a class="restart" href="javascript:sortRestart('few-unique-keys','*');" title="Restart row">
+				<img width="24" height="24" src="/static/img/reload-24x24.gif" alt="" />
+			</a><br/>
+			<a href="/few-unique-keys" title="Explore this initial condition">Few Unique</a>
+		</th>
+		
+		<td>
+			<img id="few-unique-keys_insertion-sort" title="Click to restart" onclick="sortRestart('few-unique-keys','insertion-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="few-unique-keys_selection-sort" title="Click to restart" onclick="sortRestart('few-unique-keys','selection-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="few-unique-keys_bubble-sort" title="Click to restart" onclick="sortRestart('few-unique-keys','bubble-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="few-unique-keys_shell-sort" title="Click to restart" onclick="sortRestart('few-unique-keys','shell-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="few-unique-keys_merge-sort" title="Click to restart" onclick="sortRestart('few-unique-keys','merge-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="few-unique-keys_heap-sort" title="Click to restart" onclick="sortRestart('few-unique-keys','heap-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="few-unique-keys_quick-sort" title="Click to restart" onclick="sortRestart('few-unique-keys','quick-sort');" width="86" height="86" src="" alt="" />
+		</td>
+		
+		<td>
+			<img id="few-unique-keys_quick-sort-3-way" title="Click to restart" onclick="sortRestart('few-unique-keys','quick-sort-3-way');" width="86" height="86" src="" alt="" />
+		</td>
+		
+	</tr>
+	
+</table>
+
+<div id="text">
+	<div id="discussion">
+		<h2>Discussion</h2>
+		<p>
+			These pages show 8 different sorting algorithms on 4 different 
+			initial conditions.  These visualizations are intended to:
+		</p>
+		<ul>
+			<li> Show how each algorithm operates. </li>
+			<li> Show that there is no best sorting algorithm. </li>
+			<li> Show the advantages and disadvantages of each algorithm. </li>
+			<li> 
+				Show that worse-case asymptotic behavior is not always the deciding
+				factor in choosing an algorithm.
+			</li>
+			<li> Show that the initial condition (input order and key
+				distribution) affects performance as much as the
+				algorithm choice.
+			</li>
+		</ul>
+		<p>
+			The ideal sorting algorithm would have the following properties:
+		</p>
+		<ul>
+			<li> Stable: Equal keys aren't reordered. </li>
+			<li> Operates in place, requiring O(1) extra space. </li>
+			<li> Worst-case O(n&middot;lg(n)) key comparisons. </li>
+			<li> Worst-case O(n) swaps. </li>
+			<li> 
+				Adaptive: Speeds up to O(n) when data is nearly sorted or
+				when there are few unique keys.
+			</li>
+		</ul>
+		<p>
+			There is no algorithm that has all of these properties, and so the
+			choice of sorting algorithm depends on the application.
+		</p>
+		<p>
+			<i>Sorting is a vast topic; this site explores the topic of
+			in-memory generic algorithms for arrays.  External sorting,
+			radix sorting, string sorting, and linked list sorting&mdash;all
+			wonderful and interesting topics&mdash;are
+			deliberately omitted to limit the scope of discussion.</i>
+		</p>
+	</div>
+	<div id="directions">
+		<h2>Directions</h2>
+<ul>
+	<li>
+		Click on <img src="/static/img/reload-24x24.gif" alt="" /> above to restart 
+		the animations in a row, a column, or the entire table.
+	</li>
+	<li>
+		Click directly on an animation image to start or restart it.
+	</li>
+	<li>
+		Click on a problem size number to reset all animations.
+	</li>
+</ul>
+
+		<h2>Key</h2>
+		<ul>
+			<li> Black values are sorted. </li>
+			<li> Gray values are unsorted. </li>
+			<li> A red triangle marks the algorithm position. </li>
+			<li> Dark gray values denote the current interval (shell, merge, quick). </li>
+			<li> A pair of red triangles marks the left and right pointers (quick). </li>
+		</ul>
+		<h2>References</h2>
+<p>
+	<a target="_blank" href="http://www.informit.com/store/product.aspx?isbn=0201361205"><i>Algorithms in Java, Parts 1-4, 3rd edition</i></a>
+	by <a target="_blank" href="http://www.cs.princeton.edu/~rs/">Robert Sedgewick</a>.
+	Addison Wesley, 2003.
+</p>
+<p>
+	<a target="_blank" href="http://netlib.bell-labs.com/cm/cs/pearls/"><i>Programming Pearls</i></a>
+	by <a target="_blank" href="http://www.research.avayalabs.com/gcm/usa/en-us/people/all/bentley.htm">Jon Bentley</a>.
+	Addison Wesley, 1986.
+</p>
+<p>
+	<a target="_blank" href="/static/QuicksortIsOptimal.pdf"><i>Quicksort is Optimal</i></a>
+	by <a target="_blank" href="http://www.cs.princeton.edu/~rs/">Robert Sedgewick</a>
+	and <a target="_blank" href="http://www.research.avayalabs.com/gcm/usa/en-us/people/all/bentley.htm">Jon Bentley</a>,
+	Knuthfest, Stanford University, January, 2002.
+</p>
+<p>
+	Dual Pivot Quicksort:
+	<a target="_blank" href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/7-b147/java/util/DualPivotQuicksort.java">Code</a>
+	and
+	<a target="_blank" href="http://permalink.gmane.org/gmane.comp.java.openjdk.core-libs.devel/2628">Discussion</a>.
+</p>
+<p>
+	<a target="_blank" href="http://www.youtube.com/watch?v=lyZQPjUT5B4"><i>Bubble-sort with Hungarian ("Csángó") folk dance </i></a> YouTube video, created at Sapientia University, Tirgu Mures (Marosvásárhely), Romania.
+</p>
+<p>
+	<a target="_blank" href="http://www.youtube.com/watch?v=Ns4TPTC8whw"><i>Select-sort with Gypsy folk dance </i></a> YouTube video, created at Sapientia University, Tirgu Mures (Marosvásárhely), Romania.
+</p>
+<p>
+	<a target="_blank" href="http://www.youtube.com/watch?v=SJwEwA5gOkM">Sorting Out Sorting</a>, 
+	Ronald M. Baecker with the assistance of David Sherman, 30 minute color sound film, 
+	Dynamic Graphics Project, 	University of Toronto, 1981.  Excerpted and reprinted in SIGGRAPH Video Review 7, 1983. 
+	Distributed by Morgan Kaufmann, Publishers.
+	<a target="_blank" href="http://www.youtube.com/watch?v=JdXoUgYQebM">Excerpt</a>.
+</p>
+<!-- 
+<p>
+	<a target="_blank" href="http://www.youtube.com/watch?v=JdXoUgYQebM">The Beauty of Sorting</a> YouTube video,
+	Dynamic Graphics Project, Computer Systems Research Group, University of Toronto.
+</p>
+<p>
+	<a target="_blank" href="http://www.youtube.com/watch?v=YvTW7341kpA">Sorting Out Sorting</a> YouTube video,
+	Dynamic Graphics Project, Computer Systems Research Group, University of Toronto.
+</p>
+-->
+
+	</div>
+</div>
+
+
+		
+		<!--
+		<div id="comments">
+			<h2>Comments</h2>
+			<div id="login-status">
+				
+				To post a comment, you must <a href="/login?redirect=/">log in</a>.
+				
+			</div>
+			<script type="text/javascript">
+			function OpenComment()  { $('comment_link').hide(); $('comment_entry').show(); }
+			function CloseComment() { $('comment_link').show(); $('comment_entry').hide(); }
+			</script>
+			<div id="comment_entry" class="comment"  style="display:none;" >
+				<form action="" method="post">
+					<textarea name="text"></textarea>
+					<br/>
+					<script type="text/javascript" 
+					src="http://api.recaptcha.net/challenge?k=6LfoCAkAAAAAABWE1-Wev4s_toCrI6xQLl9LgfKQ&amp;error=">
+					</script>
+					<input type="submit" value="Post Comment" />
+					<input type="button" value="Cancel" onClick="javascript:CloseComment();" />
+				</form>
+			</div>
+			
+		</div>
+		-->
+
+		<div id="footer">
+			<table>
+				<tr>
+					<td id="copyright">
+						&copy; 2007 David R. Martin<br/>david . r . martin @ gmail . com
+					</td>
+					<td id="ge">
+						<!-- Powered by GAE -->
+						<!-- http://code.google.com/appengine/images/appengine-noborder-120x30.gif -->
+						<a class="image" target="_blank" href="http://code.google.com/appengine/"><img src="/static/img/appengine-noborder-120x30.gif" alt="Powered by Google App Engine" width="120" height="30" /></a>	
+					</td>
+					<td id="validate">
+						<!-- CSS Validator -->
+						<!-- http://jigsaw.w3.org/css-validator/images/vcss-blue -->
+						<a class="image" target="_blank" href="http://jigsaw.w3.org/css-validator/check/referer"><img src="/static/img/vcss-blue.gif" alt="Valid CSS!" width="57" height="20" /></a>
+						<!-- HTML Validator -->
+						<!-- http://www.w3.org/Icons/valid-xhtml10-blue -->
+						<a class="image" target="_blank" href="http://validator.w3.org/check?uri=referer"><img src="/static/img/valid-xhtml10-blue.png" alt="Valid XHTML 1.0 Transitional" width="57" height="20" /></a>
+						<!-- Page Rank -->
+						<a id="rank-a" class="image" href="javascript:ShowPagerank();"><img id="rank-img" width="80" height="15" style="position:relative; bottom:4px;" src="" alt="Pagerank" title="Show Pagerank" /></a>
+						<script type="text/javascript">
+						function ShowPagerank() {
+							var el = document.getElementById('rank-img');
+							el.src = 'http://pr.prchecker.info/getpr.php'
+								     + '?codex=aHR0cDovL3d3dy5zb3J0aW5nLWFsZ29yaXRobXMuY29tLw==&tag=3';
+							el.title = '';
+							var el = document.getElementById('rank-a');
+							el.href = 'http://www.prchecker.info/';
+							el.target = "_blank";
+						}
+						ShowPagerank();
+						</script>
+					</td>
+					<td id="counter">
+						<!-- Page Counter -->
+						<a id='counter-a' class="image" href="javascript:ShowPageCounter();"><img id="counter-img" width="84" height="17" src="" alt="Page Counter" title="Show Page Counter" /></a>
+						<script type="text/javascript">
+						function ShowPageCounter() {
+							var el = document.getElementById('counter-img');
+							el.src = 'http://www.easycounter.com/counter.php?dmartin';
+							el.title = '';
+							el = document.getElementById('counter-a');
+							el.href = 'http://www.easycounter.com/';
+							el.target = "_blank";
+						}
+						ShowPageCounter();
+						</script>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+
+		<!-- Google Analytics -->
+		<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script type="text/javascript">
+		var pageTracker = _gat._getTracker("UA-6383900-1");
+		pageTracker._trackPageview();
+		</script>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+#############################################
+# INSERT
+#############################################
+#--------------------------------------------
+# with loop
+#--------------------------------------------
+def insert1 (lst1,lst2,idx): 
+  """
+  >>> insert1([1, 2, 3], ['a', 'b', 'c'], 2)
+  [1, 2, 'a', 'b', 'c', 3]
+  >>> insert1([1, 2, 3], ['a', 'b', 'c'], 1)
+  [1, 'a', 'b', 'c', 2, 3]
+  >>> insert1([1, 2, 3], ['a', 'b', 'c'], 0)
+  ['a', 'b', 'c', 1, 2, 3]
+  >>> insert1('abcdef', '12345', 0)
+  '12345abcdef'
+  >>> insert1('abcdef', '12345', 3)
+  'abc12345def'
+  """
+
+  result=[]
+  for lst1_idx in range(len(lst1)):
+    if lst1_idx == idx:
+      result += lst2
+
+    result.append(lst1[lst1_idx])
+
+  if type(lst1) == str:
+    return_str=""
+    for ch in result:
+      return_str+=ch
+    return return_str
+  else:
+    return result
+
+#--------------------------------------------
+# without loop
+#--------------------------------------------
+def insert2(lst1,lst2,idx): 
+  """
+  >>> insert2([1, 2, 3], ['a', 'b', 'c'], 2)
+  [1, 2, 'a', 'b', 'c', 3]
+  >>> insert2([1, 2, 3], ['a', 'b', 'c'], 1)
+  [1, 'a', 'b', 'c', 2, 3]
+  >>> insert2([1, 2, 3], ['a', 'b', 'c'], 0)
+  ['a', 'b', 'c', 1, 2, 3]
+  >>> insert2('abcdef', '12345', 0)
+  '12345abcdef'
+  >>> insert2('abcdef', '12345', 3)
+  'abc12345def'
+  """
+
+  return lst1[:idx]+lst2+lst1[idx:]  
+
+#############################################
+# up_to_first
+#############################################
+#--------------------------------------------
+def up_to_first1(lst1, obj):
+  """
+  >>> up_to_first1([1, 2, 3, 4], 3)
+  [1, 2]
+  >>> up_to_first1([1, 2, 3, 4], 5)
+  [1, 2, 3, 4]
+  >>> up_to_first1('1234', 3)
+  '12'
+  """
+
+  result=[]
+  for each in lst1:
+    if each == obj:
+      break
+    else:
+      result.append(each)
+
+  return result
+
+#--------------------------------------------
+def up_to_first2(lst1, obj):
+  """
+  >>> up_to_first2([1, 2, 3, 4], 3)
+  [1, 2]
+  >>> up_to_first2([1, 2, 3, 4], 5)
+  [1, 2, 3, 4]
+  """
+
+  if obj in lst1:
+    return lst1[:lst1.index(obj)]
+  else:
+    return lst1
+
+#############################################
+# cut_list
+#############################################
+def cut_list1(lst1,idx):
+
+  """
+  >>> cut_list1([0,1,2,3,4,5,6,7,8,9], 3)
+  [4, 5, 6, 7, 8, 9, 3, 0, 1, 2]
+  >>> cut_list1("ABCDEFGX1234",7)
+  '1234XABCDEFG'
+  """
+
+  before=[]
+  after=[]
+  result=[]
+  found=False;
+
+  for lst1_idx in range(len(lst1)):
+    if lst1_idx == idx:
+      before.insert(0,lst1[lst1_idx])
+      found = True
+    else:
+      if (found):
+        after.append(lst1[lst1_idx])
+      else:
+        before.append(lst1[lst1_idx])
+
+  result=after+before
+      
+
+  if type(lst1) == str:
+    return_str=""
+    for ch in result:
+      return_str+=ch
+    return return_str
+  else:
+    return result
+#--------------------------------------------
+def cut_list2(lst1,idx):
+
+  """
+  >>> cut_list2([0,1,2,3,4,5,6,7,8,9], 3)
+  [4, 5, 6, 7, 8, 9, 3, 0, 1, 2]
+  >>> cut_list2("ABCDEFGX1234",7)
+  '1234XABCDEFG'
+  """
+
+  return lst1[idx+1:]+lst1[idx:idx+1]+lst1[:idx]
+
+
+
+
+
+
+
+
+
+
+if __name__ == "__main__" :
+  import doctest
+  doctest.testmod()
+  
