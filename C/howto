@@ -1,8 +1,0 @@
-add new:
-git add *
-git commit -m "<>"
-git push
-
-chekcing updats
-git fetch
-git status
