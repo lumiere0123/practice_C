@@ -1,0 +1,95 @@
+---=== Phone Numbers ===---
+
+1. Display Phone List
+2. Add a Number
+0. Exit
+
+Please select from the above options: 1
+
+Phone Numbers
+==============
+
+1. Display Phone List
+2. Add a Number
+0. Exit
+
+Please select from the above options: 2
+
+Add a Number
+============
+6475551212
+1. Display Phone List
+2. Add a Number
+0. Exit
+
+Please select from the above options: 2
+
+Add a Number
+============
+-2345
+ERROR! Phone number is not valid
+1. Display Phone List
+2. Add a Number
+0. Exit
+
+Please select from the above options: 4
+
+Error: Incorrect Option
+1. Display Phone List
+2. Add a Number
+0. Exit
+
+Please select from the above options: 2
+
+Add a Number
+============
+4164915050
+1. Display Phone List
+2. Add a Number
+0. Exit
+
+Please select from the above options: 2
+
+Add a Number
+============
+6132223333
+ERROR! Phone number is not valid
+1. Display Phone List
+2. Add a Number
+0. Exit
+
+Please select from the above options: 2
+
+Add a Number
+============
+6470223333
+ERROR! Phone number is not valid
+1. Display Phone List
+2. Add a Number
+0. Exit
+
+Please select from the above options: 2
+
+Add a Number
+============
+9052301212
+ERROR! Phone number is not valid
+1. Display Phone List
+2. Add a Number
+0. Exit
+
+Please select from the above options: 1
+
+Phone Numbers
+==============
+(647) - 555 - 1212
+(416) - 491 - 5050
+
+1. Display Phone List
+2. Add a Number
+0. Exit
+
+Please select from the above options: 0
+
+Exiting Phone Number APP.Good Bye!!!
+
